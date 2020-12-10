@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<XTextDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" EditorVersionString="1.1.1111.1">
+  <Attributes />
+  <XElements>
+    <Element xsi:type="XTextBody">
+      <Expressions />
+      <Attributes />
+      <XElements>
+        <Element xsi:type="XString" StyleIndex="5">
+          <Text>    </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="4">
+          <Text>CSharpWriter</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="5">
+          <Text> </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text> is a RTF style Text writer control written by C#2.0,</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="6">
+          <Text> </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>Currently,</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="6">
+          <Text>   </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>it use</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="6">
+          <Text>   </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text> </Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="8" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;LGPL&gt; license(maybe change later).More than RichTextBox, It is provide a DOM to access every thing in document and save in XML format.It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter can send to 28348092@qq.com(or yyf9989@hotmail.com).</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="7" />
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;In the future , It could be support :</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;1.Insert ,resize Image.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;2.2-D Barcode.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;3.3-D Barcode.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;4.Table </Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;5.VBA(or javascrit for application)</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;6.load and save html file(alse parse html string)</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;7.host winform/wpf control in document.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;8.insert button .</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;9.insert checkbox / radio box.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;10.COM interop.So it can used to VB6/VC6/DELPHI7/DELPHI XE/PB9/IE host activecontrol.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;11.Chart(pie and bar )</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;12.custom draw content by your code.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;13.PageNumber in header and footer.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;14.Page break</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;15.CA Sign.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="6">
+          <Text>&lt;br/&gt;16.Zoom view.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;1</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="6">
+          <Text>7</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>.others....</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>&lt;</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="3">
+          <Text>br</Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>/&gt;Whitch you want most , You can send </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="9">
+          <Text> </Text>
+        </Element>
+        <Element xsi:type="XString" StyleIndex="1">
+          <Text>me email.</Text>
+        </Element>
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+        <Element xsi:type="XParagraphFlag">
+          <AutoCreate>true</AutoCreate>
+        </Element>
+      </XElements>
+    </Element>
+    <Element xsi:type="XTextHeader">
+      <Expressions />
+      <Attributes />
+      <XElements>
+        <Element xsi:type="XParagraphFlag" StyleIndex="0">
+          <AutoCreate>true</AutoCreate>
+        </Element>
+      </XElements>
+    </Element>
+    <Element xsi:type="XTextFooter">
+      <Expressions />
+      <Attributes />
+      <XElements>
+        <Element xsi:type="XParagraphFlag">
+          <AutoCreate>true</AutoCreate>
+        </Element>
+      </XElements>
+    </Element>
+  </XElements>
+  <Info>
+    <CreationTime>2020-12-10T10:57:55.2856577+08:00</CreationTime>
+    <LastModifiedTime>2020-12-10T10:57:55.2856577+08:00</LastModifiedTime>
+    <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+    <Operator>DCSoft.CSharpWriter Version:1.1.1111.1</Operator>
+    <NumOfPage>1</NumOfPage>
+  </Info>
+  <BodyText>    CSharpWriter  is a RTF style Text writer control written by C#2.0, Currently,   it use    
+&lt;LGPL&gt; license(maybe change later).More than RichTextBox, It is provide a DOM to access every thing in document and save in XML format.It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter can send to 28348092@qq.com(or yyf9989@hotmail.com).
+
+&lt;br/&gt;In the future , It could be support :
+&lt;br/&gt;1.Insert ,resize Image.
+&lt;br/&gt;2.2-D Barcode.
+&lt;br/&gt;3.3-D Barcode.
+&lt;br/&gt;4.Table 
+&lt;br/&gt;5.VBA(or javascrit for application)
+&lt;br/&gt;6.load and save html file(alse parse html string)
+&lt;br/&gt;7.host winform/wpf control in document.
+&lt;br/&gt;8.insert button .
+&lt;br/&gt;9.insert checkbox / radio box.
+&lt;br/&gt;10.COM interop.So it can used to VB6/VC6/DELPHI7/DELPHI XE/PB9/IE host activecontrol.
+&lt;br/&gt;11.Chart(pie and bar )
+&lt;br/&gt;12.custom draw content by your code.
+&lt;br/&gt;13.PageNumber in header and footer.
+&lt;br/&gt;14.Page break
+&lt;br/&gt;15.CA Sign.
+&lt;br/&gt;16.Zoom view.
+&lt;br/&gt;17.others....
+&lt;br/&gt;Whitch you want most , You can send  me email.
+
+
+</BodyText>
+  <UserHistories />
+  <ContentStyles>
+    <Default xsi:type="DocumentContentStyle">
+      <Color>ControlText</Color>
+      <FontName>宋体</FontName>
+      <FontSize>12</FontSize>
+    </Default>
+    <Styles>
+      <Style Index="0">
+        <Align>Center</Align>
+      </Style>
+      <Style Index="1">
+        <BackgroundColor />
+        <FontName>新宋体</FontName>
+        <FontSize>9.5</FontSize>
+      </Style>
+      <Style Index="2">
+        <BackgroundColor />
+        <FontName>宋体</FontName>
+        <FontSize>12</FontSize>
+      </Style>
+      <Style Index="3">
+        <BackgroundColor />
+        <Color>Maroon</Color>
+        <FontName>新宋体</FontName>
+        <FontSize>9.5</FontSize>
+      </Style>
+      <Style Index="4">
+        <BackgroundColor />
+        <FontName>新宋体</FontName>
+        <FontSize>18</FontSize>
+        <Bold>true</Bold>
+      </Style>
+      <Style Index="5">
+        <BackgroundColor />
+        <FontName>新宋体</FontName>
+        <FontSize>18</FontSize>
+        <Bold>true</Bold>
+      </Style>
+      <Style Index="6">
+        <BackgroundColor />
+        <FontName>新宋体</FontName>
+        <FontSize>9.5</FontSize>
+      </Style>
+      <Style Index="7">
+        <BackgroundColor />
+        <FontName>宋体</FontName>
+        <FontSize>12</FontSize>
+        <DefaultValuePropertyNames>Align</DefaultValuePropertyNames>
+      </Style>
+      <Style Index="8">
+        <BackgroundColor />
+        <FontName>宋体</FontName>
+        <FontSize>12</FontSize>
+        <DefaultValuePropertyNames>Align</DefaultValuePropertyNames>
+      </Style>
+      <Style Index="9">
+        <BackgroundColor />
+        <FontName>新宋体</FontName>
+        <FontSize>9.5</FontSize>
+      </Style>
+    </Styles>
+  </ContentStyles>
+  <DocumentGraphicsUnit>Document</DocumentGraphicsUnit>
+  <PageSettings />
+</XTextDocument>

@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlertClosed" xml:space="preserve">
+    <value>对象已经关闭了。</value>
+  </data>
+  <data name="AlertInputServerAndUser" xml:space="preserve">
+    <value>请输入服务器地址和用户登录名。</value>
+  </data>
+  <data name="AlertSelectPropertyMember" xml:space="preserve">
+    <value>请选择一个合适的属性，该属性必须是公开的可读写的，最好是返回一个列表。</value>
+  </data>
+  <data name="AssemblyConnectionDescription" xml:space="preserve">
+    <value>能从运行中的.NET程序集中获得数据。</value>
+  </data>
+  <data name="AssemblyFilter" xml:space="preserve">
+    <value>.NET程序集文件(*.dll,*.exe)|*.dll;*.exe</value>
+  </data>
+  <data name="BadDBFFormat" xml:space="preserve">
+    <value>不是合法的 DBF（dBase III）文件格式</value>
+  </data>
+  <data name="CanNotDefineMultiIndexInOneReader" xml:space="preserve">
+    <value>不能对一个数据读取器定义多个索引字段。</value>
+  </data>
+  <data name="CanNotDefineMultiMainIndexField" xml:space="preserve">
+    <value>不能定义多个主索引字段。</value>
+  </data>
+  <data name="CloseConnection_String" xml:space="preserve">
+    <value>关闭数据库连接“{1}”。</value>
+  </data>
+  <data name="ConnectionClosed" xml:space="preserve">
+    <value>数据库连接已经关闭了。</value>
+  </data>
+  <data name="CSVConnectionDescription" xml:space="preserve">
+    <value>能从CSV格式的数据文件中获得数据。</value>
+  </data>
+  <data name="CSVFilter" xml:space="preserve">
+    <value>CSV数据文件(*.csv)|*.csv</value>
+  </data>
+  <data name="DataBaseSchema" xml:space="preserve">
+    <value>数据库结构</value>
+  </data>
+  <data name="DBaseConnectionDescription" xml:space="preserve">
+    <value>能从Dbase III 格式的数据文件中获得数据。</value>
+  </data>
+  <data name="DBFFilter" xml:space="preserve">
+    <value>DBF数据文件(*.dbf)|*.dbf</value>
+  </data>
+  <data name="Directory" xml:space="preserve">
+    <value>目录</value>
+  </data>
+  <data name="EventLogConnectionDescription" xml:space="preserve">
+    <value>能从Windows系统的日志记录中获得数据。</value>
+  </data>
+  <data name="ExcelBinaryConnectionDescription" xml:space="preserve">
+    <value>能从Excel二进制文件中获得数据。</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="FileNotFound_FileName" xml:space="preserve">
+    <value>未能找到文件“{0}”。</value>
+  </data>
+  <data name="FileSystemConnectionDescription" xml:space="preserve">
+    <value>能从操作系统文件目录系统中获得数据。</value>
+  </data>
+  <data name="FormatSample_Boolean" xml:space="preserve">
+    <value>Yes,No|True,False|是,否|真,假|好,差|男,女|是,|,否</value>
+  </data>
+  <data name="FormatSample_Currency" xml:space="preserve">
+    <value>00.00|大写中文|小写中文|#.00|c</value>
+  </data>
+  <data name="FormatSample_DateTime" xml:space="preserve">
+    <value>yyyy-MM-dd HH:mm:ss|yyyy-MM-dd|yyyy-MM-dd hh:mm:ss|HH:mm:ss|yyyy年MM月dd日|yyyy年MM月dd日 HH时mm分ss秒|d|D|f|F</value>
+  </data>
+  <data name="GridDataInfo_Rows_Cols" xml:space="preserve">
+    <value>共显示{0}行{1}列数据。</value>
+  </data>
+  <data name="LoadDataSetXMLError_File_Message" xml:space="preserve">
+    <value>从文件“{0}”加载数据集XML文档时发生错误“{1}”。</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>正在加载...</value>
+  </data>
+  <data name="MissMember_Type_Member" xml:space="preserve">
+    <value>类型“{0}”缺少成员“{1}”。</value>
+  </data>
+  <data name="MySQLConnectionDescription" xml:space="preserve">
+    <value>能从 MySQL 数据库中访问数据。</value>
+  </data>
+  <data name="NoCurrentRecord" xml:space="preserve">
+    <value>没有当前记录</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>没有数据</value>
+  </data>
+  <data name="NoneData" xml:space="preserve">
+    <value>没有任何数据。</value>
+  </data>
+  <data name="NotSpecifyFileName" xml:space="preserve">
+    <value>未指定文件名。</value>
+  </data>
+  <data name="OpenConnection_String" xml:space="preserve">
+    <value>打开数据库连接“{0}”。</value>
+  </data>
+  <data name="ReadBytes_Bytes_Name" xml:space="preserve">
+    <value>从文件“{1}”读取了{0}数据。</value>
+  </data>
+  <data name="ReadChars_Encoding_Name_Length" xml:space="preserve">
+    <value>使用“{0}”编码格式从文件“{1}”中读取{2}个字符。</value>
+  </data>
+  <data name="ReaderClosed" xml:space="preserve">
+    <value>数据读取器已经关闭了</value>
+  </data>
+  <data name="ReaderEOF" xml:space="preserve">
+    <value>数据读取完毕。</value>
+  </data>
+  <data name="ReturnNothing_MemberName" xml:space="preserve">
+    <value>未能从对象“{0}”获得任何数据。</value>
+  </data>
+  <data name="SampleText" xml:space="preserve">
+    <value>  中文ABC  </value>
+  </data>
+  <data name="SaveDataSetXMLError_File_Message" xml:space="preserve">
+    <value>保存数据集XML文件到“{0}”时发生错误“{1}”。</value>
+  </data>
+  <data name="SystemMessage" xml:space="preserve">
+    <value>系统消息</value>
+  </data>
+  <data name="Total_Rows_Cols" xml:space="preserve">
+    <value>共计{0}行，{1}列。</value>
+  </data>
+  <data name="Total_Tables_Fields" xml:space="preserve">
+    <value>[共{0}张表，{1}个字段]</value>
+  </data>
+  <data name="WMIConnectionDescription" xml:space="preserve">
+    <value>能从WMI(Windows系统管理)中获得数据。</value>
+  </data>
+  <data name="XLSFilter" xml:space="preserve">
+    <value>Excel数据文件(*.xls)|*.xls</value>
+  </data>
+  <data name="XMLConnectionDescription" xml:space="preserve">
+    <value>能从XML文件中获得数据。</value>
+  </data>
+  <data name="XMLFilter" xml:space="preserve">
+    <value>XML文件(*.xml)|*.xml</value>
+  </data>
+</root>

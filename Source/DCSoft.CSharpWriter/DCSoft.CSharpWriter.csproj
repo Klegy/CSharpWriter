@@ -1,0 +1,901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B4EE2EE-8187-4F6D-9F05-249D8359B7CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DCSoft</RootNamespace>
+    <AssemblyName>DCSoft.CSharpWriter</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AttributeString.cs" />
+    <Compile Include="Common\CellIndex.cs" />
+    <Compile Include="Common\CountDown.cs" />
+    <Compile Include="Common\DataObjectHelper.cs" />
+    <Compile Include="Common\DocumentCommentAttribute.cs" />
+    <Compile Include="Common\FileHeaderHelper.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\frmDebugOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frmDebugOutput.Designer.cs">
+      <DependentUpon>frmDebugOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ListDebugView.cs" />
+    <Compile Include="Common\ListDictionary.cs" />
+    <Compile Include="Common\MeasureConvert.cs" />
+    <Compile Include="Common\StackTraceHelper.cs" />
+    <Compile Include="Common\StringFormatHelper.cs" />
+    <Compile Include="Common\ValueTypeHelper.cs" />
+    <Compile Include="Common\VariableString.cs" />
+    <Compile Include="Common\XDependencyObject.cs" />
+    <Compile Include="Common\XDependencyObjectEventHandler.cs" />
+    <Compile Include="Common\XDependencyProperty.cs" />
+    <Compile Include="Common\XDependencyPropertyDescriptor.cs" />
+    <Compile Include="CSharpWriter\Data\DefaultFileSystem.cs" />
+    <Compile Include="CSharpWriter\Data\IFileSystem.cs" />
+    <Compile Include="CSharpWriter\Data\UrlStream.cs" />
+    <Compile Include="CSharpWriter\Data\VFileInfo.cs" />
+    <Compile Include="CSharpWriter\Data\WriterServiceContainer.cs" />
+    <Compile Include="Data\DataStrings.Designer.cs">
+      <DependentUpon>DataStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Data\DataStrings.en.Designer.cs">
+      <DependentUpon>DataStrings.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Data\ParameterStyle.cs" />
+    <Compile Include="Data\SQLHelper.cs" />
+    <Compile Include="Data\ValueFormater.cs" />
+    <Compile Include="Data\WinForms\Design\ValueFormaterUIEditor.cs" />
+    <Compile Include="Data\WinForms\dlgFormatDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawing\ContentStyle.cs" />
+    <Compile Include="Drawing\ContentStyleContainer.cs" />
+    <Compile Include="Drawing\ContentStyleList.cs" />
+    <Compile Include="Drawing\Design\dlgBorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawing\Design\dlgBorder.Designer.cs">
+      <DependentUpon>dlgBorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drawing\DocumentContentAlignment.cs" />
+    <Compile Include="Drawing\DrawerUtil.cs" />
+    <Compile Include="Drawing\GraphicsObjectBuffer.cs" />
+    <Compile Include="Drawing\GraphicsUnitConvert.cs" />
+    <Compile Include="Drawing\MathCommon.cs" />
+    <Compile Include="Drawing\MultiRectangleTransform.cs" />
+    <Compile Include="Drawing\PageFrameDrawer.cs" />
+    <Compile Include="Drawing\RectangleCommon.cs" />
+    <Compile Include="Drawing\RectangleCounter.cs" />
+    <Compile Include="Drawing\RectangleDrawer.cs" />
+    <Compile Include="Drawing\ShapeDrawer.cs" />
+    <Compile Include="Drawing\ShapeTypes.cs" />
+    <Compile Include="Drawing\SimpleRectangleTransform.cs" />
+    <Compile Include="Drawing\TransformBase.cs" />
+    <Compile Include="Drawing\VerticalAlignStyle.cs" />
+    <Compile Include="Drawing\WatermarkDrawer.cs" />
+    <Compile Include="Drawing\XBrushStyle.cs" />
+    <Compile Include="Drawing\XColorValue.cs" />
+    <Compile Include="Drawing\XFontValue.cs" />
+    <Compile Include="Drawing\XImageValue.cs" />
+    <Compile Include="Drawing\XPenStyle.cs" />
+    <Compile Include="Printing\dlgPageSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Printing\dlgWaitPrintJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Printing\IPageDocument.cs" />
+    <Compile Include="Printing\MultiPageTransform.cs" />
+    <Compile Include="Printing\PageContentDrawer.cs" />
+    <Compile Include="Printing\PageDocumentPaintEventArgs.cs" />
+    <Compile Include="Printing\PageRangeInfo.cs" />
+    <Compile Include="Printing\PageViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Printing\PageViewMode.cs" />
+    <Compile Include="Printing\PrintingResources.Designer.cs">
+      <DependentUpon>PrintingResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Printing\PrintingResources.en.Designer.cs">
+      <DependentUpon>PrintingResources.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Printing\PrintJob.cs" />
+    <Compile Include="Printing\PrintPage.cs" />
+    <Compile Include="Printing\PrintPageCollection.cs" />
+    <Compile Include="Printing\PrintUtil.cs" />
+    <Compile Include="Printing\XPageSettings.cs" />
+    <Compile Include="Printing\XPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTF\ByteBuffer.cs" />
+    <Compile Include="RTF\DocumentFormatInfo.cs" />
+    <Compile Include="RTF\Parser.cs" />
+    <Compile Include="RTF\ProgressEventHandler.cs" />
+    <Compile Include="RTF\RTFAlignment.cs" />
+    <Compile Include="RTF\RTFAttribute.cs" />
+    <Compile Include="RTF\RTFBorderStyle.cs" />
+    <Compile Include="RTF\RTFColorTable.cs" />
+    <Compile Include="RTF\RTFConsts.cs" />
+    <Compile Include="RTF\RTFDocumentInfo.cs" />
+    <Compile Include="RTF\RTFDocumentWriter.cs" />
+    <Compile Include="RTF\RTFDomBookmark.cs" />
+    <Compile Include="RTF\RTFDomDocument.cs" />
+    <Compile Include="RTF\RTFDomElement.cs" />
+    <Compile Include="RTF\RTFDomElementContainer.cs" />
+    <Compile Include="RTF\RTFDomElementList.cs" />
+    <Compile Include="RTF\RTFDomField.cs" />
+    <Compile Include="RTF\RTFDomHeader.cs" />
+    <Compile Include="RTF\RTFDomImage.cs" />
+    <Compile Include="RTF\RTFDomLineBreak.cs" />
+    <Compile Include="RTF\RTFDomObject.cs" />
+    <Compile Include="RTF\RTFDomPageBreak.cs" />
+    <Compile Include="RTF\RTFDomParagraph.cs" />
+    <Compile Include="RTF\RTFDomShape.cs" />
+    <Compile Include="RTF\RTFDomShapeGroup.cs" />
+    <Compile Include="RTF\RTFDomTable.cs" />
+    <Compile Include="RTF\RTFDomTableCell.cs" />
+    <Compile Include="RTF\RTFDomTableColumn.cs" />
+    <Compile Include="RTF\RTFDomTableRow.cs" />
+    <Compile Include="RTF\RTFDomTempContainer.cs" />
+    <Compile Include="RTF\RTFDomText.cs" />
+    <Compile Include="RTF\RTFFontTable.cs" />
+    <Compile Include="RTF\RTFInstanceDebugView.cs" />
+    <Compile Include="RTF\RTFNode.cs" />
+    <Compile Include="RTF\RTFNodeGroup.cs" />
+    <Compile Include="RTF\RTFNodeList.cs" />
+    <Compile Include="RTF\RTFNodeType.cs" />
+    <Compile Include="RTF\RTFRawDocument.cs" />
+    <Compile Include="RTF\RTFUtil.cs" />
+    <Compile Include="RTF\RTFVerticalAlignment.cs" />
+    <Compile Include="RTF\RTFWriter.cs" />
+    <Compile Include="RTF\StringAttribute.cs" />
+    <Compile Include="Script\dlgBrowseGACAssembly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\dlgBrowseGACAssembly.Designer.cs">
+      <DependentUpon>dlgBrowseGACAssembly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\dlgInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\dlgScriptOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\dlgScriptOptions.Designer.cs">
+      <DependentUpon>dlgScriptOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\DotNetAssemblyInfo.cs" />
+    <Compile Include="Script\DynamicCompiler.cs" />
+    <Compile Include="Script\MyStringList.cs" />
+    <Compile Include="Script\ScriptAssemblyBuffer.cs" />
+    <Compile Include="Script\ScriptError.cs" />
+    <Compile Include="Script\ScriptExpression.cs" />
+    <Compile Include="Script\ScriptExpressionPropertyTab.cs" />
+    <Compile Include="Script\ScriptOptionsEditor.cs" />
+    <Compile Include="Script\ScriptStrings.Designer.cs">
+      <DependentUpon>ScriptStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Script\XVBAEngine.cs" />
+    <Compile Include="Script\XVBAOptions.cs" />
+    <Compile Include="Script\XVBAScriptGlobalObject.cs" />
+    <Compile Include="Script\XVBAWindowObject.cs" />
+    <Compile Include="WinForms\ApplicationStyle.cs" />
+    <Compile Include="WinForms\BorderUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\ColorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\ColorStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\Design\CustomDrawValueListBoxEditor.cs" />
+    <Compile Include="WinForms\Design\dlgBorderBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\Design\dlgBorderBackground.Designer.cs">
+      <DependentUpon>dlgBorderBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\Design\FontSizeEditor.cs" />
+    <Compile Include="WinForms\DocumentViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\DragRectangle.cs" />
+    <Compile Include="WinForms\FormList.cs" />
+    <Compile Include="WinForms\ImageListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\MouseClickCounter.cs" />
+    <Compile Include="WinForms\MouseEventStyle.cs" />
+    <Compile Include="WinForms\Native\AnimatedRectDrawer.cs" />
+    <Compile Include="WinForms\Native\DeviceCapsClass.cs" />
+    <Compile Include="WinForms\Native\DeviceContext.cs" />
+    <Compile Include="WinForms\Native\DeviceContextBase.cs" />
+    <Compile Include="WinForms\Native\dlgInputUrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\Native\dlgInputUrl.Designer.cs">
+      <DependentUpon>dlgInputUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\Native\enum.cs" />
+    <Compile Include="WinForms\Native\Gdi32.cs" />
+    <Compile Include="WinForms\Native\GDIFont.cs" />
+    <Compile Include="WinForms\Native\GDIObject.cs" />
+    <Compile Include="WinForms\Native\GDIPen.cs" />
+    <Compile Include="WinForms\Native\IEHelper.cs" />
+    <Compile Include="WinForms\Native\MessageFilter.cs" />
+    <Compile Include="WinForms\Native\MessageSender.cs" />
+    <Compile Include="WinForms\Native\MouseCapturer.cs" />
+    <Compile Include="WinForms\Native\MouseMessageHelper.cs" />
+    <Compile Include="WinForms\Native\Msgs.cs" />
+    <Compile Include="WinForms\Native\ReversibleDrawer.cs" />
+    <Compile Include="WinForms\Native\Struct.cs" />
+    <Compile Include="WinForms\Native\SystemMetricsClass.cs" />
+    <Compile Include="WinForms\Native\SystemParametersInfoClass.cs" />
+    <Compile Include="WinForms\Native\User32.cs" />
+    <Compile Include="WinForms\Native\VirtualKeys.cs" />
+    <Compile Include="WinForms\Native\Win32Caret.cs" />
+    <Compile Include="WinForms\Native\Win32Imm.cs" />
+    <Compile Include="WinForms\Native\Win32Message.cs" />
+    <Compile Include="WinForms\Native\WindowInformation.cs" />
+    <Compile Include="WinForms\PageSettingPreview.cs" />
+    <Compile Include="WinForms\ScrollToViewStyle.cs" />
+    <Compile Include="WinForms\UpdateLock.cs" />
+    <Compile Include="WinForms\Utils.cs" />
+    <Compile Include="WinForms\XCursors.cs" />
+    <Compile Include="CSharpWriter\AccessFlags.cs" />
+    <Compile Include="CSharpWriter\AssemblyInfo.cs" />
+    <Compile Include="CSharpWriter\Commands\BorderBackgroundCommandParameter.cs" />
+    <Compile Include="CSharpWriter\Commands\CommandUtils.cs" />
+    <Compile Include="CSharpWriter\Commands\ControlStateManager.cs" />
+    <Compile Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.Designer.cs">
+      <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\Design\WriterCommandNameEditor.cs" />
+    <Compile Include="CSharpWriter\Commands\dlgAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgAttributes.Designer.cs">
+      <DependentUpon>dlgAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgDocumentBorderBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgDocumentBorderBackground.Designer.cs">
+      <DependentUpon>dlgDocumentBorderBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgDocumentOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgDocumentOptions.Designer.cs">
+      <DependentUpon>dlgDocumentOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgElementTypeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgElementTypeEditor.Designer.cs">
+      <DependentUpon>dlgElementTypeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgInputRTF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgInputRTF.Designer.cs">
+      <DependentUpon>dlgInputRTF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgInputString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgInputString.Designer.cs">
+      <DependentUpon>dlgInputString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgParagraphFormatcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgParagraphFormatcs.Designer.cs">
+      <DependentUpon>dlgParagraphFormatcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgSearch.Designer.cs">
+      <DependentUpon>dlgSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgSpecifyPaste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgSpecifyPaste.Designer.cs">
+      <DependentUpon>dlgSpecifyPaste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgWordCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgWordCount.Designer.cs">
+      <DependentUpon>dlgWordCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\frmViewXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\frmViewXML.Designer.cs">
+      <DependentUpon>frmViewXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\InsertRTFCommandParameter.cs" />
+    <Compile Include="CSharpWriter\Commands\InsertStringCommandParameter.cs" />
+    <Compile Include="CSharpWriter\Commands\ParagraphFormatCommandParameter.cs" />
+    <Compile Include="CSharpWriter\Commands\SearchReplaceCommandArgs.cs" />
+    <Compile Include="CSharpWriter\Commands\StandardCommandNames.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommand.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandCenter.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandContainer.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandControler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\WriterCommandDelegate.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandDescriptionAttribute.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandDescriptor.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandEventArgs.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandList.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModule.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleBrowse.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleDescriptor.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleEdit.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleFile.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleFormat.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleInsert.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleSecurity.cs" />
+    <Compile Include="CSharpWriter\Commands\WriterCommandModuleTools.cs" />
+    <Compile Include="CSharpWriter\Commands\XTextElementProperties.cs" />
+    <Compile Include="CSharpWriter\CommonTypeConverter.cs" />
+    <Compile Include="CSharpWriter\ContentBuilder.cs" />
+    <Compile Include="CSharpWriter\Controls\CommandErrorHandler.cs" />
+    <Compile Include="CSharpWriter\Controls\dlgAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\dlgAbout.Designer.cs">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\dlgError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\ElementToolTip.cs" />
+    <Compile Include="CSharpWriter\Controls\ErrorReporter.cs" />
+    <Compile Include="CSharpWriter\Controls\IWriterControlComEvents.cs" />
+    <Compile Include="CSharpWriter\Controls\KeyState.cs" />
+    <Compile Include="CSharpWriter\Controls\TextPageViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\CSWriterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\DocumentBehaviorOptions.cs" />
+    <Compile Include="CSharpWriter\DocumentEditOptions.cs" />
+    <Compile Include="CSharpWriter\DocumentLoader.cs" />
+    <Compile Include="CSharpWriter\DocumentOptions.cs" />
+    <Compile Include="CSharpWriter\DocumentSaver.cs" />
+    <Compile Include="CSharpWriter\DocumentViewOptions.cs" />
+    <Compile Include="CSharpWriter\Dom\CompareHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\ContentChangedEventHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\ContentChangingEventHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\ContentReferenceState.cs" />
+    <Compile Include="CSharpWriter\Dom\ContentSearchReplacer.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentContentStyle.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentContentStyleContainer.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentContentWriter.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentControler.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentEventArgs.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentInfo.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentPageDrawer.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentPaintEventHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentViewTransform.cs" />
+    <Compile Include="CSharpWriter\Dom\DomAccessFlags.cs" />
+    <Compile Include="CSharpWriter\Dom\ElementEnumerator.cs" />
+    <Compile Include="CSharpWriter\Dom\ElementEventList.cs" />
+    <Compile Include="CSharpWriter\Dom\ElementType.cs" />
+    <Compile Include="CSharpWriter\Dom\FilterValueEventHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\HighlightInfo.cs" />
+    <Compile Include="CSharpWriter\Dom\HighlightManager.cs" />
+    <Compile Include="CSharpWriter\Dom\IParameterProvider.cs" />
+    <Compile Include="CSharpWriter\Dom\LinkClickEventHandler.cs" />
+    <Compile Include="CSharpWriter\Dom\MouseCaptureInfo.cs" />
+    <Compile Include="CSharpWriter\Dom\PageLineInfo.cs" />
+    <Compile Include="CSharpWriter\Dom\ReplaceElementsArgs.cs" />
+    <Compile Include="CSharpWriter\Dom\SelectionChangingEventArgs.cs" />
+    <Compile Include="CSharpWriter\Dom\SolidBrushBuffer.cs" />
+    <Compile Include="CSharpWriter\Dom\TextAlignment.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextDocumentUndoList.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoBase.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoModifyArrayItem.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoNameProperty.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoProperty.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoReplaceElements.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoSetDefaultFont.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoSetDocumentProperty.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoSetElementStyle.cs" />
+    <Compile Include="CSharpWriter\Dom\Undo\XTextUndoSetStyle.cs" />
+    <Compile Include="CSharpWriter\Dom\ValueValidateResult.cs" />
+    <Compile Include="CSharpWriter\Dom\ViewEffects.cs" />
+    <Compile Include="CSharpWriter\Dom\WordCountResult.cs" />
+    <Compile Include="CSharpWriter\Dom\DomAttribute.cs" />
+    <Compile Include="CSharpWriter\Dom\DomCharElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContainerElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContent.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContentElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DocumentContentRender.cs" />
+    <Compile Include="CSharpWriter\Dom\DomDocument.cs" />
+    <Compile Include="CSharpWriter\Dom\DomDocumentContentElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomDocumentList.cs" />
+    <Compile Include="CSharpWriter\Dom\DomElement.cs" />
+    <Compile Include="CSharpWriter\Dom\ElementDescriptorAttribute.cs" />
+    <Compile Include="CSharpWriter\Dom\DomElementList.cs" />
+    <Compile Include="CSharpWriter\Dom\DomEOFElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContentLine.cs" />
+    <Compile Include="CSharpWriter\Dom\DomLineBreakElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContentLineList.cs" />
+    <Compile Include="CSharpWriter\Dom\DomPageBreakElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomParagraphElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomParagraphFlagElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomParagraphList.cs" />
+    <Compile Include="CSharpWriter\Dom\DomParagraphListItemElement.cs" />
+    <Compile Include="CSharpWriter\Dom\ContentRange.cs" />
+    <Compile Include="CSharpWriter\Dom\DomSelection.cs" />
+    <Compile Include="CSharpWriter\Dom\DomStringElement.cs" />
+    <Compile Include="CSharpWriter\ElementEditor.cs" />
+    <Compile Include="CSharpWriter\EnableState.cs" />
+    <Compile Include="CSharpWriter\FileFormat.cs" />
+    <Compile Include="CSharpWriter\MoveUnit.cs" />
+    <Compile Include="CSharpWriter\Printing\DocumentPrinter.cs" />
+    <Compile Include="CSharpWriter\Printing\WriterPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\RTF\RTFContentWriter.cs" />
+    <Compile Include="CSharpWriter\RTF\RTFLoader.cs" />
+    <Compile Include="CSharpWriter\Script\dlgExpressionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Script\dlgExpressionEditor.Designer.cs">
+      <DependentUpon>dlgExpressionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Script\DocumentScriptEngine.cs" />
+    <Compile Include="CSharpWriter\Script\DomExpression.cs" />
+    <Compile Include="CSharpWriter\Script\DomExpressionEventArgs.cs" />
+    <Compile Include="CSharpWriter\Script\DomExpressionExecuter.cs" />
+    <Compile Include="CSharpWriter\Script\DomExpressionList.cs" />
+    <Compile Include="CSharpWriter\Script\frmScriptEdtior.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Script\frmScriptEdtior.Designer.cs">
+      <DependentUpon>frmScriptEdtior.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Script\ScriptGlobalObjectContainer.cs" />
+    <Compile Include="CSharpWriter\Script\WriterWindow.cs" />
+    <Compile Include="CSharpWriter\Security\DocumentSecurityOptions.cs" />
+    <Compile Include="CSharpWriter\Security\UserHistoryInfo.cs" />
+    <Compile Include="CSharpWriter\Security\UserHistoryInfoList.cs" />
+    <Compile Include="CSharpWriter\Security\UserLoginInfo.cs" />
+    <Compile Include="CSharpWriter\Undo\IUndoable.cs" />
+    <Compile Include="CSharpWriter\Undo\XUndoEventArgs.cs" />
+    <Compile Include="CSharpWriter\Undo\XUndoGroup.cs" />
+    <Compile Include="CSharpWriter\Undo\XUndoList.cs" />
+    <Compile Include="CSharpWriter\Undo\XUndoObjectPropertyValue.cs" />
+    <Compile Include="CSharpWriter\WriterAppHost.cs" />
+    <Compile Include="CSharpWriter\WriterConst.cs" />
+    <Compile Include="CSharpWriter\WriterDebugger.cs" />
+    <Compile Include="CSharpWriter\WriterResources.Designer.cs">
+      <DependentUpon>WriterResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CSharpWriter\WriterStrings.Designer.cs">
+      <DependentUpon>WriterStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CSharpWriter\WriterStrings.en.Designer.cs">
+      <DependentUpon>WriterStrings.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CSharpWriter\WriterUtils.cs" />
+    <Compile Include="CSharpWriter\Xml\MyXmlSerializeHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\frmDebugOutput.resx">
+      <DependentUpon>frmDebugOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.zh-cn.resx">
+      <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgAttributes.zh-cn.resx">
+      <DependentUpon>dlgAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentBorderBackground.zh-cn.resx">
+      <DependentUpon>dlgDocumentBorderBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentOptions.zh-cn.resx">
+      <DependentUpon>dlgDocumentOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSearch.zh-cn.resx">
+      <DependentUpon>dlgSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSpecifyPaste.zh-cn.resx">
+      <DependentUpon>dlgSpecifyPaste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgWordCount.zh-cn.resx">
+      <DependentUpon>dlgWordCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\dlgAbout.zh-cn.resx">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Script\frmScriptEdtior.zh-cn.resx">
+      <DependentUpon>frmScriptEdtior.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\WriterStrings.zh-cn.resx" />
+    <EmbeddedResource Include="Data\DataStrings.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataStrings.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\DataStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\DataStrings.zh-cn.resx" />
+    <EmbeddedResource Include="Data\WinForms\dlgFormatDesigner.en.resx">
+      <DependentUpon>dlgFormatDesigner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\WinForms\dlgFormatDesigner.resx">
+      <DependentUpon>dlgFormatDesigner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\WinForms\dlgFormatDesigner.zh-cn.resx">
+      <DependentUpon>dlgFormatDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drawing\Design\dlgBorder.resx">
+      <DependentUpon>dlgBorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgPageSetup.en.resx">
+      <DependentUpon>dlgPageSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgPageSetup.resx">
+      <DependentUpon>dlgPageSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgPageSetup.zh-cn.resx">
+      <DependentUpon>dlgPageSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgWaitPrintJob.en.resx">
+      <DependentUpon>dlgWaitPrintJob.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgWaitPrintJob.resx">
+      <DependentUpon>dlgWaitPrintJob.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\dlgWaitPrintJob.zh-cn.resx">
+      <DependentUpon>dlgWaitPrintJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\PrintingResources.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrintingResources.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\PrintingResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrintingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\PrintingResources.zh-cn.resx" />
+    <EmbeddedResource Include="Script\dlgBrowseGACAssembly.en.resx">
+      <DependentUpon>dlgBrowseGACAssembly.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\dlgBrowseGACAssembly.resx">
+      <DependentUpon>dlgBrowseGACAssembly.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\dlgInputBox.en.resx">
+      <DependentUpon>dlgInputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\dlgInputBox.resx">
+      <DependentUpon>dlgInputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\dlgScriptOptions.en.resx">
+      <DependentUpon>dlgScriptOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\dlgScriptOptions.resx">
+      <DependentUpon>dlgScriptOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\ScriptStrings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\ScriptStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScriptStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\ScriptStrings.zh-cn.resx" />
+    <EmbeddedResource Include="WinForms\BorderUserControl.resx">
+      <DependentUpon>BorderUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\Design\dlgBorderBackground.resx">
+      <DependentUpon>dlgBorderBackground.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\Native\dlgInputUrl.resx">
+      <DependentUpon>dlgInputUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.en.resx">
+      <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.resx">
+      <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgAttributes.en.resx">
+      <DependentUpon>dlgAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgAttributes.resx">
+      <DependentUpon>dlgAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentBorderBackground.en.resx">
+      <DependentUpon>dlgDocumentBorderBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentBorderBackground.resx">
+      <DependentUpon>dlgDocumentBorderBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentOptions.en.resx">
+      <DependentUpon>dlgDocumentOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgDocumentOptions.resx">
+      <DependentUpon>dlgDocumentOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgElementTypeEditor.resx">
+      <DependentUpon>dlgElementTypeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgInputRTF.resx">
+      <DependentUpon>dlgInputRTF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgInputString.resx">
+      <DependentUpon>dlgInputString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgParagraphFormatcs.resx">
+      <DependentUpon>dlgParagraphFormatcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSearch.en.resx">
+      <DependentUpon>dlgSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSearch.resx">
+      <DependentUpon>dlgSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSpecifyPaste.en.resx">
+      <DependentUpon>dlgSpecifyPaste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgSpecifyPaste.resx">
+      <DependentUpon>dlgSpecifyPaste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgWordCount.en.resx">
+      <DependentUpon>dlgWordCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgWordCount.resx">
+      <DependentUpon>dlgWordCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\frmViewXML.resx">
+      <DependentUpon>frmViewXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\dlgAbout.en.resx">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\dlgAbout.resx">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\dlgError.resx">
+      <DependentUpon>dlgError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\CSWriterControl.resx">
+      <DependentUpon>CSWriterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Script\dlgExpressionEditor.resx">
+      <DependentUpon>dlgExpressionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Script\frmScriptEdtior.en.resx">
+      <DependentUpon>frmScriptEdtior.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Script\frmScriptEdtior.resx">
+      <DependentUpon>frmScriptEdtior.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\WriterResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WriterResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\WriterStrings.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WriterStrings.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\WriterStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WriterStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharpWriter\blue96.png" />
+    <Content Include="CSharpWriter\Commands\Images\BorderBoth.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderCustom.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagBottom.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagCenterVertical.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagLeft.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagMiddleHorizontal.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagNone.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagRight.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderFlagTop.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderNone.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderPreview.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\BorderRectangle.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\DashStyleDash.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\DashStyleDashDot.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\DashStyleDashDotDot.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\DashStyleDot.bmp" />
+    <Content Include="CSharpWriter\Commands\Images\DashStyleSolid.bmp" />
+    <Content Include="CSharpWriter\images\linebreak.bmp" />
+    <Content Include="CSharpWriter\images\paragrapheof.bmp" />
+    <Content Include="CSharpWriter\images\XDesignerZoomInAction.bmp" />
+    <Content Include="CSharpWriter\images\XDesignerZoomOutAction.bmp" />
+    <None Include="CSharpWriter\Demo.config" />
+    <None Include="CSharpWriter\Resources\lock.bmp" />
+    <None Include="CSharpWriter\Resources\frmX1.bmp" />
+    <None Include="CSharpWriter\Resources\frmX.bmp" />
+    <None Include="CSharpWriter\Resources\frm1.bmp" />
+    <None Include="CSharpWriter\Resources\frm.bmp" />
+    <None Include="CSharpWriter\Resources\close1.bmp" />
+    <None Include="CSharpWriter\Resources\close.bmp" />
+    <None Include="CSharpWriter\Resources\CheckEdit111.bmp" />
+    <None Include="CSharpWriter\Resources\CheckEdit11.bmp" />
+    <None Include="CSharpWriter\Resources\CheckEdit1.bmp" />
+    <None Include="CSharpWriter\Resources\CheckEdit.bmp" />
+    <None Include="CSharpWriter\Resources\ArrowDropdown.bmp" />
+    <None Include="CSharpWriter\images\paragrapheof1.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Controls\CSWriterControl.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\WriterCommandControler.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\White16-16.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\Null.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandWordCount.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandUndo.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandUnderline.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSuperscript.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSubscript.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSplitCell.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSignDocument.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSearch.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandSave.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandRedo.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandPrint.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandPaste.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandPageSettings.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandNumberedList.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandModule.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandMergeCell.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandItalic.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertTable.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertRowUp.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertRowDown.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertParameter.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertImage.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertColumnRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertColumnLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandInsertBarcode.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandFormatBrush.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandFont.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandFirstLineIndent.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandFileOpen.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandFileNew.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandElementProperties.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandEditVBAScript.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandEditImageAdditionShape.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDesignMode.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDeleteRow.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDeleteColumn.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDelete.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDefault.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandDebugOutputWindow.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandCut.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandCopy.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandColor.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBulletedList.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBorderTop.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBorderRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBorderNone.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBorderLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBorderBottom.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBold.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandBackColor.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAllBorder.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignTopRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignTopLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignTopCenter.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignMiddleRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignMiddleLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignMiddleCenter.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignJustify.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignCenter.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignBottomRight.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignBottomLeft.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAlignBottomCenter.bmp" />
+    <EmbeddedResource Include="CSharpWriter\Commands\Images\CommandAboutControl.bmp" />
+    <Content Include="Drawing\Resources\Workspace-Background.jpg" />
+    <Content Include="Script\VBAScript.ico" />
+    <EmbeddedResource Include="WinForms\XCursors\ZoomOut.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\ZoomIn.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\RightArrow.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\Right.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\HandDragUp.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\HandDragDown.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\FormatBrush.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragPageNo.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragPage.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragNo.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragMove.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragLink.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\DragCopy.cur" />
+    <EmbeddedResource Include="WinForms\XCursors\Black.cur" />
+    <EmbeddedResource Include="WinForms\Resources\picBorderPreview.Image.bmp" />
+    <None Include="WinForms\Resources\Blank16_16.bmp" />
+    <EmbeddedResource Include="Script\ScriptExpressionPropertyTabBmp.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

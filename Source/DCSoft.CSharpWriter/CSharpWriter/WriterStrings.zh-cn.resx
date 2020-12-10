@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BadParameterValueType_Name_Type_Value" xml:space="preserve">
+    <value>参数“{0}”数据类型错误，类型“{1}”，数据"{3}"。</value>
+  </data>
+  <data name="BorderApplyRangeCell" xml:space="preserve">
+    <value>单元格</value>
+  </data>
+  <data name="BorderApplyRangeParagraph" xml:space="preserve">
+    <value>段落</value>
+  </data>
+  <data name="BorderApplyRangeTable" xml:space="preserve">
+    <value>表格</value>
+  </data>
+  <data name="BorderApplyRangeText" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="CannotSearchSpecifyContent" xml:space="preserve">
+    <value>未能找到指定的内容。</value>
+  </data>
+  <data name="CreatorTip_Name_Time" xml:space="preserve">
+    <value>{1}由{0}输入。</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="DeleteElement_Content" xml:space="preserve">
+    <value>删除”{0}“</value>
+  </data>
+  <data name="DeleteElements_Count" xml:space="preserve">
+    <value>删除{0}个元素</value>
+  </data>
+  <data name="DeleterTip_Name_Time" xml:space="preserve">
+    <value>{1}由{0}删除。</value>
+  </data>
+  <data name="Footer" xml:space="preserve">
+    <value>页脚</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>页眉</value>
+  </data>
+  <data name="ImageFileFilter" xml:space="preserve">
+    <value>图片文件(*.bmp,*.jpg,*.jpeg,*.gif,*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|所有文件|*.*</value>
+  </data>
+  <data name="InsertElement_Content" xml:space="preserve">
+    <value>插入“{0}”</value>
+  </data>
+  <data name="InsertElements_Count" xml:space="preserve">
+    <value>插入{0}个元素</value>
+  </data>
+  <data name="MissProperty_Name" xml:space="preserve">
+    <value>没能找到属性“{0}”。</value>
+  </data>
+  <data name="NoDocument" xml:space="preserve">
+    <value>没有文档。</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>没有图片</value>
+  </data>
+  <data name="PrintComplete" xml:space="preserve">
+    <value>打印完成。</value>
+  </data>
+  <data name="PrintPage_PageIndex" xml:space="preserve">
+    <value>正在打印 {0} 页...</value>
+  </data>
+  <data name="PromptReadonly_FileName" xml:space="preserve">
+    <value>文件“{0}”是只读的，无法保存文件。</value>
+  </data>
+  <data name="PromptReplaceAllResult_Times" xml:space="preserve">
+    <value>成功的替换了 {0} 处文档内容。</value>
+  </data>
+  <data name="PromptSaveFile_Name" xml:space="preserve">
+    <value>文件”{0}“已经修改，尚未保存，是否保存文件？</value>
+  </data>
+  <data name="PropertyCannotHasParameter_Name" xml:space="preserve">
+    <value>属性“{0}”不能有参数。</value>
+  </data>
+  <data name="PropertyIsReadonly_Name" xml:space="preserve">
+    <value>属性“{0}”是只读的。</value>
+  </data>
+  <data name="QuerySave" xml:space="preserve">
+    <value>文档内容已经改变，是否保存？</value>
+  </data>
+  <data name="Readonly" xml:space="preserve">
+    <value>只读</value>
+  </data>
+  <data name="RegiserFail" xml:space="preserve">
+    <value>注册失败。</value>
+  </data>
+  <data name="RegisterOK" xml:space="preserve">
+    <value>注册成功。</value>
+  </data>
+  <data name="ScriptCompileFail" xml:space="preserve">
+    <value>脚本代码编译失败。</value>
+  </data>
+  <data name="ScriptCompileOK" xml:space="preserve">
+    <value>脚本代码编译成功。</value>
+  </data>
+  <data name="StdOpenFileFilter" xml:space="preserve">
+    <value>XML文件,RTF文件,HTML文件|*.xml;*.rtf;*.htm;*.html|所有文件|*.*</value>
+  </data>
+  <data name="StdSaveFileFilter" xml:space="preserve">
+    <value>XML文件,RTF文件,Html文件,TXT文件|*.xml;*.rtf;*.htm;*.html;*.txt|所有文件|*.*</value>
+  </data>
+  <data name="SystemAlert" xml:space="preserve">
+    <value>系统提示</value>
+  </data>
+  <data name="TipTitle" xml:space="preserve">
+    <value>系统提示</value>
+  </data>
+  <data name="UnRegisterPageTitle" xml:space="preserve">
+    <value>XDesigner.Writer文本编辑器[未注册]第[%pageindex%]页共[%pagecount%]页</value>
+  </data>
+  <data name="ValueValidateFail" xml:space="preserve">
+    <value>数据校验失败.</value>
+  </data>
+  <data name="ValueValidateOK" xml:space="preserve">
+    <value>数据校验成功.</value>
+  </data>
+</root>

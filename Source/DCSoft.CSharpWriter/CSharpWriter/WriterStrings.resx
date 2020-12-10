@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DeleteElements_Count" xml:space="preserve">
+    <value>Delete{0} elements.</value>
+  </data>
+  <data name="DeleteElement_Content" xml:space="preserve">
+    <value>Delete "{0}"</value>
+  </data>
+  <data name="InsertElements_Count" xml:space="preserve">
+    <value>Insert {0} elements</value>
+  </data>
+  <data name="InsertElement_Content" xml:space="preserve">
+    <value>Insert“{0}”</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>No image</value>
+  </data>
+  <data name="MissProperty_Name" xml:space="preserve">
+    <value>Miss property“{0}”.</value>
+  </data>
+  <data name="PropertyCannotHasParameter_Name" xml:space="preserve">
+    <value>Property“{0}”Can not has parameter.</value>
+  </data>
+  <data name="PropertyIsReadonly_Name" xml:space="preserve">
+    <value>Property“{0}”is readonly.</value>
+  </data>
+  <data name="Footer" xml:space="preserve">
+    <value>Footer</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="PromptSaveFile_Name" xml:space="preserve">
+    <value>File "{0}" modified , save it ?</value>
+  </data>
+  <data name="StdOpenFileFilter" xml:space="preserve">
+    <value>XML file , RTF file|*.xml;*.rtf|All file|*.*</value>
+  </data>
+  <data name="StdSaveFileFilter" xml:space="preserve">
+    <value>XML,RTF,HTML,TXT file|*.xml;*.rtf;*.htm;*.html;*.txt|All file|*.*</value>
+  </data>
+  <data name="SystemAlert" xml:space="preserve">
+    <value>System alert</value>
+  </data>
+  <data name="ImageFileFilter" xml:space="preserve">
+    <value>Image file(*.bmp,*.jpg,*.jpeg,*.gif,*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|All file|*.*</value>
+  </data>
+  <data name="NoDocument" xml:space="preserve">
+    <value>No document</value>
+  </data>
+  <data name="BorderApplyRangeCell" xml:space="preserve">
+    <value>Cell</value>
+  </data>
+  <data name="BorderApplyRangeParagraph" xml:space="preserve">
+    <value>Paragraph</value>
+  </data>
+  <data name="BorderApplyRangeTable" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="BorderApplyRangeText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="BadParameterValueType_Name_Type_Value" xml:space="preserve">
+    <value>Parameter"{0}" value type error,type"{1}",value"{2}".</value>
+  </data>
+  <data name="ValueValidateFail" xml:space="preserve">
+    <value>Value validate fail.</value>
+  </data>
+  <data name="ValueValidateOK" xml:space="preserve">
+    <value>Value validate success.</value>
+  </data>
+  <data name="QuerySave" xml:space="preserve">
+    <value>File modified ,save it?</value>
+  </data>
+  <data name="ScriptCompileFail" xml:space="preserve">
+    <value>Fail to compile script.</value>
+  </data>
+  <data name="ScriptCompileOK" xml:space="preserve">
+    <value>Success to compile script.</value>
+  </data>
+  <data name="Readonly" xml:space="preserve">
+    <value>Readonly</value>
+  </data>
+  <data name="PromptReadonly_FileName" xml:space="preserve">
+    <value>File "{0}" is readonly , can not save.</value>
+  </data>
+  <data name="CreatorTip_Name_Time" xml:space="preserve">
+    <value>{1} written by {1}.</value>
+  </data>
+  <data name="DeleterTip_Name_Time" xml:space="preserve">
+    <value>{1} deleted by {1}.</value>
+  </data>
+  <data name="TipTitle" xml:space="preserve">
+    <value>System alert</value>
+  </data>
+  <data name="PrintComplete" xml:space="preserve">
+    <value>Print completed.</value>
+  </data>
+  <data name="PrintPage_PageIndex" xml:space="preserve">
+    <value>Printing page {0} ...</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="UnRegisterPageTitle" xml:space="preserve">
+    <value>XDesigner.Writer[Unregister] [%pageindex%] of [%pagecount%]</value>
+  </data>
+  <data name="RegiserFail" xml:space="preserve">
+    <value>Register fail!</value>
+  </data>
+  <data name="RegisterOK" xml:space="preserve">
+    <value>Register success.</value>
+  </data>
+  <data name="CannotSearchSpecifyContent" xml:space="preserve">
+    <value>Can not search specify content.</value>
+  </data>
+  <data name="PromptReplaceAllResult_Times" xml:space="preserve">
+    <value>Replace {0} times.</value>
+  </data>
+  <data name="ExecuteExpression_Sender_Expression_Result" xml:space="preserve">
+    <value>对象“{0}”执行表达式“{1}”，结果为“{2}”。</value>
+  </data>
+  <data name="ExpressionMissTarget_Source_Target" xml:space="preserve">
+    <value>对象“{0}”执行表达式时未找到目标“{1}”,取消执行。</value>
+  </data>
+  <data name="ValueInvalidate_Source_Value_Result" xml:space="preserve">
+    <value>对象“{0}”内容为“{1}”，数据校验错误“{2}”。</value>
+  </data>
+  <data name="FileNotExist_FileName" xml:space="preserve">
+    <value>文件“{0}”不存在。</value>
+  </data>
+  <data name="WhereToCopy" xml:space="preserve">
+    <value>复制到何处？</value>
+  </data>
+  <data name="WhereToMove" xml:space="preserve">
+    <value>移动到何处？</value>
+  </data>
+  <data name="LineInfo_PageIndex_LineIndex_ColumnIndex" xml:space="preserve">
+    <value>第{0}页 第{1}行 第{2}列。</value>
+  </data>
+  <data name="Downloading_URL" xml:space="preserve">
+    <value>正在下载“{0}”...</value>
+  </data>
+  <data name="Loading_FileName" xml:space="preserve">
+    <value>正在加载文件“{0}”...</value>
+  </data>
+  <data name="Loading_FileName_Format" xml:space="preserve">
+    <value>正在以 {1} 格式加载文件“{0}”...</value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>失败。</value>
+  </data>
+  <data name="XMLFilter" xml:space="preserve">
+    <value>XML文件|*.xml</value>
+  </data>
+  <data name="PromptRegister" xml:space="preserve">
+    <value>请注册本软件，以更好的支持软件开发商。</value>
+  </data>
+  <data name="FailToLoad_FileName_Message" xml:space="preserve">
+    <value>加载文件“{0}”失败，信息：{1}</value>
+  </data>
+  <data name="RegisterTitle_UserName" xml:space="preserve">
+    <value>本软件已注册，授权给“{0}”。</value>
+  </data>
+  <data name="UnRegisterTitle" xml:space="preserve">
+    <value>本软件未注册。</value>
+  </data>
+  <data name="LoadListItems_ProviderType_Name_Num" xml:space="preserve">
+    <value>使用“{0}”成功为“{1}”加载了{2}个列表项目。</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LoadComplete_Size" xml:space="preserve">
+    <value>加载完成，共加载了{0}。</value>
+  </data>
+  <data name="LoadListItemsFromBuffer_Name_URL" xml:space="preserve">
+    <value>从缓存区加载列表项目，名称“{0}”，来源“{1}”。</value>
+  </data>
+  <data name="SaveComplete_Size" xml:space="preserve">
+    <value>保存完成，共保存了{0}。</value>
+  </data>
+  <data name="Saving_FileName" xml:space="preserve">
+    <value>正在保存文件“{0}”...</value>
+  </data>
+  <data name="Command_AboutControl" xml:space="preserve">
+    <value>关于...</value>
+  </data>
+  <data name="Command_AdministratorViewMode" xml:space="preserve">
+    <value>管理员模式</value>
+  </data>
+  <data name="Command_AlignCenter" xml:space="preserve">
+    <value>居中对齐</value>
+  </data>
+  <data name="Command_AlignJustify" xml:space="preserve">
+    <value>两边对齐</value>
+  </data>
+  <data name="Command_AlignLeft" xml:space="preserve">
+    <value>左对齐</value>
+  </data>
+  <data name="Command_AlignRight" xml:space="preserve">
+    <value>右对齐</value>
+  </data>
+  <data name="Command_BackColor" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Command_Backspace" xml:space="preserve">
+    <value>退格</value>
+  </data>
+  <data name="Command_Bold" xml:space="preserve">
+    <value>粗体</value>
+  </data>
+  <data name="Command_BorderBackgroudFormat" xml:space="preserve">
+    <value>边框和背景样式</value>
+  </data>
+  <data name="Command_BulletedList" xml:space="preserve">
+    <value>圆点式列表</value>
+  </data>
+  <data name="Command_CleanViewMode" xml:space="preserve">
+    <value>整洁视图模式</value>
+  </data>
+  <data name="Command_ClearUserTrace" xml:space="preserve">
+    <value>提交历史痕迹</value>
+  </data>
+  <data name="Command_Color" xml:space="preserve">
+    <value>文本颜色</value>
+  </data>
+  <data name="Command_ComplexViewMode" xml:space="preserve">
+    <value>复杂视图模式</value>
+  </data>
+  <data name="Command_ConvertFieldToContent" xml:space="preserve">
+    <value>输入域转换为文档内容</value>
+  </data>
+  <data name="Command_ConvertToField" xml:space="preserve">
+    <value>文档内容转换为输入域</value>
+  </data>
+  <data name="Command_Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Command_CtlMoveDown" xml:space="preserve">
+    <value>向下滚动视图</value>
+  </data>
+  <data name="Command_CtlMoveUp" xml:space="preserve">
+    <value>向上滚动视图</value>
+  </data>
+  <data name="Command_Cut" xml:space="preserve">
+    <value>剪切</value>
+  </data>
+  <data name="Command_DebugMode" xml:space="preserve">
+    <value>调试模式</value>
+  </data>
+  <data name="Command_DebugOutputWindow" xml:space="preserve">
+    <value>显示调试输出窗体</value>
+  </data>
+  <data name="Command_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Command_DeleteField" xml:space="preserve">
+    <value>删除域</value>
+  </data>
+  <data name="Command_DesignMode" xml:space="preserve">
+    <value>设计模式</value>
+  </data>
+  <data name="Command_DocumentValueValidate" xml:space="preserve">
+    <value>文档数据校验</value>
+  </data>
+  <data name="Command_EditElementValue" xml:space="preserve">
+    <value>编辑文档元素值</value>
+  </data>
+  <data name="Command_EditImageAdditionShape" xml:space="preserve">
+    <value>编辑图像标注</value>
+  </data>
+  <data name="Command_EditVBAScript" xml:space="preserve">
+    <value>编辑VBA脚本</value>
+  </data>
+  <data name="Command_ElementProperties" xml:space="preserve">
+    <value>编辑文档元素属性</value>
+  </data>
+  <data name="Command_FieldSpecifyWidth" xml:space="preserve">
+    <value>设置域固定宽度</value>
+  </data>
+  <data name="Command_FirstLineIndent" xml:space="preserve">
+    <value>段落首行缩进</value>
+  </data>
+  <data name="Command_Font" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="Command_FontName" xml:space="preserve">
+    <value>字体名称</value>
+  </data>
+  <data name="Command_FontSize" xml:space="preserve">
+    <value>字体大小</value>
+  </data>
+  <data name="Command_FormViewMode" xml:space="preserve">
+    <value>表单视图模式</value>
+  </data>
+  <data name="Command_InsertBarcode" xml:space="preserve">
+    <value>插入条码</value>
+  </data>
+  <data name="Command_InsertCheckBox" xml:space="preserve">
+    <value>插入复选框</value>
+  </data>
+  <data name="Command_InsertCheckBoxList" xml:space="preserve">
+    <value>插入复选框组</value>
+  </data>
+  <data name="Command_InsertContentLink" xml:space="preserve">
+    <value>插入文档内容链接...</value>
+  </data>
+  <data name="Command_InsertFileContent" xml:space="preserve">
+    <value>插入文档内容...</value>
+  </data>
+  <data name="Command_InsertHtml" xml:space="preserve">
+    <value>插入HTML文档</value>
+  </data>
+  <data name="Command_InsertImage" xml:space="preserve">
+    <value>插入图片</value>
+  </data>
+  <data name="Command_InsertInputField" xml:space="preserve">
+    <value>插入输入域</value>
+  </data>
+  <data name="Command_InsertLineBreak" xml:space="preserve">
+    <value>插入软回车</value>
+  </data>
+  <data name="Command_InsertMode" xml:space="preserve">
+    <value>插入模式</value>
+  </data>
+  <data name="Command_InsertPageInfo" xml:space="preserve">
+    <value>插入页码</value>
+  </data>
+  <data name="Command_InsertRTF" xml:space="preserve">
+    <value>插入RTF文档</value>
+  </data>
+  <data name="Command_InsertString" xml:space="preserve">
+    <value>插入纯文本</value>
+  </data>
+  <data name="Command_InsertXML" xml:space="preserve">
+    <value>插入XML文档</value>
+  </data>
+  <data name="Command_Italic" xml:space="preserve">
+    <value>斜体</value>
+  </data>
+  <data name="Command_JumpPrintMode" xml:space="preserve">
+    <value>续打模式</value>
+  </data>
+  <data name="Command_MoveDown" xml:space="preserve">
+    <value>向下移动一行</value>
+  </data>
+  <data name="Command_MoveEnd" xml:space="preserve">
+    <value>移动到行尾</value>
+  </data>
+  <data name="Command_MoveHome" xml:space="preserve">
+    <value>移动到行首</value>
+  </data>
+  <data name="Command_MoveLeft" xml:space="preserve">
+    <value>向左移动</value>
+  </data>
+  <data name="Command_MovePageDown" xml:space="preserve">
+    <value>向下翻页</value>
+  </data>
+  <data name="Command_MovePageUp" xml:space="preserve">
+    <value>向上翻页</value>
+  </data>
+  <data name="Command_MoveRight" xml:space="preserve">
+    <value>向右移动</value>
+  </data>
+  <data name="Command_MoveTo" xml:space="preserve">
+    <value>移动到...</value>
+  </data>
+  <data name="Command_MoveUp" xml:space="preserve">
+    <value>向上移动一行</value>
+  </data>
+  <data name="Command_NormalViewMode" xml:space="preserve">
+    <value>普通视图模式</value>
+  </data>
+  <data name="Command_NumberedList" xml:space="preserve">
+    <value>数字式列表</value>
+  </data>
+  <data name="Command_PageViewMode" xml:space="preserve">
+    <value>分页视图模式</value>
+  </data>
+  <data name="Command_ParagraphFormat" xml:space="preserve">
+    <value>段落格式</value>
+  </data>
+  <data name="Command_Paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="Command_Redo" xml:space="preserve">
+    <value>重做</value>
+  </data>
+  <data name="Command_SearchReplace" xml:space="preserve">
+    <value>查找和替换</value>
+  </data>
+  <data name="Command_SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="Command_SetDefaultStyle" xml:space="preserve">
+    <value>设置文档默认样式</value>
+  </data>
+  <data name="Command_ShiftMoveDown" xml:space="preserve">
+    <value>带选择向下移动一行</value>
+  </data>
+  <data name="Command_ShiftMoveEnd" xml:space="preserve">
+    <value>带选择移动到行尾</value>
+  </data>
+  <data name="Command_ShiftMoveHome" xml:space="preserve">
+    <value>带选择移动到行首</value>
+  </data>
+  <data name="Command_ShiftMoveLeft" xml:space="preserve">
+    <value>带选择向左移动</value>
+  </data>
+  <data name="Command_ShiftMovePageDown" xml:space="preserve">
+    <value>带选择向下翻页</value>
+  </data>
+  <data name="Command_ShiftMovePageUp" xml:space="preserve">
+    <value>带选择向上翻页</value>
+  </data>
+  <data name="Command_ShiftMoveRight" xml:space="preserve">
+    <value>带选择向右移动</value>
+  </data>
+  <data name="Command_ShiftMoveUp" xml:space="preserve">
+    <value>带选择向上移动一行</value>
+  </data>
+  <data name="Command_SignDocument" xml:space="preserve">
+    <value>文档签名</value>
+  </data>
+  <data name="Command_SpecifyPaste" xml:space="preserve">
+    <value>选择性粘贴...</value>
+  </data>
+  <data name="Command_Strikeout" xml:space="preserve">
+    <value>删除线</value>
+  </data>
+  <data name="Command_Subscript" xml:space="preserve">
+    <value>下标</value>
+  </data>
+  <data name="Command_Superscript" xml:space="preserve">
+    <value>上标</value>
+  </data>
+  <data name="Command_Underline" xml:space="preserve">
+    <value>下划线</value>
+  </data>
+  <data name="Command_Undo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="Command_UpdateDataSourceForView" xml:space="preserve">
+    <value>根据视图更新数据源</value>
+  </data>
+  <data name="Command_UpdateViewForDataSource" xml:space="preserve">
+    <value>根据数据源更新视图</value>
+  </data>
+  <data name="Command_WordCount" xml:space="preserve">
+    <value>字数统计</value>
+  </data>
+  <data name="Command_AlignBottomCenter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command_DocumentDefaultFont" xml:space="preserve">
+    <value>设置文档默认字体</value>
+  </data>
+  <data name="Command_DocumentOptions" xml:space="preserve">
+    <value>文档选项...</value>
+  </data>
+  <data name="Command_FileCleanPrint" xml:space="preserve">
+    <value>整洁打印...</value>
+  </data>
+  <data name="Command_FileNew" xml:space="preserve">
+    <value>新建文件...</value>
+  </data>
+  <data name="Command_FileOpen" xml:space="preserve">
+    <value>打开文件...</value>
+  </data>
+  <data name="Command_FilePageSettings" xml:space="preserve">
+    <value>页面设置...</value>
+  </data>
+  <data name="Command_FilePrint" xml:space="preserve">
+    <value>打印...</value>
+  </data>
+  <data name="Command_FilePrintCurrentPage" xml:space="preserve">
+    <value>打印当前页</value>
+  </data>
+  <data name="Command_FileSave" xml:space="preserve">
+    <value>保存文件</value>
+  </data>
+  <data name="Command_FileSaveAs" xml:space="preserve">
+    <value>另存为...</value>
+  </data>
+  <data name="Command_LoadKBLibrary" xml:space="preserve">
+    <value>加载知识库...</value>
+  </data>
+  <data name="Command_OpenOldXMLFormat" xml:space="preserve">
+    <value>打开旧格式XML文件...</value>
+  </data>
+  <data name="Command_Register" xml:space="preserve">
+    <value>用户注册...</value>
+  </data>
+  <data name="Command_SaveKBLibrary" xml:space="preserve">
+    <value>保存知识库...</value>
+  </data>
+  <data name="Command_Table_DeleteColumn" xml:space="preserve">
+    <value>删除表格列</value>
+  </data>
+  <data name="Command_Table_DeleteRow" xml:space="preserve">
+    <value>删除表格行</value>
+  </data>
+  <data name="Command_Table_DeleteTable" xml:space="preserve">
+    <value>删除表格</value>
+  </data>
+  <data name="Command_Table_InsertColumnLeft" xml:space="preserve">
+    <value>在左侧插入表格列</value>
+  </data>
+  <data name="Command_Table_InsertColumnRight" xml:space="preserve">
+    <value>在右侧插入表格列</value>
+  </data>
+  <data name="Command_Table_InsertRowDown" xml:space="preserve">
+    <value>在下面插入表格行</value>
+  </data>
+  <data name="Command_Table_InsertRowUP" xml:space="preserve">
+    <value>在上面插入表格行</value>
+  </data>
+  <data name="Command_Table_InsertTable" xml:space="preserve">
+    <value>插入表格...</value>
+  </data>
+  <data name="Command_Table_MegeCell" xml:space="preserve">
+    <value>合并单元格</value>
+  </data>
+  <data name="Command_Table_SplitCell" xml:space="preserve">
+    <value>拆分单元格</value>
+  </data>
+  <data name="Command_ViewXMLSource" xml:space="preserve">
+    <value>查看XML源代码</value>
+  </data>
+  <data name="LoadTemplate_FS_FileName" xml:space="preserve">
+    <value>正在使用“{0}”加载模板“{1}”。</value>
+  </data>
+  <data name="LoadLicenseFromDog" xml:space="preserve">
+    <value>已经根据加密狗进行了软件注册了。</value>
+  </data>
+  <data name="PromptDevelopmentDog_Name" xml:space="preserve">
+    <value>本软件已授权给“{0}”，请插入授权加密狗。若要加密狗请联系南京都昌信息科技有限公司。请不要破解盗版国产软件，支持民族产业。</value>
+  </data>
+  <data name="NoLicenseToIEHost" xml:space="preserve">
+    <value>本软件没有在IE中运行的授权，请联系软件供应商获得相关授权。</value>
+  </data>
+</root>
