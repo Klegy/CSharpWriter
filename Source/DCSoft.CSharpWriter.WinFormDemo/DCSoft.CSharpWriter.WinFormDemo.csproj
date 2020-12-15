@@ -73,7 +73,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="about.xml" />
     <Content Include="DemoFile\about.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

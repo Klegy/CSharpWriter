@@ -40,31 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Barcode\BarcodeDrawer.cs" />
-    <Compile Include="Barcode\BarcodeEncoder.cs" />
-    <Compile Include="Barcode\BarcodeStrings.Designer.cs">
-      <DependentUpon>BarcodeStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Barcode\BarcodeStyle.cs" />
-    <Compile Include="Barcode\CodabarBarcodeEncoder.cs" />
-    <Compile Include="Barcode\Code11BarcodeEncoder.cs" />
-    <Compile Include="Barcode\Code128BarcodeEncoder.cs" />
-    <Compile Include="Barcode\Code39BarcodeEncoder.cs" />
-    <Compile Include="Barcode\Code93BarcodeEncoder.cs" />
-    <Compile Include="Barcode\EAN13BarcodeEncoder.cs" />
-    <Compile Include="Barcode\EAN8BarcodeEncoder.cs" />
-    <Compile Include="Barcode\Interleaved2of5BarcodeEncoder.cs" />
-    <Compile Include="Barcode\ISBNBarcodeEncoder.cs" />
-    <Compile Include="Barcode\JAN13BarcodeEncoder.cs" />
-    <Compile Include="Barcode\MSIBarcodeEncoder.cs" />
-    <Compile Include="Barcode\PostnetBarcodeEncoder.cs" />
-    <Compile Include="Barcode\Standard2of5BarcodeEncoder.cs" />
-    <Compile Include="Barcode\UPCABarcodeEncoder.cs" />
-    <Compile Include="Barcode\UPCEBarcodeEncoder.cs" />
-    <Compile Include="Barcode\UPCSupplement2BarcodeEncoder.cs" />
-    <Compile Include="Barcode\UPCSupplement5BarcodeEncoder.cs" />
     <Compile Include="Common\AttributeString.cs" />
     <Compile Include="Common\CellIndex.cs" />
     <Compile Include="Common\CountDown.cs" />
@@ -114,11 +89,6 @@
     <Compile Include="CSharpWriter\Data\UrlStream.cs" />
     <Compile Include="CSharpWriter\Data\VFileInfo.cs" />
     <Compile Include="CSharpWriter\Data\WriterServiceContainer.cs" />
-    <Compile Include="DataSourceDom\DataSourceStrings.Designer.cs" />
-    <Compile Include="DataSourceDom\DataSourceUtil.cs" />
-    <Compile Include="DataSourceDom\DataSourceValueType.cs" />
-    <Compile Include="DataSourceDom\ParameterStyle.cs" />
-    <Compile Include="DataSourceDom\XParameter.cs" />
     <Compile Include="Data\DataStrings.Designer.cs">
       <DependentUpon>DataStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -384,7 +354,6 @@
     </Compile>
     <Compile Include="WinForms\MouseClickCounter.cs" />
     <Compile Include="WinForms\MouseEventStyle.cs" />
-    <Compile Include="WinForms\Native\AnimatedRectDrawer.cs" />
     <Compile Include="WinForms\Native\DeviceCapsClass.cs" />
     <Compile Include="WinForms\Native\DeviceContext.cs" />
     <Compile Include="WinForms\Native\DeviceContextBase.cs" />
@@ -419,14 +388,6 @@
     <Compile Include="WinForms\ScrollToViewStyle.cs" />
     <Compile Include="WinForms\UpdateLock.cs" />
     <Compile Include="WinForms\Utils.cs" />
-    <Compile Include="WinForms\VirtualControls\VImageList.cs" />
-    <Compile Include="WinForms\VirtualControls\VResources.Designer.cs">
-      <DependentUpon>VResources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="WinForms\VirtualControls\VTreeView.cs" />
-    <Compile Include="WinForms\VirtualControls\VUtils.cs" />
     <Compile Include="WinForms\XCursors.cs" />
     <Compile Include="WinForms\XGUICommon.cs" />
     <Compile Include="WinForms\XPictureBox.cs">
@@ -730,15 +691,6 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Barcode\BarcodeStrings.en.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Barcode\BarcodeStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>BarcodeStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Barcode\BarcodeStrings.zh-cn.resx" />
     <EmbeddedResource Include="Common\dlgValueValidateStyleEditor.en.resx">
       <DependentUpon>dlgValueValidateStyleEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -789,13 +741,6 @@
       <DependentUpon>frmScriptEdtior.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\WriterStrings.zh-cn.resx" />
-    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.en.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.zh-cn.resx" />
     <EmbeddedResource Include="Data\DataStrings.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.en.Designer.cs</LastGenOutput>
@@ -894,10 +839,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\Native\dlgInputUrl.resx">
       <DependentUpon>dlgInputUrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\VirtualControls\VResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>VResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.en.resx">
       <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
