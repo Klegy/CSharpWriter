@@ -136,13 +136,13 @@
     <value>0, 16</value>
   </data>
   <data name="labelProductName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 12</value>
+    <value>101, 12</value>
   </data>
   <data name="labelProductName.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="labelProductName.Text" xml:space="preserve">
-    <value>Product:CSharpWriter</value>
+    <value>Product:DCWriter</value>
   </data>
   <data name="labelProductName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -175,13 +175,13 @@
     <value>0, 16</value>
   </data>
   <data name="labelVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 12</value>
+    <value>47, 12</value>
   </data>
   <data name="labelVersion.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
-    <value>Version: preview α</value>
+    <value>Version</value>
   </data>
   <data name="labelVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -214,13 +214,13 @@
     <value>0, 16</value>
   </data>
   <data name="labelCopyright.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 12</value>
+    <value>143, 12</value>
   </data>
   <data name="labelCopyright.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
   <data name="labelCopyright.Text" xml:space="preserve">
-    <value>Copyright:Yongfu Yuan</value>
+    <value>Copyright:Yuans yong fu</value>
   </data>
   <data name="labelCopyright.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -295,7 +295,7 @@
     <value>23</value>
   </data>
   <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,it use &lt;LGPL&gt; license(maybe change later).More than RichTextBox, It is provide a DOM to access every thing in document.It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter can send to 28348092@qq.com(or yyf9989@hotmail.com).</value>
+    <value>    CSharpWriter can handle rich format text. It written in 100% C#.Email:28348092@qq.com(or yyf9989@hotmail.com)</value>
   </data>
   <data name="&gt;&gt;textBoxDescription.Name" xml:space="preserve">
     <value>textBoxDescription</value>

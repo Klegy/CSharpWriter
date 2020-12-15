@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace DCSoft.CSharpWriter.Commands
     /// </summary>
     /// <remarks>编制 袁永福</remarks>
     [WriterCommandDescription("Insert")]
-    internal class WriterCommandModuleInsert : WriterCommandModule
+    internal class WriterCommandModuleInsert : CSWriterCommandModule
     {
         /// <summary>
         /// 初始化对象
@@ -34,7 +35,7 @@ namespace DCSoft.CSharpWriter.Commands
         public WriterCommandModuleInsert()
         {
         }
-         
+          
         /// <summary>
         /// 调用文档元素编辑器
         /// </summary>
@@ -59,6 +60,100 @@ namespace DCSoft.CSharpWriter.Commands
             return false;
         }
 
+        /// <summary>
+        /// 插入图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription(StandardCommandNames.InsertImage,
+            ImageResource = "DCSoft.CSharpWriter.Commands.Images.CommandInsertImage.bmp")]
+        protected void InsertImage(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                args.Enabled = args.DocumentControler != null
+                    && args.DocumentControler.CanInsertElementAtCurrentPosition(
+                    typeof(DomImageElement));
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                DomImageElement newElement = null;
+                if (args.Parameter is DomImageElement)
+                {
+                    newElement = (DomImageElement)args.Parameter;
+                }
+                else if (args.Parameter is string)
+                {
+                    newElement = new DomImageElement();
+                    newElement.LoadImage((string)args.Parameter, false);
+                }
+                else if (args.Parameter is Image)
+                {
+                    newElement = new DomImageElement();
+                    newElement.Image.Value = (Image)args.Parameter;
+                }
+                else if (args.Parameter is XImageValue)
+                {
+                    newElement = new DomImageElement();
+                    newElement.Image = (XImageValue)args.Parameter;
+                }
+                //else if (args.Parameter is XTextImageElementProperties)
+                //{
+                //    XTextImageElementProperties p = (XTextImageElementProperties)args.Parameter;
+                //    newElement = new XTextImageElement();
+                //    newElement.Image = p.ImageValue;
+                //    newElement.KeepWidthHeightRate = p.KeepWidthHeightRate;
+                //}
+                if (args.ShowUI)
+                {
+                    if (newElement == null)
+                    {
+                        newElement = new DomImageElement();
+                    }
+                    newElement.OwnerDocument = args.Document;
+                    if (CallElementEdtior(args, newElement, ElementEditMethod.Insert) == false)
+                    {
+                        newElement.Dispose();
+                        newElement = null;
+                    }
+                }
+                 
+                if (newElement != null)
+                {
+                    newElement.OwnerDocument = args.Document;
+                    newElement.UpdateSize();
+                    CheckImageSizeWhenInsertImage(args.Document, newElement);
+                    args.DocumentControler.InsertElement(newElement);
+                    //args.Document.OnDocumentContentChanged();
+                    args.Result = newElement;
+                    args.RefreshLevel = UIStateRefreshLevel.All;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 根据插入点所在的容器来修正图片元素的大小
+        /// </summary>
+        /// <param name="document">文档对象</param>
+        /// <param name="element">图片元素</param>
+        public static void CheckImageSizeWhenInsertImage(DomDocument document, DomImageElement element)
+        {
+            if (document.Options.EditOptions.FixWidthWhenInsertImage)
+            {
+                DomContainerElement container = null;
+                int elementIndex = 0;
+                document.Content.GetCurrentPositionInfo(out container, out elementIndex);
+                container = container.ContentElement;
+                SizeF size = new SizeF(element.Width, element.Height);
+                size = MathCommon.FixSize(
+                    new SizeF(container.ClientWidth - document.PixelToDocumentUnit(2), 100000),
+                    size,
+                    element.KeepWidthHeightRate);
+                element.Width = size.Width;
+                element.Height = size.Height;
+            }
+        }
+            
         /// <summary>
         /// 插入文件内容
         /// </summary>
@@ -101,7 +196,7 @@ namespace DCSoft.CSharpWriter.Commands
                         {
                             return;
                         }
-                        VFileInfo info = fs.GetFileInfo(args.Host.Services, fileName);
+                        VFileInfo info = fs.GetFileInfo(args.Host.Services , fileName);
                         if (info.Exists == false)
                         {
                             // 文件不存在
@@ -144,7 +239,57 @@ namespace DCSoft.CSharpWriter.Commands
                 }
             }
         }
-         
+
+        /// <summary>
+        /// 向文档的当前位置插入Html内容。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription(StandardCommandNames.InsertHtml)]
+        protected void InsertHtml(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                args.Enabled = args.DocumentControler != null
+                    && args.Document != null
+                    && args.DocumentControler.CanInsertElementAtCurrentPosition(
+                    typeof(DomElement));
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                args.Result = false;
+
+                DomDocument document = null;
+                if (args.Parameter is string)
+                {
+                    System.IO.StringReader reader = new System.IO.StringReader(
+                        (string)args.Parameter);
+                    document = (DomDocument)System.Activator.CreateInstance(args.Document.GetType());
+                    DocumentLoader.LoadHtmlFile(reader, document, null);
+                    reader.Close();
+                }
+                else if (args.Parameter is System.IO.Stream)
+                {
+                    document = (DomDocument)Activator.CreateInstance(args.Document.GetType());
+                    document.Load((System.IO.Stream)args.Parameter, FileFormat.Html);
+                }
+                else if (args.Parameter is System.IO.TextReader)
+                {
+                    document = (DomDocument)System.Activator.CreateInstance(args.Document.GetType());
+                    DocumentLoader.LoadHtmlFile((System.IO.TextReader)args.Parameter, document, null);
+                }
+                if (document != null
+                    && document.Body != null
+                    && document.Body.Elements.Count > 0)
+                {
+                    DomElementList list = document.Body.Elements;
+                    args.Document.ImportElements(list);
+                    args.DocumentControler.InsertElements(list);
+                    args.Result = list;
+                }
+            }
+        }
+
         /// <summary>
         /// 向文档的当前位置插入XML内容。
         /// </summary>
@@ -329,6 +474,6 @@ namespace DCSoft.CSharpWriter.Commands
 
             }
         }
-
+         
     }
 }

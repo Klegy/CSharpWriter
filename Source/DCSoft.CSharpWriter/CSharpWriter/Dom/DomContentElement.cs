@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Xml.Serialization;
 using DCSoft.Printing;
 using DCSoft.Drawing;
 using System.Drawing;
+using DCSoft.CSharpWriter.Html;
 using DCSoft.Common;
 
 namespace DCSoft.CSharpWriter.Dom
@@ -653,8 +655,9 @@ namespace DCSoft.CSharpWriter.Dom
                     {
                         
                          
+                        {
                             line.RefreshState();
-                         
+                        }
                     }
                     // 计算行间距
                     float h = ps.GetLineSpacing( 
@@ -741,14 +744,7 @@ namespace DCSoft.CSharpWriter.Dom
                 }//foreach
             }
             bool result = false;
-            if (deeply)
-            {
-                // 递归处理表格单元格中的文档行位置
-                foreach (DomContentLine line in this.PrivateLines)
-                {
-                     
-                }//foreach
-            }//if
+             
             if (result == false)
             {
                 // 比较新旧文档行的位置是否发生改变
@@ -1198,8 +1194,9 @@ namespace DCSoft.CSharpWriter.Dom
                 myLine.Left = rs.PaddingLeft;// this.Left + this.OwnerDocument.Left;
                 //myLine.Top = topCount;
                 
+                {
                     myLine.RefreshState();
-                 
+                }
                 //topCount = (float)Math.Ceiling(topCount + myLine.Height);//+ myLine.LineSpacing ;
             }//foreach
 
@@ -1580,19 +1577,7 @@ namespace DCSoft.CSharpWriter.Dom
                 if (info.CurrentPoistion > line.AbsTop)
                 {
                     currentLine = line;
-                    if (currentLine[0] is DomPageBreakElement)
-                    {
-                        // 出现强制分页
-                        DomPageBreakElement pb = (DomPageBreakElement)currentLine[0];
-                        if (pb.Handled == false)
-                        {
-                            //进行强制分页
-                            pb.Handled = true;
-                            info.CurrentPoistion =( int ) currentLine.AbsTop ;
-                            info.SourceElement = pb;
-                            return;
-                        }
-                    }
+                     
                 }
                 else
                 {
@@ -1739,6 +1724,7 @@ namespace DCSoft.CSharpWriter.Dom
                 RectangleFCounter LightRect = new RectangleFCounter();
                 foreach (DomElement e in line)
                 {
+                    // 遍历文档行中的元素，绘制图形
                      
 
                     // 绘制一个文档元素
@@ -1810,7 +1796,7 @@ namespace DCSoft.CSharpWriter.Dom
                         if (this.OwnerDocument.EditorControl != null)
                         {
                             RectangleF rect = RectangleF.Empty;
-                             
+                           
                             {
                                 rect = LightRect.Value;
                             }
@@ -1846,7 +1832,147 @@ namespace DCSoft.CSharpWriter.Dom
             }
             return result ;
         }
-         
+
+        public override void WriteHTML(WriterHtmlDocumentWriter writer)
+        {
+            // 段落中第一行对象
+            int paragraphStartLineIndex = 0;
+            // 段落分组列表
+            ListDictionary<DomParagraphFlagElement, List<DomContentLine>> paragraphs
+                = new ListDictionary<DomParagraphFlagElement, List<DomContentLine>>();
+            // 按照所属段落对所有的文本行进行分组
+            for (int iCount = 0; iCount < this.PrivateLines.Count; iCount++)
+            {
+                DomContentLine line = this.PrivateLines[iCount];
+                if (line.LastElement is DomParagraphFlagElement)
+                {
+                    List<DomContentLine> lines = new List<DomContentLine>();
+                    for (int iCount2 = paragraphStartLineIndex; iCount2 <= iCount; iCount2++)
+                    {
+                        DomContentLine line2 = this.PrivateLines[iCount2];
+                        // 判断该行是否输出
+                        if (writer.ClipRectangle.IsEmpty == false)
+                        {
+                            if (writer.ClipRectangle.IntersectsWith(
+                                Rectangle.Ceiling(line2.AbsBounds)) == false)
+                            {
+                                // 该文本行不输出
+                                continue;
+                            }//if
+                        }//if
+                        if (writer.IncludeSelectionOndly)
+                        {
+                            // 判断是否包含被选中的内容
+                            bool output = false;
+                            foreach (DomElement element in line2)
+                            {
+                                if (element.HasSelection)
+                                {
+                                    output = true;
+                                    break;
+                                }
+                            }//foreach
+                            if (output == false)
+                            {
+                                continue;
+                            }
+                        }
+                        lines.Add(line2);
+                    }//for
+                    if (lines.Count > 0)
+                    {
+                        paragraphs[(DomParagraphFlagElement)line.LastElement] = lines;
+                    }
+                    paragraphStartLineIndex = iCount + 1;
+                }//if
+            }//for
+
+            // 最后一个段落列表样式
+            ParagraphListStyle lastListStyle = ParagraphListStyle.None;
+            foreach (DomParagraphFlagElement flag in paragraphs.Keys)
+            {
+                if (flag.ListStyle != lastListStyle)
+                {
+                    if (lastListStyle == ParagraphListStyle.BulletedList
+                        || lastListStyle == ParagraphListStyle.NumberedList)
+                    {
+                        writer.WriteEndElement();
+                    }
+                    lastListStyle = flag.ListStyle;
+                    if (lastListStyle == ParagraphListStyle.BulletedList)
+                    {
+                        writer.WriteStartElement("ul");
+                    }
+                    else if (lastListStyle == ParagraphListStyle.NumberedList)
+                    {
+                        writer.WriteStartElement("ol");
+                    }
+                }
+                if (lastListStyle == ParagraphListStyle.BulletedList
+                    || lastListStyle == ParagraphListStyle.NumberedList)
+                {
+                    writer.WriteStartElement("li");
+                }
+                else
+                {
+                    writer.WriteStartElement("p");
+                }
+                DocumentContentStyle pstyle = flag.RuntimeStyle ;
+                writer.WriteStartStyle();
+                writer.WriteDocumentContentStyle(pstyle, flag);
+                writer.WriteEndStyle();
+                // 输出文本行内容
+                int lineIndex = 0;
+                
+                foreach (DomContentLine line in paragraphs[flag])
+                {
+                    bool keepLineBreak = false;
+                    if (lineIndex > 0
+                        && this is DomDocumentContentElement
+                        && writer.Options.KeepLineBreak )
+                    {
+                        keepLineBreak = true;
+                    }
+
+                    if (keepLineBreak)
+                    {
+                        writer.WriteStartElement("br");
+                        writer.WriteEndElement();
+                    }
+                    lineIndex++;
+                    DomElementList elements = WriterUtils.MergeElements(
+                        line,
+                        writer.IncludeSelectionOndly);
+                    //if (splitLines)
+                    //{
+                    //    writer.WriteStartElement("span");
+                    //    writer.WriteStartStyle();
+                    //    writer.WriteStyleItem("white-space", "nowrap");
+                    //    writer.WriteStyleItem("text-align", "justify");
+                    //    //writer.WriteStyleItem("width", "100%");
+                    //    writer.WriteEndStyle();
+                    //}
+                    foreach (DomElement element in elements )
+                    {
+                        element.WriteHTML(writer);
+                    }
+                    //if (keepLineBreak)
+                    //{
+                    //    writer.WriteEndElement();
+                    //}
+                }//foreach
+                // 结束处理一个段落
+                writer.WriteEndElement();
+            }//foreach
+
+            if (lastListStyle == ParagraphListStyle.BulletedList
+                || lastListStyle == ParagraphListStyle.NumberedList)
+            {
+                writer.WriteEndElement();
+            }
+
+        }
+
         /// <summary>
         /// 获得区间包含的段落对象列表
         /// </summary>

@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Text;
@@ -213,7 +214,7 @@ namespace DCSoft.CSharpWriter.Printing
 
                 document.Enumerate(delegate(object sender, ElementEnumerateEventArgs args)
                     {
-                         
+                        
                         if (this.CleanMode && document.Options.SecurityOptions.ShowLogicDeletedContent)
                         {
                             if (args.Element.Style.DeleterIndex >= 0)
@@ -256,7 +257,10 @@ namespace DCSoft.CSharpWriter.Printing
 
                     int pageIndex = document.Pages.IndexOf(this.CurrentDocumentPage);
                     int pageIndex2 = -1;
-                    
+                    if (this.JumpPrint != null && this.JumpPrint.Page != null)
+                    {
+                        pageIndex2 = document.Pages.IndexOf(this.JumpPrint.Page);
+                    }
                     // 若该文档是显示被逻辑删除的内容则需要隐藏被逻辑删除的内容，并重新分页。
                     // 重新排版
                     document.ExecuteLayout();
@@ -271,7 +275,16 @@ namespace DCSoft.CSharpWriter.Printing
                     {
                         this.CurrentDocumentPage = null;
                     }
-                     
+                    // 修正断点续打的页面
+                    if (pageIndex2 >= 0 && pageIndex2 < document.Pages.Count)
+                    {
+                        this.JumpPrint.Page = document.Pages[pageIndex2];
+                    }
+                    else
+                    {
+                        this.JumpPrint.Page = null;
+                        this.JumpPrint.Enabled = false;
+                    }
                 }//if
 
             }//foreach

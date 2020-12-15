@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CodabarError" xml:space="preserve">
+    <value>Codabar At least 3 characters , must starts width and endwidth  'A' or 'B' or 'C' or 'D'.</value>
+  </data>
+  <data name="Code11Error" xml:space="preserve">
+    <value>Code11 must be Numeric data and '-' Only</value>
+  </data>
+  <data name="Code128CannotDetermineStart" xml:space="preserve">
+    <value>Code128: Could not determine start character.</value>
+  </data>
+  <data name="Code128CannotFind_Value" xml:space="preserve">
+    <value>Code128: Could not find encoding of a value( {0} ) in the formatted data.</value>
+  </data>
+  <data name="Code128InsertError" xml:space="preserve">
+    <value>Code128: Could not insert start and code characters.\n Message:</value>
+  </data>
+  <data name="Code128InvaliData" xml:space="preserve">
+    <value>Code128:Invalid Data.</value>
+  </data>
+  <data name="Code128InvalidateCharacter_Value" xml:space="preserve">
+    <value>Code128:Invalidate character'{0}'.</value>
+  </data>
+  <data name="Code128UnknowStart" xml:space="preserve">
+    <value>Code128: Unknown start type in fixed type encoding.</value>
+  </data>
+  <data name="Code39InvaliData" xml:space="preserve">
+    <value>Code39: Invalid data. (Try Code39Extended)</value>
+  </data>
+  <data name="Code93InvaliData" xml:space="preserve">
+    <value>Code93:Invalid data,include invalid characters.</value>
+  </data>
+  <data name="EAN13InvaliCountry" xml:space="preserve">
+    <value>EAN13: Invalidate Country assigning manufacturer code.</value>
+  </data>
+  <data name="EAN13InvaliData" xml:space="preserve">
+    <value>EAN13:Must be 12 or 13 numeric characters</value>
+  </data>
+  <data name="EAN8InvaliData" xml:space="preserve">
+    <value>EAN8:Invalid data ,7 or 8 numbers only.</value>
+  </data>
+  <data name="I25InvaliData" xml:space="preserve">
+    <value>I25:Invalid data , even numbers only.</value>
+  </data>
+  <data name="InvaliBarcodeStyle" xml:space="preserve">
+    <value>Invali barcode style.</value>
+  </data>
+  <data name="ISBNInvaliData" xml:space="preserve">
+    <value>ISBN:9,10,12or13 numbers only ，may need starts with '978'.</value>
+  </data>
+  <data name="JAN13InvaliData" xml:space="preserve">
+    <value>JAN13:Must numbers only and starts with '49'.</value>
+  </data>
+  <data name="MSIInvaliData" xml:space="preserve">
+    <value>MSI:Must numbers only.</value>
+  </data>
+  <data name="PostnetError" xml:space="preserve">
+    <value>Postnet bar code must be 5, 6, 9, or 11 digits only</value>
+  </data>
+  <data name="S25InvaliData" xml:space="preserve">
+    <value>S25:Must numbers only.</value>
+  </data>
+  <data name="TextMustNotNull" xml:space="preserve">
+    <value>Text must not be empty.</value>
+  </data>
+  <data name="UnsupportedStyle" xml:space="preserve">
+    <value>Unsupported barcode encoding type</value>
+  </data>
+  <data name="UPCAInvaliCountry" xml:space="preserve">
+    <value>UPCA:Invali country code.</value>
+  </data>
+  <data name="UPCAInvaliData" xml:space="preserve">
+    <value>UPCA:Must 12 numbers</value>
+  </data>
+  <data name="UPCEInvaliData" xml:space="preserve">
+    <value>UPCE:Invalid data , 8 or 12 numbers only,mabye need starts with 0 or 1.</value>
+  </data>
+  <data name="UPCS2InvaliData" xml:space="preserve">
+    <value>UPCS2:Invalid data , must 2 numbers.</value>
+  </data>
+  <data name="UPCS5InvaliData" xml:space="preserve">
+    <value>UPCS5:Invalid data , must 5 numbers.</value>
+  </data>
+</root>

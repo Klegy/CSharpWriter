@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 
@@ -117,7 +118,46 @@ namespace DCSoft.CSharpWriter.Dom
 			}
 			return txt ;
 		}
-         
+
+		/// <summary>
+		/// 输出对象数据到HTML文档
+		/// </summary>
+		/// <param name="writer">HTML文档书写器</param>
+        public override void WriteHTML(DCSoft.CSharpWriter.Html.WriterHtmlDocumentWriter  writer)
+		{
+            DocumentContentStyle rs = this.RuntimeStyle;
+            if ( rs.Superscript )
+            {
+                writer.WriteStartElement("sup");
+            }
+            else if ( rs.Subscript )
+            {
+                writer.WriteStartElement("sub");
+            }
+            string link = rs.Link;
+            if (link != null && link.Trim().Length > 0)
+            {
+                writer.WriteStartElement("a");
+                writer.WriteAttributeString("href", link);
+            }
+            else
+            {
+                writer.WriteStartElement("span");
+            }
+            writer.WriteStartStyle ();
+            writer.WriteDocumentContentStyle(this.RuntimeStyle  , this );
+            writer.WriteEndStyle();
+             
+			writer.WriteText(
+                this.GetOutputText( writer.IncludeSelectionOndly ));
+
+            writer.WriteEndElement();
+            if (rs.Superscript || rs.Subscript )
+            {
+                writer.WriteEndElement();
+            }
+		}
+
 		/// <summary>
 		/// 判断对象能否合并一个字符元素对象
 		/// </summary>

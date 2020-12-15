@@ -73,7 +73,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="about.xml" />
+    <Content Include="about.xml" />
+    <Content Include="DemoFile\about.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DCSoft.CSharpWriter\DCSoft.CSharpWriter.csproj">

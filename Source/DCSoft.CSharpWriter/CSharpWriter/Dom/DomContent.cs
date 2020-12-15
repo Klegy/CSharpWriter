@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.CSharpWriter.Dom.Undo ;
@@ -129,13 +130,21 @@ namespace DCSoft.CSharpWriter.Dom
         protected override void OnClear()
         {
             base.OnClear();
-            
             _AutoClearSelection = true;
             _LineEndFlag = false;
             //_SignElements = null;
         }
          
-         
+        /// <summary>
+        /// 判断指定的位置是否被锁定了,锁定区域不能新增、删除和修改样式。
+        /// </summary>
+        /// <param name="viewIndex">指定的位置</param>
+        /// <returns>是否被锁定了</returns>
+        public bool IsLockIndex(int viewIndex)
+        {
+            return false;
+        }
+
         public DomSelection Selection
         {
             get
@@ -2172,9 +2181,18 @@ namespace DCSoft.CSharpWriter.Dom
 		{
 			if( this.Count >= 1 )
 			{
-                 
+                if (this.OwnerDocument.DocumentControler.FormView == FormViewMode.Strict)
+                {
+                    int index = this.FixIndexForStrictFormViewMode( this.SelectionStartIndex , FixIndexDirection.Both , true );
+
+                    int index1 = this.FixIndexForStrictFormViewMode(0, FixIndexDirection.Forward, true);
+                    int index2 = this.FixIndexForStrictFormViewMode(this.Count - 1, FixIndexDirection.Back, true);
+                    
+                }
+                else
+                {
                     this.SetSelection(this.Count - 1, 1 - this.Count);
-                 
+                }
 			}
 		}
 
@@ -2189,10 +2207,11 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 case MoveTarget.DocumentHome:
                     {
-                        this.MoveSelectStart(0);
+                        this.MoveSelectStart(
+                            this.FixIndexForStrictFormViewMode(0, FixIndexDirection.Both, true));
                     }
                     break;
-                
+          
                 case MoveTarget.ParagraphHome:
                     {
                         int index = 0;
@@ -2204,7 +2223,7 @@ namespace DCSoft.CSharpWriter.Dom
                                 break;
                             }
                         }
-                        this.MoveSelectStart(index);
+                        this.MoveSelectStart(this.FixIndexForStrictFormViewMode(index, FixIndexDirection.Both, true));
                     }
                     break;
                 case MoveTarget.Home :
@@ -2223,15 +2242,15 @@ namespace DCSoft.CSharpWriter.Dom
                                 index = iCount - 1;
                             }
                         }
-                        this.MoveSelectStart(index);
+                        this.MoveSelectStart(this.FixIndexForStrictFormViewMode(index, FixIndexDirection.Both, true));
                     }
                     break;
-                
+               
                 case MoveTarget.DocumentEnd:
                     {
                         int index = this.Count - 2;
                         index = this.FixElementIndex(index);
-                        this.MoveSelectStart(index);
+                        this.MoveSelectStart(this.FixIndexForStrictFormViewMode(index, FixIndexDirection.Both, true));
                     }
                     break;
             }
@@ -2267,7 +2286,7 @@ namespace DCSoft.CSharpWriter.Dom
                 int index = this.IndexOf(curElement);
                 if (index >= 0)
                 {
-                
+                    index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Forward , true );
                     this.MoveSelectStart(index);
                 }
 			}
@@ -2305,7 +2324,7 @@ namespace DCSoft.CSharpWriter.Dom
                 int index = this.IndexOf(curElement);
                 if (index >= 0)
                 {
-                  
+                    index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Back , true );
                     this.MoveSelectStart(index);
                 }
 				//this.MoveSelectStart( myLine.LastElement );
@@ -2331,7 +2350,7 @@ namespace DCSoft.CSharpWriter.Dom
                 {
                     newIndex = 0;
                 }
-                
+                newIndex = FixIndexForStrictFormViewMode(newIndex, FixIndexDirection.Forward , true );
                 this.MoveSelectStart(newIndex);
             }
             else
@@ -2339,7 +2358,7 @@ namespace DCSoft.CSharpWriter.Dom
                 if (this.SelectionStartIndex  > 0 )
                 {
                     int index = this.SelectionStartIndex - 1;
-                 
+                    index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Forward, true);
                     this.MoveSelectStart( index );
                 }
             }
@@ -2364,7 +2383,7 @@ namespace DCSoft.CSharpWriter.Dom
                 {
                     newIndex = this.Count - 1;
                 }
-                
+                newIndex = FixIndexForStrictFormViewMode(newIndex, FixIndexDirection.Back, true);
                 this.MoveSelectStart(newIndex);
             }
             else
@@ -2372,7 +2391,7 @@ namespace DCSoft.CSharpWriter.Dom
                 if (this.SelectionStartIndex < this.Count - 1)
                 {
                     int index = this.SelectionStartIndex + 1;
-                    
+                    index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Back, true);
                     this.MoveSelectStart( index );
                 }
             }
@@ -2396,14 +2415,14 @@ namespace DCSoft.CSharpWriter.Dom
                         int index = this.IndexOf(myLine.LastElement);
                         if (index >= 0)
                         {
-                             
+                            index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Back, true);
                             this.MoveSelectStart(index);
                         }
 					}
 					else
 					{
                         int index = this.IndexOf(myLine.LastElement) + 1;
-                        int newIndex = index;
+                        int newIndex = FixIndexForStrictFormViewMode(index, FixIndexDirection.Back, true);
                         if (index != newIndex)
                         {
                             this.MoveSelectStart(newIndex);
@@ -2443,13 +2462,13 @@ namespace DCSoft.CSharpWriter.Dom
 				}
 				if( FirstNBlank == 0 || this.Selection.StartIndex == ( FirstIndex + FirstNBlank ))
 				{
-                     
+                    FirstIndex = FixIndexForStrictFormViewMode(FirstIndex, FixIndexDirection.Forward, true);
 					this.MoveSelectStart( FirstIndex );
 				}
 				else
 				{
                     int index = FirstIndex + FirstNBlank;
-                     
+                    index = FixIndexForStrictFormViewMode(index, FixIndexDirection.Forward, true);
 					this.MoveSelectStart( index );
 				}
 			}
@@ -2537,7 +2556,7 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 if (ces[iCount].AbsBounds.Contains(x, y))
                 {
-                     
+                    
                     contentElement = (DomContentElement)ces[iCount];
                     
                     break;
@@ -2775,13 +2794,30 @@ namespace DCSoft.CSharpWriter.Dom
             }
 
             // 根据严格的表单模式来修正插入点的位置
-            int fixIndex = index;
+            int fixIndex = this.FixIndexForStrictFormViewMode(index , FixIndexDirection.Both , true );
             if (fixIndex != index)
             {
                 index = fixIndex;
                 newLength = 0;
             }
-            
+            if (newLength != 0)
+            {
+                if (this.OwnerDocument.DocumentControler.FormView == Controls.FormViewMode.Strict)
+                {
+                    DomContainerElement c1 = null ;
+                    int ei1 = 0;
+                    GetPositonInfo(index, out c1, out ei1, false);
+                    DomContainerElement c2 = null;
+                    int ei2 = 0;
+                    GetPositonInfo(index + newLength, out c2, out ei2, false);
+                    DomElement root = WriterUtils.GetRootElement(c1, c2);
+                    
+                    {
+                        // 选择区域头尾元素不处于同一个文本输入域，则清除选择区域
+                        newLength = 0;
+                    }
+                }
+            }
             SetSelection(index, newLength);
             //this.MoveSelectStart( index );
 
@@ -2799,7 +2835,54 @@ namespace DCSoft.CSharpWriter.Dom
             //			}
         }
 
-            
+
+         
+        internal enum FixIndexDirection
+        {
+            /// <summary>
+            /// 向前修正
+            /// </summary>
+            Forward,
+            /// <summary>
+            /// 向后修正
+            /// </summary>
+            Back,
+            /// <summary>
+            /// 所有的方向
+            /// </summary>
+            Both
+        }
+
+        /// <summary>
+        /// 根据表单视图模式修正当前插入点的位置
+        /// </summary>
+        /// <returns>操作是否修改了插入点的位置</returns>
+        internal bool FixCurrentIndexForStrictFormViewMode()
+        {
+            if (this.OwnerDocument.DocumentControler.FormView == FormViewMode.Strict)
+            {
+                int index = FixIndexForStrictFormViewMode(this.SelectionStartIndex, FixIndexDirection.Both, true);
+                if (index != this.SelectionStartIndex)
+                {
+                    this.SetSelection(index, 0);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 根据表单视图状态修正插入点位置
+        /// </summary>
+        /// <param name="index">要修正的插入点位置编号</param>
+        /// <param name="direction">修正方向</param>
+        /// <returns>修正后的插入点位置</returns>
+        internal int FixIndexForStrictFormViewMode(int index , FixIndexDirection direction , bool enableSetAutoClearSelectionFlag )
+        {
+             
+            return index;
+        }
+
 		/// <summary>
 		/// 设置选择区域大小
 		/// </summary>
@@ -2822,7 +2905,8 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 return false;
             }
-            
+            bool strictFormView =
+                this.OwnerDocument.DocumentControler.FormView == FormViewMode.Strict;
             DomElement element = this.CurrentElement;
             if (element != null)
             {

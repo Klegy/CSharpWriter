@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 namespace DCSoft.CSharpWriter.Commands
 {
@@ -62,14 +63,14 @@ namespace DCSoft.CSharpWriter.Commands
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 12);
+            this.label1.Size = new System.Drawing.Size(179, 12);
             this.label1.TabIndex = 10;
-            this.label1.Text = "左侧缩进量：          个字符";
+            this.label1.Text = "Left indent:            chars";
             // 
             // txtLeftIndent
             // 
             this.txtLeftIndent.DecimalPlaces = 1;
-            this.txtLeftIndent.Location = new System.Drawing.Point(84, 16);
+            this.txtLeftIndent.Location = new System.Drawing.Point(97, 16);
             this.txtLeftIndent.Maximum = new decimal(new int[] {
             20,
             0,
@@ -91,12 +92,12 @@ namespace DCSoft.CSharpWriter.Commands
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(161, 12);
             this.label2.TabIndex = 30;
-            this.label2.Text = "首行缩进量：          厘米";
+            this.label2.Text = "First indent:           CM";
             // 
             // txtFirstLineIndent
             // 
             this.txtFirstLineIndent.DecimalPlaces = 2;
-            this.txtFirstLineIndent.Location = new System.Drawing.Point(276, 16);
+            this.txtFirstLineIndent.Location = new System.Drawing.Point(289, 16);
             this.txtFirstLineIndent.Maximum = new decimal(new int[] {
             20,
             0,
@@ -116,14 +117,14 @@ namespace DCSoft.CSharpWriter.Commands
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 12);
+            this.label3.Size = new System.Drawing.Size(179, 12);
             this.label3.TabIndex = 50;
-            this.label3.Text = "段落前间距：          行";
+            this.label3.Text = "Space before:           lines";
             // 
             // txtSpacingBefore
             // 
             this.txtSpacingBefore.DecimalPlaces = 1;
-            this.txtSpacingBefore.Location = new System.Drawing.Point(84, 53);
+            this.txtSpacingBefore.Location = new System.Drawing.Point(97, 53);
             this.txtSpacingBefore.Maximum = new decimal(new int[] {
             20,
             0,
@@ -138,14 +139,14 @@ namespace DCSoft.CSharpWriter.Commands
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(204, 57);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 12);
+            this.label4.Size = new System.Drawing.Size(179, 12);
             this.label4.TabIndex = 70;
-            this.label4.Text = "段落后间距：          行";
+            this.label4.Text = "Space after:            lines";
             // 
             // txtSpacingAfter
             // 
             this.txtSpacingAfter.DecimalPlaces = 1;
-            this.txtSpacingAfter.Location = new System.Drawing.Point(276, 53);
+            this.txtSpacingAfter.Location = new System.Drawing.Point(289, 53);
             this.txtSpacingAfter.Maximum = new decimal(new int[] {
             20,
             0,
@@ -160,9 +161,9 @@ namespace DCSoft.CSharpWriter.Commands
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 102);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.Size = new System.Drawing.Size(23, 12);
             this.label5.TabIndex = 90;
-            this.label5.Text = "行距：";
+            this.label5.Text = "LS:";
             // 
             // txtLineSpacing
             // 
@@ -182,12 +183,12 @@ namespace DCSoft.CSharpWriter.Commands
             this.cboLineSpacingStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLineSpacingStyle.FormattingEnabled = true;
             this.cboLineSpacingStyle.Items.AddRange(new object[] {
-            "单倍行距",
-            "1.5倍行距",
-            "2倍行距",
-            "最小值",
-            "固定值",
-            "多倍行距"});
+            "Simple line",
+            "1.5 spacing",
+            "2 spacing",
+            "Min",
+            "Fixed",
+            "Multi-spacing"});
             this.cboLineSpacingStyle.Location = new System.Drawing.Point(49, 98);
             this.cboLineSpacingStyle.Name = "cboLineSpacingStyle";
             this.cboLineSpacingStyle.Size = new System.Drawing.Size(111, 20);
@@ -199,9 +200,9 @@ namespace DCSoft.CSharpWriter.Commands
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(166, 102);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 110;
-            this.label6.Text = "设置值：";
+            this.label6.Text = "Value:";
             // 
             // btnOK
             // 
@@ -209,7 +210,7 @@ namespace DCSoft.CSharpWriter.Commands
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 130;
-            this.btnOK.Text = "确定(&O)";
+            this.btnOK.Text = "&Ok";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -219,7 +220,7 @@ namespace DCSoft.CSharpWriter.Commands
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 140;
-            this.btnCancel.Text = "取消(&C)";
+            this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -230,14 +231,14 @@ namespace DCSoft.CSharpWriter.Commands
             this.lblBang.Name = "lblBang";
             this.lblBang.Size = new System.Drawing.Size(17, 12);
             this.lblBang.TabIndex = 141;
-            this.lblBang.Text = "磅";
+            this.lblBang.Text = "Pa";
             this.lblBang.Visible = false;
             // 
             // dlgParagraphFormatcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 194);
+            this.ClientSize = new System.Drawing.Size(396, 194);
             this.Controls.Add(this.lblBang);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -260,7 +261,7 @@ namespace DCSoft.CSharpWriter.Commands
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "段落";
+            this.Text = "Paragraph format";
             this.Load += new System.EventHandler(this.dlgParagraphFormatcs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtLeftIndent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstLineIndent)).EndInit();

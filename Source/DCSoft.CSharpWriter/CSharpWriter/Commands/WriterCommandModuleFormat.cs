@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace DCSoft.CSharpWriter.Commands
     /// </summary>
     /// <remarks>编制 袁永福</remarks>
     [WriterCommandDescription( "Format")]
-    internal class WriterCommandModuleFormat : WriterCommandModule
+    internal class WriterCommandModuleFormat : CSWriterCommandModule
     {
         /// <summary>
         /// 初始化对象
@@ -86,8 +87,169 @@ namespace DCSoft.CSharpWriter.Commands
                 args.RefreshLevel = UIStateRefreshLevel.All;
             }
         }
-              
 
+        /// <summary>
+        /// 边框和背景样式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription(StandardCommandNames.BorderBackgroundFormat)]
+        protected void BorderBackgroundFormat(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                args.Enabled = false;
+                if (args.DocumentControler.Snapshot.CanModifySelection)
+                {
+                    if (Math.Abs(args.Document.Selection.Length) == 1)
+                    {
+                        DomElement element = args.Document.Selection.ContentElements[0];
+                        if (element is DomObjectElement)
+                        {
+                            args.Enabled = true;
+                            return;
+                        }
+                    }
+                    if (args.Document.Selection.Mode == ContentRangeMode.Cell)
+                    {
+                        args.Enabled = true;
+                    }
+                    
+
+                }
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                DomElement simpleElement = null;
+                if (Math.Abs(args.Document.Selection.Length) == 1)
+                {
+                    if (args.Document.Selection.ContentElements[0] is DomObjectElement)
+                    {
+                        simpleElement = args.Document.Selection.ContentElements[0];
+                    }
+                }
+                BorderBackgroundCommandParameter parameter = args.Parameter
+                    as BorderBackgroundCommandParameter;
+                if (parameter == null && args.ShowUI == false)
+                {
+                    // 操作无意义
+                    return;
+                }
+                 
+                if (args.ShowUI)
+                {
+                    using (dlgDocumentBorderBackground dlg = new dlgDocumentBorderBackground())
+                    {
+                        dlg.CommandParameter = parameter;
+                        if (simpleElement != null)
+                        {
+                            dlg.CompleMode = false;
+                        }
+                        if (dlg.ShowDialog(args.EditorControl) == DialogResult.OK)
+                        {
+                        }
+                        else
+                        {
+                            // 用户取消操作
+                            return;
+                        }
+                    }
+                }
+                args.Result = false;
+                
+                    SetElementBorderBackgroundFormat(parameter, args, simpleElement);
+                 
+            }
+        }
+          
+        /// <summary>
+        /// 设置表格单元格的边框和背景样式
+        /// </summary>
+        /// <param name="parameter">参数</param>
+        /// <param name="args">参数</param>
+        private void SetElementBorderBackgroundFormat(
+            BorderBackgroundCommandParameter parameter,
+            WriterCommandEventArgs args,
+            DomElement element)
+        {
+            DocumentContentStyle rs = (DocumentContentStyle)element.Style.Clone();
+            bool modified = false;
+            bool globalModified = false;
+            if (rs.BorderLeft != parameter.LeftBorder)
+            {
+                rs.BorderLeft = parameter.LeftBorder;
+                modified = true;
+            }
+            if (rs.BorderTop != parameter.TopBorder)
+            {
+                rs.BorderTop = parameter.TopBorder;
+                modified = true;
+            }
+            if (rs.BorderRight != parameter.RightBorder)
+            {
+                rs.BorderRight = parameter.RightBorder;
+                modified = true;
+            }
+            if (rs.BorderBottom != parameter.BottomBorder)
+            {
+                rs.BorderBottom = parameter.BottomBorder;
+                modified = true;
+            }
+            if (rs.BorderColor != parameter.BorderColor)
+            {
+                rs.BorderColor = parameter.BorderColor;
+                modified = true;
+            }
+            if (rs.BorderStyle != parameter.BorderStyle)
+            {
+                rs.BorderStyle = parameter.BorderStyle;
+                modified = true;
+            }
+            if (rs.BorderWidth != parameter.BorderWidth)
+            {
+                rs.BorderWidth = parameter.BorderWidth;
+                modified = true;
+            }
+            if (rs.BackgroundColor != parameter.BackgroundColor)
+            {
+                rs.BackgroundColor = parameter.BackgroundColor;
+                modified = true;
+            }
+            args.Document.BeginLogUndo();
+            if (modified)
+            {
+                globalModified = true;
+                int newStyleIndex = args.Document.ContentStyles.GetStyleIndex(rs);
+                if (newStyleIndex != element.StyleIndex)
+                {
+                    if (args.Document.CanLogUndo)
+                    {
+                        args.Document.UndoList.AddStyleIndex(element, element.StyleIndex, newStyleIndex);
+                    }
+                    element.StyleIndex = newStyleIndex;
+                    if (element.ShadowElement != null)
+                    {
+                        if (args.Document.CanLogUndo)
+                        {
+                            args.Document.UndoList.AddStyleIndex(element.ShadowElement, element.ShadowElement.StyleIndex, newStyleIndex);
+                        }
+                        element.ShadowElement.StyleIndex = newStyleIndex;
+                        element.ShadowElement.InvalidateView();
+                    }
+                    element.InvalidateView();
+                    element.UpdateContentVersion();
+                }
+            }
+            args.Document.EndLogUndo();
+            if (globalModified)
+            {
+                args.Result = true;
+                args.Document.Modified = true;
+                //args.Document.UpdateContentVersion();
+                args.Document.OnDocumentContentChanged();
+            }
+        }
+          
         /// <summary>
         /// 设置背景颜色
         /// </summary>

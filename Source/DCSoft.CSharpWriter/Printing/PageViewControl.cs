@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.WinForms;
@@ -883,7 +884,80 @@ namespace DCSoft.Printing
             }
             return null;
         }
-         
+
+		/// <summary>
+		/// 绘制续打区域
+		/// </summary>
+		/// <param name="g">图形绘制对象</param>
+		/// <param name="ClipRectangle">剪切矩形</param>
+		/// <param name="Position">续打位置</param>
+		/// <param name="FillColor">填充色</param>
+		protected void DrawJumpPrintArea(
+			System.Drawing.Graphics g ,
+			System.Drawing.Rectangle ClipRectangle ,
+			JumpPrintInfo Position , 
+			System.Drawing.Color FillColor )
+		{
+            if (Position == null || Position.Page == null || Position.Enabled == false )
+                return;
+
+			MultiPageTransform trans = ( MultiPageTransform ) this.myTransform ;
+
+            int pos = -1;
+            foreach (SimpleRectangleTransform item in trans)
+            {
+                if (item.ContentStyle == PageContentPartyStyle.Body 
+                    && item.PageObject == Position.Page)
+                {
+                    pos = item.UnTransformPoint(0, Position.Position + ( int ) item.DescRectF.Top ).Y  ;
+                }
+            }
+            if (pos < 0)
+            {
+                return;
+            }
+            //int pos = trans.UnTransformY( Position );
+
+			if( pos >= 0 )
+			{
+				System.Drawing.Rectangle rect = new System.Drawing.Rectangle(
+					0 ,
+					0 , 
+					this.ClientSize.Width , 
+					pos );
+
+				System.Drawing.Rectangle rect2 = ClipRectangle  ;
+                if (ClipRectangle.IsEmpty)
+                {
+                    rect2 = rect;
+                }
+                else
+                {
+                    rect2 = System.Drawing.Rectangle.Intersect(rect, rect2);
+                }
+				if( ! rect2.IsEmpty )
+				{
+					g.ResetClip();
+					g.PageUnit = System.Drawing.GraphicsUnit.Pixel ;
+					g.ResetTransform();
+					using( System.Drawing.SolidBrush b = new System.Drawing.SolidBrush( FillColor ))
+					{
+						g.FillRectangle( b , rect2 );
+					}
+					using( System.Drawing.Pen p = 
+							   new System.Drawing.Pen( System.Drawing.Color.Blue , 2 ))
+					{
+						g.DrawLine(
+							p , 
+							0 , 
+							rect.Bottom - 1 , 
+							this.ClientSize.Width ,
+							rect.Bottom - 1 );
+					}
+				}
+			}
+		}
+
         private HeaderFooterFlagVisible _HeaderFooterFlagVisible = HeaderFooterFlagVisible.None ;
         /// <summary>
         /// 是否显示页眉页脚标记

@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using DCSoft.Common;
 using DCSoft.CSharpWriter.Controls ;
 using DCSoft.Drawing;
 using DCSoft.CSharpWriter.RTF;
+using DCSoft.CSharpWriter.Html;
 using System.ComponentModel;
 using System.Windows.Forms;
 using DCSoft.CSharpWriter.Security;
@@ -32,7 +34,25 @@ namespace DCSoft.CSharpWriter.Dom
         public DocumentControler()
         {
         }
-         
+
+
+        private FormViewMode _FormView = FormViewMode.Disable ;
+        /// <summary>
+        /// 表单视图模式
+        /// </summary>
+        [DefaultValue(FormViewMode.Disable )]
+        [Category("Behavior")]
+        public FormViewMode FormView
+        {
+            get
+            {
+                return _FormView;
+            }
+            set
+            {
+                _FormView = value;
+            }
+        }
 
         private bool _IsAdministrator = false;
         /// <summary>
@@ -218,7 +238,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// <summary>
         /// 文档内容呈现器
         /// </summary>
-        public DocumentContentRender  Render
+        public DomContentRender  Render
         {
             get
             {
@@ -311,7 +331,7 @@ namespace DCSoft.CSharpWriter.Dom
                     }
                 }
             }
-            
+             
             return true;
         }
 
@@ -473,7 +493,20 @@ namespace DCSoft.CSharpWriter.Dom
             DataObjectHelper helper = new DataObjectHelper(data);
             if (specifyFormat == DataObjectHelper.Format_FileNameW || specifyFormat == null)
             {
-                
+                if (helper.HasFileNames)
+                {
+                    string strFileName = helper.FirstFileName;
+                    string name = strFileName.ToLower().Trim();
+                    if (name.EndsWith(".bmp")
+                        || name.EndsWith(".png")
+                        || name.EndsWith(".jpg")
+                        || name.EndsWith(".jpeg")
+                        || name.EndsWith(".gif")
+                        || name.EndsWith(".emf"))
+                    {
+                        return this.CanInsert(container, index, typeof(DomImageElement) , flags );
+                    }
+                }
                 if (specifyFormat != null)
                 {
                     return false;
@@ -490,7 +523,17 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
             }
-             
+            if (specifyFormat == DataFormats.Bitmap || specifyFormat == null)
+            {
+                if (helper.HasBitmap)
+                {
+                    return this.CanInsert(container, index, typeof(DomImageElement) , flags );
+                }
+                if (specifyFormat != null)
+                {
+                    return false;
+                }
+            }
             if (specifyFormat == DataFormats.Text || specifyFormat == null)
             {
                 if (helper.HasText)
@@ -546,7 +589,78 @@ namespace DCSoft.CSharpWriter.Dom
             }
             
             DataObjectHelper helper = new DataObjectHelper(data);
-             
+            if (specifyFormat == DataObjectHelper.Format_FileNameW
+                || specifyFormat == null)
+            {
+                if (helper.HasFileNames)
+                {
+                    string strFileName = helper.FirstFileName;
+                    string name = strFileName.ToLower().Trim();
+                    if (name.EndsWith(".bmp")
+                        || name.EndsWith(".png")
+                        || name.EndsWith(".jpg")
+                        || name.EndsWith(".jpeg")
+                        || name.EndsWith(".gif")
+                        || name.EndsWith(".emf"))
+                    {
+                        if (this.ValueFilter != null)
+                        {
+                            FilterValueEventArgs args = new FilterValueEventArgs(
+                                InputValueSource.Clipboard,
+                                InputValueType.FileName,
+                                name);
+                            this.ValueFilter(this, args);
+                            if (args.Cancel)
+                            {
+                                // 用户取消操作
+                                return false;
+                            }
+                            name = args.Value as string;
+                            if (string.IsNullOrEmpty(name))
+                            {
+                                // 数据被过滤掉了，操作失败
+                                return false;
+                            }
+                        }
+                        // 插入图片文件内容
+                        XImageValue img = new XImageValue();
+                        if (img.Load(strFileName) > 0 )
+                        {
+                            if (this.CanInsertElementAtCurrentPosition(typeof(DomImageElement)))
+                            {
+                                InsertImage(img, true , InputValueSource.Clipboard );
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                }
+                if (specifyFormat != null)
+                {
+                    return false;
+                }
+            }
+            if (specifyFormat == DataFormats.Bitmap || specifyFormat == null)
+            {
+                if (helper.HasBitmap)
+                {
+                    // 插入图片内容
+                    System.Drawing.Image img = helper.Bitmap;
+                    if (img != null)
+                    {
+                        if (this.CanInsertElementAtCurrentPosition(typeof(DomImageElement)))
+                        {
+                            XImageValue imgValue = new XImageValue(img);
+                            return InsertImage(imgValue, true , InputValueSource.Clipboard );
+                        }
+                    }
+                    return false;
+                }
+                if (specifyFormat != null)
+                {
+                    return false;
+                }
+            }
             if (specifyFormat == XMLDataFormat || specifyFormat == null)
             {
                 if (data.GetDataPresent(XMLDataFormat))
@@ -661,7 +775,66 @@ namespace DCSoft.CSharpWriter.Dom
             }
             return false;
         }
-         
+
+        /// <summary>
+        /// 插入图片文件内容
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <param name="logUndo">是否撤销操作</param>
+        /// <returns>操作是否成功</returns>
+        public virtual bool InsertImage(
+            XImageValue img, 
+            bool logUndo ,
+            InputValueSource inputSource )
+        {
+            if (img == null)
+            {
+                throw new ArgumentNullException("img");
+            }
+            if (this.ValueFilter != null)
+            {
+                FilterValueEventArgs args = new FilterValueEventArgs(
+                    inputSource ,
+                    InputValueType.Image,
+                    img.Value );
+                this.ValueFilter(this, args);
+                if (args.Cancel)
+                {
+                    // 用户取消操作
+                    return false;
+                }
+                Image img2 = args.Value as Image;
+                if (img2 == null)
+                {
+                    // 数据过滤掉了，操作失败。
+                    return false;
+                }
+                img.Value = img2;
+            }
+            DomImageElement imgElement = this.Document.CreateImage();
+            imgElement.Image = img;
+            imgElement.UpdateSize();
+            DCSoft.CSharpWriter.Commands.WriterCommandModuleInsert.CheckImageSizeWhenInsertImage(
+                this.Document,
+                imgElement);
+            if (logUndo)
+            {
+                this.Document.BeginLogUndo();
+            }
+            if (this.DocumentContent.HasSelection)
+            {
+                this.Content.DeleteSelection(true, false, false );
+            }
+            this.Document.InsertElement(imgElement);
+            this.Document.Modified = true;
+            if (logUndo)
+            {
+                this.Document.EndLogUndo();
+            }
+            this.Document.OnDocumentContentChanged();
+            return true;
+        }
+
         /// <summary>
         /// 在当前位置插入RTF文档
         /// </summary>
@@ -1022,7 +1195,16 @@ namespace DCSoft.CSharpWriter.Dom
                 {
                     obj.SetData(System.Windows.Forms.DataFormats.Rtf, rtf);
                 }
-                 
+                // 设置图片数据
+                if (selection.Length == 1 && selection.Mode == ContentRangeMode.Content
+                    && selection.ContentElements[0] is DomImageElement)
+                {
+                    DomImageElement img = (DomImageElement)selection.ContentElements[0];
+                    if (img.Image.Value != null)
+                    {
+                        obj.SetImage(img.Image.Value);
+                    }
+                }
                 // 设置XML数据
                 using (DomDocument selectionDocument = selection.CreateDocument())
                 {
@@ -1036,7 +1218,31 @@ namespace DCSoft.CSharpWriter.Dom
                     string xml = writer.ToString();
                     obj.SetData(XMLDataFormat, xml);
                 }
-                
+                // 设置HTML数据
+                WriterHtmlDocumentWriter htmlWriter = new WriterHtmlDocumentWriter();
+                htmlWriter.Documents.Add(this.Document);
+                htmlWriter.Options.Indent = true;
+                htmlWriter.Options.KeepLineBreak = true;
+                htmlWriter.Options.UseClassAttribute = true;
+                htmlWriter.IncludeSelectionOndly = true;
+                htmlWriter.Options.OutputHeaderFooter = false;
+                htmlWriter.WritingExcelHtml = false;
+                htmlWriter.ViewStyle = WriterHtmlViewStyle.Normal;
+                htmlWriter.Refresh();
+                string html = htmlWriter.DocumentHtml;
+                if (html != null && html.Length > 0)
+                {
+                    obj.SetData(System.Windows.Forms.DataFormats.Html, html);
+                }
+                //				// 设置HTML数据
+                //				XHtmlWriter hw = new XHtmlWriter( true );
+                //				hw.IncludeSelectionOndly = true ;
+                //				this.WriteHTML( hw );
+                //				string html = hw.ToString();
+                //				if( html != null && html.Length > 0 )
+                //				{
+                //					obj.SetData( System.Windows.Forms.DataFormats.Html , html );
+                //				}
                 return obj;
             }
             return null;
@@ -1119,7 +1325,7 @@ namespace DCSoft.CSharpWriter.Dom
                     }
                 }
             }
- 
+            
             DocumentContentStyle styleBack = this.Document.EditorCurrentStyle;
             int result = this.Document.InsertElements(newElements, true);
             if (logUndo)
@@ -1160,6 +1366,7 @@ namespace DCSoft.CSharpWriter.Dom
             return br;
         }
          
+
         public virtual void InsertChar(char vChar)
         {
             if (vChar == '\n')
@@ -1312,7 +1519,14 @@ namespace DCSoft.CSharpWriter.Dom
 
                         //this.Render.RefreshSize(element, g);
                     }
-                    
+                    if (element is DomImageElement)
+                    {
+                        // 修改图片大小
+                        DCSoft.CSharpWriter.Commands.WriterCommandModuleInsert.CheckImageSizeWhenInsertImage(
+                            this.Document,
+                            (DomImageElement)element);
+                    }
+                     
                 }//foreach
             }//using
         }
@@ -1451,6 +1665,7 @@ namespace DCSoft.CSharpWriter.Dom
                     DomContainerElement container = null;
                     int index = 0 ;
                     this.Document.Content.GetCurrentPositionInfo(out container, out index);
+                    
                     return CanModify(container );
                 }
                 else
@@ -1498,24 +1713,27 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
             }
-             
-
-            if (HasFlag(flags, DomAccessFlags.CheckLock))
+            if (HasFlag(flags, DomAccessFlags.CheckFormView))
             {
-                // 检查锁定状态
-                DomDocumentContentElement dce = element.DocumentContentElement;
-                int index2 = 0;
-                if (element is DomParagraphFlagElement)
+                // 检查表单视图模式
+                if (this.FormView == FormViewMode.Normal || this.FormView == FormViewMode.Strict)
                 {
-                    index2 = dce.Content.IndexOf(element);
+                    // 表单视图模式
+                    //if (HasFlag(flags, DomAccessFlags.CheckUserEditable))
+                    {
+                         
+                        {
+                            //来自UI层的修改文档内容的请求,若文档元素不在输入域中则拒绝请求。
+                            if (IsInFormField(element) == false)
+                            {
+                                return false;
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    index2 = dce.Content.IndexOf(element.LastContentElement );
-                }
-                
             }
 
+            
             if (HasFlag(flags, DomAccessFlags.CheckPermission))
             {
                 // 检查授权控制
@@ -1604,7 +1822,14 @@ namespace DCSoft.CSharpWriter.Dom
         /// <returns>是否在输入域中</returns>
         private bool IsInFormField(DomElement element)
         {
-            return false;
+            bool result = false;
+            DomElement parent = element.Parent;
+            while (parent != null)
+            {
+               
+                parent = parent.Parent;
+            }
+            return result;
         }
 
         /// <summary>
@@ -1627,7 +1852,30 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
             }
-             
+            if (HasFlag(flags, DomAccessFlags.CheckLock))
+            {
+                if (this.IsAdministrator == false)
+                {
+                    DomDocumentContentElement dce = element.DocumentContentElement;
+                    if (dce.Content.IsLockIndex(element.FirstContentElement.ViewIndex))
+                    {
+                        // 区域被锁定了，无法删除
+                        return false;
+                    }
+                }
+            }
+            if (this.FormView == FormViewMode.Normal || this.FormView == FormViewMode.Strict )
+            {
+                // 表单视图模式
+                if ((flags & DomAccessFlags.CheckUserEditable) == DomAccessFlags.CheckUserEditable)
+                {
+                    //来自UI层的修改文档内容的请求,若文档元素不在输入域中则拒绝请求。
+                    if (IsInFormField(element) == false)
+                    {
+                        return false;
+                    }
+                }
+            }
             //if (element.IsLogicDeleted)
             //{
             //    // 元素已经被逻辑删除了，无法再次删除
@@ -1649,7 +1897,7 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
             }
-            
+             
             else if (element is DomParagraphFlagElement)
             {
                 DomContentElement ce = element.ContentElement;
@@ -1812,13 +2060,15 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
             }
+            
              
+
             if (container.IsLogicDeleted)
             {
                 // 元素已经被逻辑删除了，无法插入任何内容。
                 return false;
             }
-            
+             
 
             DomContainerElement element = container;
             if (this.AcceptChildElement(container, elementType , flags ) == false)
@@ -1941,11 +2191,7 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 return true;
             }
-            if (element is DomPageBreakElement)
-            {
-                return true;
-            }
-             
+            
             return false;
             //			XTextChar c = element as XTextChar ;
             //			if( c == null )
@@ -1963,11 +2209,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// <returns>元素是否单独占据一行</returns>
         public virtual bool OwnerHoleLine(DomElement element)
         {
-             
-            if (element is DomPageBreakElement)
-            {
-                return true;
-            }
+            
             return false;
         }
 

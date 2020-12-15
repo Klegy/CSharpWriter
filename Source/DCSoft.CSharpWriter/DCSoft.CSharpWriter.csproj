@@ -40,10 +40,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barcode\BarcodeDrawer.cs" />
+    <Compile Include="Barcode\BarcodeEncoder.cs" />
+    <Compile Include="Barcode\BarcodeStrings.Designer.cs">
+      <DependentUpon>BarcodeStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Barcode\BarcodeStyle.cs" />
+    <Compile Include="Barcode\CodabarBarcodeEncoder.cs" />
+    <Compile Include="Barcode\Code11BarcodeEncoder.cs" />
+    <Compile Include="Barcode\Code128BarcodeEncoder.cs" />
+    <Compile Include="Barcode\Code39BarcodeEncoder.cs" />
+    <Compile Include="Barcode\Code93BarcodeEncoder.cs" />
+    <Compile Include="Barcode\EAN13BarcodeEncoder.cs" />
+    <Compile Include="Barcode\EAN8BarcodeEncoder.cs" />
+    <Compile Include="Barcode\Interleaved2of5BarcodeEncoder.cs" />
+    <Compile Include="Barcode\ISBNBarcodeEncoder.cs" />
+    <Compile Include="Barcode\JAN13BarcodeEncoder.cs" />
+    <Compile Include="Barcode\MSIBarcodeEncoder.cs" />
+    <Compile Include="Barcode\PostnetBarcodeEncoder.cs" />
+    <Compile Include="Barcode\Standard2of5BarcodeEncoder.cs" />
+    <Compile Include="Barcode\UPCABarcodeEncoder.cs" />
+    <Compile Include="Barcode\UPCEBarcodeEncoder.cs" />
+    <Compile Include="Barcode\UPCSupplement2BarcodeEncoder.cs" />
+    <Compile Include="Barcode\UPCSupplement5BarcodeEncoder.cs" />
     <Compile Include="Common\AttributeString.cs" />
     <Compile Include="Common\CellIndex.cs" />
     <Compile Include="Common\CountDown.cs" />
     <Compile Include="Common\DataObjectHelper.cs" />
+    <Compile Include="Common\dlgValueValidateStyleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\dlgValueValidateStyleEditor.Designer.cs">
+      <DependentUpon>dlgValueValidateStyleEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\DocumentCommentAttribute.cs" />
     <Compile Include="Common\FileHeaderHelper.cs" />
     <Compile Include="Common\FileHelper.cs" />
@@ -53,12 +84,26 @@
     <Compile Include="Common\frmDebugOutput.Designer.cs">
       <DependentUpon>frmDebugOutput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\HtmlDocumentWriter.cs" />
+    <Compile Include="Common\ImageHelper.cs" />
     <Compile Include="Common\ListDebugView.cs" />
     <Compile Include="Common\ListDictionary.cs" />
     <Compile Include="Common\MeasureConvert.cs" />
     <Compile Include="Common\StackTraceHelper.cs" />
+    <Compile Include="Common\StringConvertHelper.cs" />
     <Compile Include="Common\StringFormatHelper.cs" />
     <Compile Include="Common\ValueTypeHelper.cs" />
+    <Compile Include="Common\ValueValidateStyle.cs" />
+    <Compile Include="Common\ValueValidateStyleStrings.en.Designer.cs">
+      <DependentUpon>ValueValidateStyleStrings.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Common\ValueValidateStyleStrings1.Designer.cs">
+      <DependentUpon>ValueValidateStyleStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Common\VariableString.cs" />
     <Compile Include="Common\XDependencyObject.cs" />
     <Compile Include="Common\XDependencyObjectEventHandler.cs" />
@@ -69,6 +114,11 @@
     <Compile Include="CSharpWriter\Data\UrlStream.cs" />
     <Compile Include="CSharpWriter\Data\VFileInfo.cs" />
     <Compile Include="CSharpWriter\Data\WriterServiceContainer.cs" />
+    <Compile Include="DataSourceDom\DataSourceStrings.Designer.cs" />
+    <Compile Include="DataSourceDom\DataSourceUtil.cs" />
+    <Compile Include="DataSourceDom\DataSourceValueType.cs" />
+    <Compile Include="DataSourceDom\ParameterStyle.cs" />
+    <Compile Include="DataSourceDom\XParameter.cs" />
     <Compile Include="Data\DataStrings.Designer.cs">
       <DependentUpon>DataStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -116,6 +166,89 @@
     <Compile Include="Drawing\XFontValue.cs" />
     <Compile Include="Drawing\XImageValue.cs" />
     <Compile Include="Drawing\XPenStyle.cs" />
+    <Compile Include="HtmlDom\HTMLAElement.cs" />
+    <Compile Include="HtmlDom\HTMLAppletElement.cs" />
+    <Compile Include="HtmlDom\HTMLAreaElement.cs" />
+    <Compile Include="HtmlDom\HTMLAttribute.cs" />
+    <Compile Include="HtmlDom\HTMLAttributeList.cs" />
+    <Compile Include="HtmlDom\HTMLBElement.cs" />
+    <Compile Include="HtmlDom\HTMLBGSoundElement.cs" />
+    <Compile Include="HtmlDom\HTMLBodyElement.cs" />
+    <Compile Include="HtmlDom\HTMLBRElement.cs" />
+    <Compile Include="HtmlDom\HTMLColElement.cs" />
+    <Compile Include="HtmlDom\HTMLCommentElement.cs" />
+    <Compile Include="HtmlDom\HTMLContainer.cs" />
+    <Compile Include="HtmlDom\HTMLDivElement.cs" />
+    <Compile Include="HtmlDom\HTMLDocument.cs" />
+    <Compile Include="HtmlDom\HTMLElement.cs" />
+    <Compile Include="HtmlDom\HTMLElementList.cs" />
+    <Compile Include="HtmlDom\HTMLFontElement.cs" />
+    <Compile Include="HtmlDom\HTMLFormElement.cs" />
+    <Compile Include="HtmlDom\HTMLFrameElement.cs" />
+    <Compile Include="HtmlDom\HTMLFrameSetElement.cs" />
+    <Compile Include="HtmlDom\HTMLHeadElement.cs" />
+    <Compile Include="HtmlDom\HTMLHnElement.cs" />
+    <Compile Include="HtmlDom\HTMLHRElement.cs" />
+    <Compile Include="HtmlDom\HTMLHTAApplicationElement.cs" />
+    <Compile Include="HtmlDom\HTMLIEDeviceRect.cs" />
+    <Compile Include="HtmlDom\HTMLIEHeaderfooter.cs" />
+    <Compile Include="HtmlDom\HTMLIELayoutrect.cs" />
+    <Compile Include="HtmlDom\HTMLIETemplateprinter.cs" />
+    <Compile Include="HtmlDom\HTMLIFrameElement.cs" />
+    <Compile Include="HtmlDom\HTMLImgElement.cs" />
+    <Compile Include="HtmlDom\HTMLInputElement.cs" />
+    <Compile Include="HtmlDom\HTMLLabelElement.cs" />
+    <Compile Include="HtmlDom\HTMLLIElement.cs" />
+    <Compile Include="HtmlDom\HTMLLinkElement.cs" />
+    <Compile Include="HtmlDom\HTMLMapElement.cs" />
+    <Compile Include="HtmlDom\HTMLMarqueeElement.cs" />
+    <Compile Include="HtmlDom\HTMLMetaElement.cs" />
+    <Compile Include="HtmlDom\HTMLNameStyleItem.cs" />
+    <Compile Include="HtmlDom\HTMLNobarElement.cs" />
+    <Compile Include="HtmlDom\HTMLObjectElement.cs" />
+    <Compile Include="HtmlDom\HTMLOptionElement.cs" />
+    <Compile Include="HtmlDom\HTMLParamElement.cs" />
+    <Compile Include="HtmlDom\HTMLPElement.cs" />
+    <Compile Include="HtmlDom\HTMLPreElement.cs" />
+    <Compile Include="HtmlDom\HTMLScriptElement.cs" />
+    <Compile Include="HtmlDom\HTMLSelectElement.cs" />
+    <Compile Include="HtmlDom\HTMLSpanElement.cs" />
+    <Compile Include="HtmlDom\HTMLStyle.cs" />
+    <Compile Include="HtmlDom\HTMLStyleElement.cs" />
+    <Compile Include="HtmlDom\HTMLSubElement.cs" />
+    <Compile Include="HtmlDom\HTMLSupElement.cs" />
+    <Compile Include="HtmlDom\HTMLTableElement.cs" />
+    <Compile Include="HtmlDom\HTMLTBodyElement.cs" />
+    <Compile Include="HtmlDom\HTMLTDElement.cs" />
+    <Compile Include="HtmlDom\HTMLTextAreaElement.cs" />
+    <Compile Include="HtmlDom\HTMLTextNodeElement.cs" />
+    <Compile Include="HtmlDom\HTMLTextReader.cs" />
+    <Compile Include="HtmlDom\HTMLTitleElement.cs" />
+    <Compile Include="HtmlDom\HTMLTRElement.cs" />
+    <Compile Include="HtmlDom\HTMLULElement.cs" />
+    <Compile Include="HtmlDom\HTMLUnknowElement.cs" />
+    <Compile Include="HtmlDom\HTMLWriteOptions.cs" />
+    <Compile Include="HtmlDom\HTMLXMLElement.cs" />
+    <Compile Include="HtmlDom\IHTMLFormElement.cs" />
+    <Compile Include="HtmlDom\StringConstAlign.cs" />
+    <Compile Include="HtmlDom\StringConstAttributeName.cs" />
+    <Compile Include="HtmlDom\StringConstBorderStyle.cs" />
+    <Compile Include="HtmlDom\StringConstColor.cs" />
+    <Compile Include="HtmlDom\StringConstCursor.cs" />
+    <Compile Include="HtmlDom\StringConstDisplay.cs" />
+    <Compile Include="HtmlDom\StringConstEntity.cs" />
+    <Compile Include="HtmlDom\StringConstImgAlign.cs" />
+    <Compile Include="HtmlDom\StringConstInputType.cs" />
+    <Compile Include="HtmlDom\StringConstScriptLanguage.cs" />
+    <Compile Include="HtmlDom\StringConstStyleName.cs" />
+    <Compile Include="HtmlDom\StringConstTagName.cs" />
+    <Compile Include="HtmlDom\StringConstTarget.cs" />
+    <Compile Include="HtmlDom\StringConstValue.cs" />
+    <Compile Include="HtmlDom\StringConstVisibility.cs" />
+    <Compile Include="HtmlDom\StringConstWordBreak.cs" />
+    <Compile Include="HtmlDom\StringConstWordWrap.cs" />
+    <Compile Include="HtmlDom\StringConstWrap.cs" />
+    <Compile Include="HtmlDom\StringConstXSLT.cs" />
     <Compile Include="Printing\dlgPageSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,7 +419,25 @@
     <Compile Include="WinForms\ScrollToViewStyle.cs" />
     <Compile Include="WinForms\UpdateLock.cs" />
     <Compile Include="WinForms\Utils.cs" />
+    <Compile Include="WinForms\VirtualControls\VImageList.cs" />
+    <Compile Include="WinForms\VirtualControls\VResources.Designer.cs">
+      <DependentUpon>VResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WinForms\VirtualControls\VTreeView.cs" />
+    <Compile Include="WinForms\VirtualControls\VUtils.cs" />
     <Compile Include="WinForms\XCursors.cs" />
+    <Compile Include="WinForms\XGUICommon.cs" />
+    <Compile Include="WinForms\XPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\XPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\XTreeListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CSharpWriter\AccessFlags.cs" />
     <Compile Include="CSharpWriter\AssemblyInfo.cs" />
     <Compile Include="CSharpWriter\Commands\BorderBackgroundCommandParameter.cs" />
@@ -322,6 +473,12 @@
     </Compile>
     <Compile Include="CSharpWriter\Commands\dlgElementTypeEditor.Designer.cs">
       <DependentUpon>dlgElementTypeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgImageElementEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Commands\dlgImageElementEditor.Designer.cs">
+      <DependentUpon>dlgImageElementEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="CSharpWriter\Commands\dlgInputRTF.cs">
       <SubType>Form</SubType>
@@ -372,8 +529,8 @@
     <Compile Include="CSharpWriter\Commands\StandardCommandNames.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommand.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandCenter.cs" />
-    <Compile Include="CSharpWriter\Commands\WriterCommandContainer.cs" />
-    <Compile Include="CSharpWriter\Commands\WriterCommandControler.cs">
+    <Compile Include="CSharpWriter\Commands\CSWriterCommandContainer.cs" />
+    <Compile Include="CSharpWriter\Commands\CSWriterCommandControler.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CSharpWriter\Commands\WriterCommandDelegate.cs" />
@@ -381,7 +538,7 @@
     <Compile Include="CSharpWriter\Commands\WriterCommandDescriptor.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandEventArgs.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandList.cs" />
-    <Compile Include="CSharpWriter\Commands\WriterCommandModule.cs" />
+    <Compile Include="CSharpWriter\Commands\CSWriterCommandModule.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandModuleBrowse.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandModuleDescriptor.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandModuleEdit.cs" />
@@ -391,9 +548,16 @@
     <Compile Include="CSharpWriter\Commands\WriterCommandModuleSecurity.cs" />
     <Compile Include="CSharpWriter\Commands\WriterCommandModuleTools.cs" />
     <Compile Include="CSharpWriter\Commands\XTextElementProperties.cs" />
+    <Compile Include="CSharpWriter\Commands\XTextImageElementEditor.cs" />
     <Compile Include="CSharpWriter\CommonTypeConverter.cs" />
     <Compile Include="CSharpWriter\ContentBuilder.cs" />
     <Compile Include="CSharpWriter\Controls\CommandErrorHandler.cs" />
+    <Compile Include="CSharpWriter\Controls\DateTimeSelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\DateTimeSelectControl.Designer.cs">
+      <DependentUpon>DateTimeSelectControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSharpWriter\Controls\dlgAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -403,15 +567,28 @@
     <Compile Include="CSharpWriter\Controls\dlgError.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CSharpWriter\Controls\dlgErrorViewSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\dlgErrorViewSource.Designer.cs">
+      <DependentUpon>dlgErrorViewSource.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSharpWriter\Controls\ElementToolTip.cs" />
+    <Compile Include="CSharpWriter\Controls\ElementValueEditor.cs" />
+    <Compile Include="CSharpWriter\Controls\ElementValueEditResult.cs" />
     <Compile Include="CSharpWriter\Controls\ErrorReporter.cs" />
+    <Compile Include="CSharpWriter\Controls\FormViewMode.cs" />
     <Compile Include="CSharpWriter\Controls\IWriterControlComEvents.cs" />
     <Compile Include="CSharpWriter\Controls\KeyState.cs" />
     <Compile Include="CSharpWriter\Controls\TextPageViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="CSharpWriter\Controls\TextWindowsFormsEditorHost.cs" />
     <Compile Include="CSharpWriter\Controls\CSWriterControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharpWriter\Controls\XTreeListBoxEditControl.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CSharpWriter\DocumentBehaviorOptions.cs" />
     <Compile Include="CSharpWriter\DocumentEditOptions.cs" />
@@ -466,28 +643,33 @@
     <Compile Include="CSharpWriter\Dom\DomContainerElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomContent.cs" />
     <Compile Include="CSharpWriter\Dom\DomContentElement.cs" />
-    <Compile Include="CSharpWriter\Dom\DocumentContentRender.cs" />
+    <Compile Include="CSharpWriter\Dom\DomContentRender.cs" />
     <Compile Include="CSharpWriter\Dom\DomDocument.cs" />
     <Compile Include="CSharpWriter\Dom\DomDocumentContentElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomDocumentList.cs" />
     <Compile Include="CSharpWriter\Dom\DomElement.cs" />
-    <Compile Include="CSharpWriter\Dom\ElementDescriptorAttribute.cs" />
+    <Compile Include="CSharpWriter\Dom\DomElementDescriptorAttribute.cs" />
     <Compile Include="CSharpWriter\Dom\DomElementList.cs" />
     <Compile Include="CSharpWriter\Dom\DomEOFElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomImageElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomContentLine.cs" />
     <Compile Include="CSharpWriter\Dom\DomLineBreakElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomContentLineList.cs" />
-    <Compile Include="CSharpWriter\Dom\DomPageBreakElement.cs" />
+    <Compile Include="CSharpWriter\Dom\DomObjectElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomParagraphElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomParagraphFlagElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomParagraphList.cs" />
     <Compile Include="CSharpWriter\Dom\DomParagraphListItemElement.cs" />
-    <Compile Include="CSharpWriter\Dom\ContentRange.cs" />
+    <Compile Include="CSharpWriter\Dom\DomRange.cs" />
+    <Compile Include="CSharpWriter\Dom\DomSectionElement.cs" />
     <Compile Include="CSharpWriter\Dom\DomSelection.cs" />
     <Compile Include="CSharpWriter\Dom\DomStringElement.cs" />
     <Compile Include="CSharpWriter\ElementEditor.cs" />
     <Compile Include="CSharpWriter\EnableState.cs" />
     <Compile Include="CSharpWriter\FileFormat.cs" />
+    <Compile Include="CSharpWriter\Html\HtmlLoader.cs" />
+    <Compile Include="CSharpWriter\Html\WriterHtmlDocumentWriter.cs" />
+    <Compile Include="CSharpWriter\Html\XHtmlWriter.cs" />
     <Compile Include="CSharpWriter\MoveUnit.cs" />
     <Compile Include="CSharpWriter\Printing\DocumentPrinter.cs" />
     <Compile Include="CSharpWriter\Printing\WriterPrintDocument.cs">
@@ -548,9 +730,37 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Barcode\BarcodeStrings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\BarcodeStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BarcodeStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\BarcodeStrings.zh-cn.resx" />
+    <EmbeddedResource Include="Common\dlgValueValidateStyleEditor.en.resx">
+      <DependentUpon>dlgValueValidateStyleEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\dlgValueValidateStyleEditor.resx">
+      <DependentUpon>dlgValueValidateStyleEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frmDebugOutput.resx">
       <DependentUpon>frmDebugOutput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\ValueValidateStyleStrings.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValueValidateStyleStrings.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ValueValidateStyleStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValueValidateStyleStrings1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ValueValidateStyleStrings.zh-cn.resx" />
     <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.zh-cn.resx">
       <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -579,6 +789,13 @@
       <DependentUpon>frmScriptEdtior.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\WriterStrings.zh-cn.resx" />
+    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSourceDom\DataSourceStrings.zh-cn.resx" />
     <EmbeddedResource Include="Data\DataStrings.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.en.Designer.cs</LastGenOutput>
@@ -678,6 +895,10 @@
     <EmbeddedResource Include="WinForms\Native\dlgInputUrl.resx">
       <DependentUpon>dlgInputUrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\VirtualControls\VResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Commands\Design\dlgCommandNameEditor.en.resx">
       <DependentUpon>dlgCommandNameEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -704,6 +925,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Commands\dlgElementTypeEditor.resx">
       <DependentUpon>dlgElementTypeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Commands\dlgImageElementEditor.resx">
+      <DependentUpon>dlgImageElementEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Commands\dlgInputRTF.resx">
       <DependentUpon>dlgInputRTF.cs</DependentUpon>
@@ -735,6 +959,12 @@
     <EmbeddedResource Include="CSharpWriter\Commands\frmViewXML.resx">
       <DependentUpon>frmViewXML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\DateTimeSelectControl.en.resx">
+      <DependentUpon>DateTimeSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\DateTimeSelectControl.resx">
+      <DependentUpon>DateTimeSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Controls\dlgAbout.en.resx">
       <DependentUpon>dlgAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -744,6 +974,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Controls\dlgError.resx">
       <DependentUpon>dlgError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpWriter\Controls\dlgErrorViewSource.resx">
+      <DependentUpon>dlgErrorViewSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharpWriter\Controls\CSWriterControl.resx">
       <DependentUpon>CSWriterControl.cs</DependentUpon>
@@ -794,6 +1027,7 @@
     <Content Include="CSharpWriter\images\paragrapheof.bmp" />
     <Content Include="CSharpWriter\images\XDesignerZoomInAction.bmp" />
     <Content Include="CSharpWriter\images\XDesignerZoomOutAction.bmp" />
+    <None Include="csharpwriter.vsd" />
     <None Include="CSharpWriter\Demo.config" />
     <None Include="CSharpWriter\Resources\lock.bmp" />
     <None Include="CSharpWriter\Resources\frmX1.bmp" />

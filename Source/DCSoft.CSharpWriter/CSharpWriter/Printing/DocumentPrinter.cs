@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Text;
@@ -113,7 +114,22 @@ namespace DCSoft.CSharpWriter.Printing
                 _CleanMode = value;
             }
         }
-         
+
+        private JumpPrintInfo myJumpPrint = new JumpPrintInfo();
+        /// <summary>
+        /// 续打信息
+        /// </summary>
+        public JumpPrintInfo JumpPrint
+        {
+            get
+            {
+                return myJumpPrint;
+            }
+            set
+            {
+                myJumpPrint = value;
+            }
+        }
 
         private PrintPage myCurrentPage = null;
         /// <summary>
@@ -308,7 +324,7 @@ namespace DCSoft.CSharpWriter.Printing
                 printDoc.CleanMode = this.CleanMode;
                 printDoc.AsyncPrint = this.AsyncPrint;
                 printDoc.Documents = this.Documents;
-                
+                printDoc.JumpPrint = this.JumpPrint.Clone();
                 printDoc.WriterControl = this.WriterControl;
                 printDoc.CurrentDocumentPage = this.CurrentPage;
                 if (string.IsNullOrEmpty(this.PrinterName) == false)

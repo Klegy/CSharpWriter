@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -407,61 +408,22 @@ namespace DCSoft.CSharpWriter.RTF
                         result.AddRange(doc.CreateChars(domText.Text, si));
                     }
                 }
+                else if (element is RTFDomImage)
+                {
+                    // 插入图片
+                    RTFDomImage domImg = (RTFDomImage)element;
+                    DomImageElement img = new DomImageElement();
+                    img.OwnerDocument = doc;
+                    img.Image = new XImageValue(domImg.Data);
+                    DocumentContentStyle style = ToDocumentContentStyle(
+                        domImg.Format,
+                        doc.DocumentGraphicsUnit );
+                    img.StyleIndex = doc.ContentStyles.GetStyleIndex(style);
+                    img.Width = GraphicsUnitConvert.FromTwips(domImg.Width, doc.DocumentGraphicsUnit);
+                    img.Height = GraphicsUnitConvert.FromTwips(domImg.Height, doc.DocumentGraphicsUnit);
+                    result.Add(img);
+                }
                  
-                else if (element is RTFDomObject)
-                {
-                    // 插入对象
-                    RTFDomObject domObj = (RTFDomObject)element;
-                    if (domObj.ClassName != null && domObj.ClassName.StartsWith( RTFContentWriter.XWriterObjectPrefix))
-                    {
-                        // 内嵌的XTextDocument对象
-                        
-                        // 获得类型名称
-                        string typeName = domObj.ClassName.Substring(RTFContentWriter.XWriterObjectPrefix.Length);
-                        // 获得文档元素类型
-                        Type elementType = Type.GetType(typeName , true , true );
-                        if (elementType != null)
-                        {
-                            if (domObj.Content != null && domObj.Content.Length > 0 )
-                            {
-                                // 若有内容则进行XML反序列化
-                                string attstr = System.Text.Encoding.UTF8.GetString(domObj.Content);
-                                StringReader reader = new StringReader(attstr);
-                                XmlSerializer ser = MyXmlSerializeHelper.GetElementXmlSerializer(elementType);
-                                DomElement newElement = (DomElement)ser.Deserialize(reader);
-                                if (newElement != null)
-                                {
-                                    newElement.OwnerDocument = doc;
-                                }
-                                result.Add(newElement);
-                            }
-                            else
-                            {
-                                // 若无内容则直接创建对象
-                                DomElement newElement = (DomElement)System.Activator.CreateInstance(elementType);
-                                newElement.OwnerDocument = doc;
-                                result.Add(newElement);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        
-                         
-                    }
-                }
-                else if (element is RTFDomField)
-                {
-                    RTFDomField domField = (RTFDomField)element;
-                    if (domField.Result != null)
-                    {
-                        string fldinst = domField.Instructions;
-                         
-                        {
-                            ReadContent(domField.Result, doc, result, format.Clone());
-                        }
-                    }
-                }
                  
                 else if (element is RTFDomShape)
                 {
@@ -474,11 +436,7 @@ namespace DCSoft.CSharpWriter.RTF
                     // 软回车
                     result.Add(new DomLineBreakElement());// doc.CreateLineBreak());
                 }
-                else if (element is RTFDomPageBreak)
-                {
-                    // 强制换页符
-                    result.Add(new DomPageBreakElement());
-                }
+                
                 else if (element.Elements != null
                     && element.Elements.Count > 0)
                 {

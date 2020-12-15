@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -107,7 +108,20 @@ namespace DCSoft.CSharpWriter.Commands
             chkRightBorder.Checked = _CommandParameter.RightBorder;
             chkTopBorder.Checked = _CommandParameter.TopBorder;
 
-             
+            if (_CommandParameter.ForTable)
+            {
+                cboBorderApplyRange.Items.Add(WriterStrings.BorderApplyRangeCell);
+                cboBorderApplyRange.Items.Add(WriterStrings.BorderApplyRangeTable);
+                if (_CommandParameter.ApplyRange == BorderCommandApplyRange.Cell)
+                {
+                    cboBorderApplyRange.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboBorderApplyRange.SelectedIndex = 1;
+                }
+            }
+            else
             {
                 cboBorderApplyRange.Items.Add(WriterStrings.BorderApplyRangeText);
                 cboBorderApplyRange.Items.Add(WriterStrings.BorderApplyRangeParagraph);
@@ -322,7 +336,18 @@ namespace DCSoft.CSharpWriter.Commands
                 _CommandParameter.BorderColor = btnBorderColor.CenterColor;
                 _CommandParameter.BorderWidth = (int)txtBorderWidth.Value;
                 _CommandParameter.BackgroundColor = btnBackgroundColor.CenterColor ;
-                 
+                if (_CommandParameter.ForTable)
+                {
+                    if (cboBorderApplyRange.SelectedIndex == 0)
+                    {
+                        _CommandParameter.ApplyRange = BorderCommandApplyRange.Cell;
+                    }
+                    else
+                    {
+                        _CommandParameter.ApplyRange = BorderCommandApplyRange.Table;
+                    }
+                }
+                else
                 {
                     if (cboBorderApplyRange.SelectedIndex == 0)
                     {

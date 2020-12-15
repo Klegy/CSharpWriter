@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace DCSoft.CSharpWriter.Commands
     /// 该模块中的功能用于滚动浏览文档内容，不会修改文档内容。编制，袁永福。
     /// </remarks>
     [WriterCommandDescription( StandardCommandNames.ModuleBrowse )]
-    internal class WriterCommandModuleBrowse : WriterCommandModule 
+    internal class WriterCommandModuleBrowse : CSWriterCommandModule 
     {
         /// <summary>
         /// 初始化对象
@@ -522,7 +523,42 @@ namespace DCSoft.CSharpWriter.Commands
                 //args.RefreshLevel = UIStateRefreshLevel.All;
             }
         }
-         
+
+        
+        /// <summary>
+        /// 断点续打模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription( StandardCommandNames.JumpPrintMode )]
+        protected void JumpPrintMode(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                if (args.EditorControl == null)
+                {
+                    args.Enabled = false;
+                }
+                else
+                {
+                    args.Enabled = args.EditorControl.ViewMode == PageViewMode.Page;
+                    args.Checked = args.EditorControl.EnableJumpPrint ;
+                }
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                bool jmp = !args.EditorControl.EnableJumpPrint;
+                if (args.Parameter is bool)
+                {
+                    jmp = (bool)args.Parameter;
+                }
+                if (args.EditorControl.EnableJumpPrint != jmp)
+                {
+                    args.EditorControl.EnableJumpPrint = jmp;
+                    args.EditorControl.Invalidate();
+                }
+            }
+        }
 
         /// <summary>
         /// 编辑器是否处于设计时模式
@@ -687,7 +723,69 @@ namespace DCSoft.CSharpWriter.Commands
                 args.RefreshLevel = UIStateRefreshLevel.All;
             }
         }
-         
+
+        /// <summary>
+        /// 页面视图方式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription(StandardCommandNames.FormViewMode)]
+        protected void FormViewMode(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                if (args.EditorControl == null)
+                {
+                    args.Enabled = false;
+                }
+                else
+                {
+                    args.Enabled = true;
+                    args.Checked = args.EditorControl.FormView == Controls.FormViewMode.Normal 
+                        || args.EditorControl.FormView == Controls.FormViewMode.Strict ;
+                }
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                FormViewMode mode = args.EditorControl.FormView;
+
+                if (args.Parameter is FormViewMode)
+                {
+                    mode = (FormViewMode)args.Parameter;
+                }
+                else if (args.Parameter is bool)
+                {
+                    bool v = (bool)args.Parameter;
+                    if (v)
+                    {
+                        mode = Controls.FormViewMode.Strict;
+                    }
+                    else
+                    {
+                        mode = Controls.FormViewMode.Disable;
+                    }
+                }
+                else
+                {
+                    if (mode == Controls.FormViewMode.Disable)
+                    {
+                        mode = Controls.FormViewMode.Strict ;
+                    }
+                    else
+                    {
+                        mode = Controls.FormViewMode.Disable;
+                    }
+                }
+                args.EditorControl.FormView = mode;
+                if (args.Document != null)
+                {
+                    args.Document.Content.FixCurrentIndexForStrictFormViewMode();
+                }
+                args.EditorControl.Invalidate();
+                args.RefreshLevel = UIStateRefreshLevel.All;
+            }
+        }
+
         /// <summary>
         /// 页面视图方式
         /// </summary>
@@ -710,7 +808,7 @@ namespace DCSoft.CSharpWriter.Commands
             }
             else if (args.Mode == WriterCommandEventMode.Invoke)
             {
-              
+                args.EditorControl.EnableJumpPrint = false;
                 args.EditorControl.ViewMode = PageViewMode.Page;
                 args.EditorControl.RefreshDocument();
                 args.EditorControl.Invalidate();
@@ -740,7 +838,7 @@ namespace DCSoft.CSharpWriter.Commands
             }
             else if (args.Mode == WriterCommandEventMode.Invoke)
             {
-              
+                args.EditorControl.EnableJumpPrint = false;
                 args.EditorControl.ViewMode = PageViewMode.Normal ;
                 args.EditorControl.RefreshDocument();
                 args.EditorControl.Invalidate();

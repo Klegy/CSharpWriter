@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.WinForms;
@@ -348,7 +349,26 @@ namespace DCSoft.CSharpWriter.Controls
                 return false;
             }
         }
-          
+         
+        private FormViewMode _FormView = FormViewMode.Disable ;
+        /// <summary>
+        /// 表单视图模式
+        /// </summary>
+        [DefaultValue(FormViewMode.Disable )]
+        [Category("Behavior")]
+        public FormViewMode FormView
+        {
+            get
+            {
+                return _FormView; 
+            }
+            set
+            {
+                _FormView = value;
+                this.DocumentControler.FormView = _FormView;
+            }
+        }
+
         /// <summary>
         /// 文档内容改变标记
         /// </summary>
@@ -386,8 +406,8 @@ namespace DCSoft.CSharpWriter.Controls
                     this._Document.ServerObject = _ServerObject;
                 }
             }
-        } 
-
+        }
+         
         private DocumentOptions _DocumentOptions = new DocumentOptions();
         /// <summary>
         /// 文档设置
@@ -551,7 +571,7 @@ namespace DCSoft.CSharpWriter.Controls
                     _DocumentControler.Document = this.Document;
                     _DocumentControler.EditorControl = this;
                     _DocumentControler.IsAdministrator = this._IsAdministrator;
-                    
+                    _DocumentControler.FormView = this._FormView;
                 }
             }
         }
@@ -940,7 +960,7 @@ namespace DCSoft.CSharpWriter.Controls
         /// 设置指定的区域视图无效
         /// </summary>
         /// <param name="range">文档区域</param>
-        public virtual void Invalidate(ContentRange range)
+        public virtual void Invalidate(DomRange range)
         {
             if (range == null)
             {
@@ -953,19 +973,19 @@ namespace DCSoft.CSharpWriter.Controls
             }//foreach
         }
 
-        private DocumentContentRender _ContentRender = new DocumentContentRender();
+        private DomContentRender _ContentRender = new DomContentRender();
         /// <summary>
         /// 绘制文档内容的视图对象
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DocumentContentRender ContentRender
+        public DomContentRender ContentRender
         {
             get
             {
                 if (_ContentRender == null)
                 {
-                    _ContentRender = new DocumentContentRender();
+                    _ContentRender = new DomContentRender();
                 }
                 _ContentRender.Document = this.Document;
                 return _ContentRender;
@@ -976,19 +996,19 @@ namespace DCSoft.CSharpWriter.Controls
             }
         }
 
-        private WriterCommandControler _CommandControler = null;
+        private CSWriterCommandControler _CommandControler = null;
         /// <summary>
         /// 命令控制器对象
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public WriterCommandControler CommandControler
+        public CSWriterCommandControler CommandControler
         {
             get
             {
                 if (_CommandControler == null)
                 {
-                    _CommandControler = new WriterCommandControler();
+                    _CommandControler = new CSWriterCommandControler();
                 }
                 _CommandControler.CommandContainer = this.AppHost.CommandContainer;
                 _CommandControler.EditControl = this;
@@ -1027,7 +1047,7 @@ namespace DCSoft.CSharpWriter.Controls
                 this.Pages = this.Document.Pages;
                 this.MouseDragScroll = false;
                 _Tooltip = new System.Windows.Forms.ToolTip();
-                 
+                
                 this.ClearContent();
                 //this.RefreshDocument();
             }
@@ -1246,6 +1266,8 @@ namespace DCSoft.CSharpWriter.Controls
         /// </summary>
         public void ClearContent()
         {
+            this.EnableJumpPrint = false;
+            this.JumpPrintPosition = 0;
             this.MouseDragScroll = false;
             if (this.AutoSetDocumentDefaultFont)
             {
@@ -1290,7 +1312,7 @@ namespace DCSoft.CSharpWriter.Controls
                 this.Document.ExecuteLayout();// .RefreshLines();
                 this.Document.RefreshPages();
                 UpdatePages();
-               
+                this.Document.Content.FixCurrentIndexForStrictFormViewMode();
                 this.UpdateTextCaret();
                 this.Document.OnSelectionChanged();
             }
@@ -1480,7 +1502,56 @@ namespace DCSoft.CSharpWriter.Controls
             }
             return result;
         }
+
+        
          
+
+        internal JumpPrintInfo _JumpPrint = new JumpPrintInfo();
+
+        /// <summary>
+        /// 是否允许续打
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(
+            System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public bool EnableJumpPrint
+        {
+            get
+            {
+                return _JumpPrint.Enabled;
+            }
+            set
+            {
+                _JumpPrint.Enabled = value;
+                this.Invalidate();
+            }
+        }
+        /// <summary>
+        /// 续打位置
+        /// </summary>
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(
+            System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public int JumpPrintPosition
+        {
+            get
+            {
+                return _JumpPrint.NativePosition;
+            }
+            set
+            {
+                _JumpPrint.NativePosition = value;
+                _JumpPrint.Page = null;
+                foreach (SimpleRectangleTransform item in this.PagesTransform)
+                {
+                    if (value >= item.DescRectF.Top && value <= item.DescRectF.Bottom)
+                    {
+                        _JumpPrint.Page = (PrintPage)item.PageObject;
+                        break;
+                    }
+                }
+            }
+        }
         /// <summary>
         /// 当前鼠标悬浮的元素改变事件
         /// </summary>
@@ -1973,6 +2044,7 @@ namespace DCSoft.CSharpWriter.Controls
         {
             CheckHandle();
             DocumentPrinter printer = new DocumentPrinter(this.Document);
+            printer.JumpPrint = this._JumpPrint;
             printer.CurrentPage = this.CurrentPage;
             printer.PrintRange = System.Drawing.Printing.PrintRange.AllPages;
             printer.PrintDocument(true);
@@ -1986,6 +2058,7 @@ namespace DCSoft.CSharpWriter.Controls
         {
             CheckHandle();
             DocumentPrinter printer = new DocumentPrinter(this.Document);
+            printer.JumpPrint = this._JumpPrint;
             printer.CurrentPage = this.CurrentPage;
             printer.PrintRange = System.Drawing.Printing.PrintRange.CurrentPage;
             printer.PrintDocument(true);
@@ -2121,6 +2194,101 @@ namespace DCSoft.CSharpWriter.Controls
                 SelectionChanging(this, args);
             }
         }
+
+        //protected override void OnMouseClick(MouseEventArgs e)
+        //{
+        //    base.OnMouseClick(e);
+        //    if (this.Document != null)
+        //    {
+        //        if (e.Clicks == 2)
+        //        {
+        //            this.Document.Content.SelectWord();
+        //        }
+        //        else if (e.Clicks == 3)
+        //        {
+        //            this.Document.Content.SelectParagraph();
+        //        }
+        //    }
+        //}
+
+        ///// <summary>
+        ///// 处理视图中鼠标双击事件
+        ///// </summary>
+        ///// <param name="e">事件参数</param>
+        //protected override void OnViewMouseDoubleClick(MouseEventArgs e)
+        //{
+        //    if (this.Document != null)
+        //    {
+        //        this.Document.CurrentContentElement.Content.SelectWord();
+        //    }
+        //}
+
+        ///// <summary>
+        ///// 处理视图中鼠标双击事件
+        ///// </summary>
+        ///// <param name="e">事件参数</param>
+        //protected override void OnViewDoubleClick(System.Windows.Forms.MouseEventArgs e)
+        //{
+        //    if( this.Document != null )
+        //    {
+        //        this.Document.CurrentContentElement.Content.SelectWord();
+        //    }
+        //}
+
+
+        ///// <summary>
+        ///// 处理视图中鼠标按键按下事件
+        ///// </summary>
+        ///// <param name="e">事件参数</param>
+        //protected override void OnViewMouseDown(System.Windows.Forms.MouseEventArgs e)
+        //{
+        //    if( e.Button == System.Windows.Forms.MouseButtons.Right 
+        //        && this.ContextMenu != null )
+        //    {
+        //        return ;
+        //    }
+        //    if( this.Document != null )
+        //    {
+        //        DocumentEventArgs args = DocumentEventArgs.CreateMouseDown( this.Document , e );
+        //        this.Document.HandleDocumentEvent(args );
+        //        this.Cursor = args.Cursor ;
+        //        _Tooltip.SetToolTip( this , args.Tooltip );
+        //        XTextElement element = this.Document.Content.GetElementAt(e.X, e.Y , true );
+        //        if (element != null)
+        //        {
+        //            this.BeginEditElementValue(element);
+        //        }
+        //    }
+        //    base.OnViewMouseDown (e);
+        //    //this.MoveTo( e.X , e.Y );
+        //}
+
+        /// <summary>
+        /// 正在编辑文档元素数值
+        /// </summary>
+        [Browsable(false)]
+        public bool IsEditingElementValue
+        {
+            get
+            {
+                return (this.EditorHost != null && this.EditorHost.CurrentEditContext != null);
+            }
+        }
+
+        /// <summary>
+        /// 取消当前的编辑元素内容的操作
+        /// </summary>
+        /// <returns>操作是否成功</returns>
+        public bool CancelEditElementValue()
+        {
+            if (this.EditorHost != null && this.EditorHost.CurrentEditContext != null)
+            {
+                this.EditorHost.CancelEditValue();
+                return true;
+            }
+            return false;
+        }
+         
          
         /// <summary>
         /// 处理键盘按键按下事件
@@ -2140,7 +2308,13 @@ namespace DCSoft.CSharpWriter.Controls
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    
+                    if (this.IsEditingElementValue)
+                    {
+                        // 按下ESC键取消操作
+                        this.CancelEditElementValue();
+                        e.Handled = true;
+                        return;
+                    }
                 }
                 DocumentEventArgs args = DocumentEventArgs.CreateKeyDown(this.Document, e);
                 if (this.Document != null)
@@ -2246,7 +2420,7 @@ namespace DCSoft.CSharpWriter.Controls
             {
                 if (e.KeyChar == '\t' && Control.ModifierKeys != Keys.Control)
                 {
-                     
+                    
                     if (this.Document.Options.EditOptions.TabKeyToFirstLineIndent)
                     {
                         // 对于Tab字符试图设置当前段落的首行缩进
@@ -2334,7 +2508,11 @@ namespace DCSoft.CSharpWriter.Controls
                 // 没有文档，不处理事件
                 return;
             }
-             
+            if (this._JumpPrint.Enabled)
+            {
+                this.Cursor = Cursors.Default;
+                return;
+            }
             if (e.Button != System.Windows.Forms.MouseButtons.None)
             {
                 if (this.MouseDragScroll)
@@ -2361,7 +2539,47 @@ namespace DCSoft.CSharpWriter.Controls
                 base.OnMouseDown(e);
                 return;
             }
-             
+            if (this._JumpPrint.Enabled)
+            {
+                // 设置续打位置
+                JumpPrintInfo infoBack = this._JumpPrint.Clone();
+                _JumpPrint.Page = null;
+                _JumpPrint.Position = 0;
+                foreach (SimpleRectangleTransform item in this.PagesTransform)
+                {
+                    if (item.ContentStyle == PageContentPartyStyle.Body
+                        && item.SourceRectF.Top <= e.Y
+                        && item.SourceRectF.Bottom >= e.Y)
+                    {
+                        PrintPage page = (PrintPage)item.PageObject;
+                        DomDocument doc = (DomDocument)page.Document;
+                        int pos = item.TransformPoint(e.X, e.Y).Y;
+                        if (pos >= 0)
+                        {
+                            this._JumpPrint.Page = page;
+                            this._JumpPrint.NativePosition = pos;
+                            JumpPrintInfo info = doc.GetJumpPrintInfo(pos);
+                            if (info != null)
+                            {
+                                this._JumpPrint.Page = info.Page;
+                                this._JumpPrint.Position = info.Position;
+                            }
+                            else
+                            {
+                                this._JumpPrint.Page = page;
+                                this._JumpPrint.Position = pos;
+                            }
+                        }
+                        break;
+                    }
+                }//foreach
+                if (this._JumpPrint.Page  != infoBack.Page 
+                    || this._JumpPrint.Position != infoBack.Position )
+                {
+                    this.Invalidate();
+                }
+            }//if (myJumpPrint.Enabled)
+            else
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
@@ -2534,10 +2752,10 @@ namespace DCSoft.CSharpWriter.Controls
                 // 无文档，不处理事件
                 return;
             }
-            if (this.InDesignMode == false )
+            if (this.InDesignMode == false && this.EnableJumpPrint == false )
             {
                 // 检测鼠标三击事件
-                if (this.Document != null  )
+                if (this.Document != null && this.IsEditingElementValue == false)
                 {
                     int click = MouseClickCounter.Instance.Count(e.X, e.Y);
                     if (click == 2)
@@ -2584,7 +2802,8 @@ namespace DCSoft.CSharpWriter.Controls
             base.OnMouseLeave(e);
             if (this.InDesignMode == false)
             {
-                 
+                if (this._JumpPrint.Enabled == false)
+                {
                     if (this._Document != null)
                     {
                         DocumentEventArgs args = new DocumentEventArgs(
@@ -2593,7 +2812,7 @@ namespace DCSoft.CSharpWriter.Controls
                             DocumentEventStyles.MouseLeave);
                         this.Document.HandleDocumentEvent(args);
                     }
-                 
+                }
             }
         }
 
@@ -2609,7 +2828,24 @@ namespace DCSoft.CSharpWriter.Controls
         //    //    this.Document.Content.SelectParagraph();
         //    //}
         //}
-         
+
+        /// <summary>
+        /// 处理控件视图滚动事件
+        /// </summary>
+        /// <param name="se">事件参数</param>
+        protected override void OnScroll(ScrollEventArgs se)
+        {
+            base.OnScroll(se);
+            if (this._Document != null)
+            {
+                if (this.IsEditingElementValue)
+                {
+                    // 文档内容发生滚动时取消元素值编辑操作
+                    this.EditorHost.CancelEditValue();
+                }
+            }
+        }
+
         /// <summary>
         /// 处理鼠标滚轮事件
         /// </summary>
@@ -2620,7 +2856,11 @@ namespace DCSoft.CSharpWriter.Controls
             base.OnMouseWheel(e);
             if (this._Document != null)
             {
-                 
+                if (this.IsEditingElementValue)
+                {
+                    // 文档内容发生滚动时取消元素值编辑操作
+                    this.EditorHost.CancelEditValue();
+                }
             }
         }
 
@@ -2894,7 +3134,15 @@ namespace DCSoft.CSharpWriter.Controls
                         // 显示分页线
                         base.DrawPageLines(e);
                     }
-                     
+                    if (this.EnableJumpPrint)
+                    {
+                        // 绘制续打模式下的不打印区域覆盖矩形
+                        base.DrawJumpPrintArea(
+                            e.Graphics,
+                            e.ClipRectangle,
+                            this._JumpPrint,
+                            System.Drawing.Color.FromArgb(100, 0, 0, 255));
+                    }//if
                 }//else
             }//else
         }
@@ -3074,14 +3322,15 @@ namespace DCSoft.CSharpWriter.Controls
                 return;
             }
             this.UpdateTextCaret();
-             
+            if (this.IsEditingElementValue == false)
+            {
                 // 正在编辑文档元素内容时可能会弹出窗体导致控件失去或获得焦点
                 // 对这种情况不需处理
                 if (this.Document != null)
                 {
                     this.Document.OnControlGotFocus();
                 }
-             
+            }
         }
 
         /// <summary>
@@ -3093,12 +3342,14 @@ namespace DCSoft.CSharpWriter.Controls
             base.OnLostFocus(e);
             if (this._Document != null)
             {
-
-                // 正在编辑文档元素内容时可能会弹出窗体导致控件失去或获得焦点
-                // 对这种情况不需处理
-                if (this.Document != null)
+                if (this.IsEditingElementValue == false)
                 {
-                    this.Document.OnControlLostFocus();
+                    // 正在编辑文档元素内容时可能会弹出窗体导致控件失去或获得焦点
+                    // 对这种情况不需处理
+                    if (this.Document != null)
+                    {
+                        this.Document.OnControlLostFocus();
+                    }
                 }
             }
         }
@@ -3308,7 +3559,10 @@ namespace DCSoft.CSharpWriter.Controls
                     DomElement element = document.Content.GetElementAt(p.X, p.Y, false);
                     if (element != null)
                     {
-                        int index = document.Content.IndexOf(element);
+                        int index = document.Content.FixIndexForStrictFormViewMode(
+                            document.Content.IndexOf(element),
+                            DomContent.FixIndexDirection.Both,
+                            false);
                         if (index >= 0)
                         {
                             element = document.Content[index];
@@ -3458,7 +3712,11 @@ namespace DCSoft.CSharpWriter.Controls
                 _ToolWindows.DisposeAllForm();
                 _ToolWindows = null;
             }
-           
+            if (_EditorHost != null)
+            {
+                _EditorHost.Dispose();
+                _EditorHost = null;
+            }
             //if (_SearchDialog != null)
             //{
             //    _SearchDialog.Dispose();
@@ -3466,7 +3724,26 @@ namespace DCSoft.CSharpWriter.Controls
             //}
             base.Dispose(disposing);
         }
-         
+
+        private TextWindowsFormsEditorHost _EditorHost = new TextWindowsFormsEditorHost();
+
+        /// <summary>
+        /// 编辑器宿主对象
+        /// </summary>
+        [Browsable(false)]
+        public TextWindowsFormsEditorHost EditorHost
+        {
+            get
+            {
+                if (_EditorHost == null)
+                {
+                    _EditorHost = new TextWindowsFormsEditorHost();
+                }
+                _EditorHost.EditControl = this;
+                _EditorHost.Document = this.Document;
+                return _EditorHost;
+            }
+        }
 
         /// <summary>
         /// 设置弹出式列表的最佳位置
@@ -3497,6 +3774,7 @@ namespace DCSoft.CSharpWriter.Controls
                 dlg.ShowDialog(this);
             }
         }
-         
+ 
+          
     }//public class TextDocumentEditor : XDesignerPrinting.PageScrollableControl
 }

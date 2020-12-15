@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace DCSoft.CSharpWriter.Commands
     /// </summary>
     /// <remarks>编制 袁永福</remarks>
     [WriterCommandDescription( StandardCommandNames.ModuleFile )]
-    internal class WriterCommandModuleFile : WriterCommandModule
+    internal class WriterCommandModuleFile : CSWriterCommandModule
     {
         /// <summary>
         /// 初始化对象
@@ -32,7 +33,53 @@ namespace DCSoft.CSharpWriter.Commands
         public WriterCommandModuleFile()
         {
         }
-         
+
+        /// <summary>
+        /// 打开指定URL地址的文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        [WriterCommandDescription( StandardCommandNames.FileOpenUrl )]
+        protected void FileOpenUrl(object sender, WriterCommandEventArgs args)
+        {
+            if (args.Mode == WriterCommandEventMode.QueryState)
+            {
+                args.Enabled = args.Document != null;
+            }
+            else if (args.Mode == WriterCommandEventMode.Invoke)
+            {
+                string url = Convert.ToString(args.Parameter);
+                if (args.ShowUI)
+                {
+                    using (DCSoft.WinForms.Native.dlgInputUrl dlg 
+                        = new DCSoft.WinForms.Native.dlgInputUrl())
+                    {
+                        dlg.InputURL = url;
+                        if (dlg.ShowDialog(args.EditorControl) == DialogResult.OK)
+                        {
+                            url = dlg.InputURL;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+                if (string.IsNullOrEmpty(url) == false)
+                {
+                    url = url.Trim();
+                    string basePath = WriterUtils.GetBaseURL(url);
+
+                    args.EditorControl.LoadDocument(url, FileFormat.Html);
+                    args.Document.FileName = url;
+                    args.Document.Modified = false;
+                    args.Document.OnSelectionChanged();
+                    args.Document.OnDocumentContentChanged();
+                    args.Result = true;
+                    args.RefreshLevel = UIStateRefreshLevel.All;
+                }
+            }
+        }
 
         /// <summary>
         /// 打开文件
@@ -277,7 +324,13 @@ namespace DCSoft.CSharpWriter.Commands
                 DocumentPrinter printer = new DocumentPrinter( args.Document);
                 if (args.EditorControl != null)
                 {
+                    printer.JumpPrint =  args.EditorControl._JumpPrint;
                     printer.CurrentPage = args.EditorControl.CurrentPage;
+                }
+                if (args.Parameter is JumpPrintInfo)
+                {
+                    JumpPrintInfo info = (JumpPrintInfo)args.Parameter;
+                    printer.JumpPrint = args.Document.GetJumpPrintInfo(info.Position);
                 }
                 printer.PrintRange = System.Drawing.Printing.PrintRange.AllPages;
                 InnerPrint(args, printer, true );
@@ -309,7 +362,13 @@ namespace DCSoft.CSharpWriter.Commands
                 printer.CleanMode = true;
                 if (args.EditorControl != null)
                 {
+                    printer.JumpPrint = args.EditorControl._JumpPrint;
                     printer.CurrentPage = args.EditorControl.CurrentPage;
+                }
+                if (args.Parameter is JumpPrintInfo)
+                {
+                    JumpPrintInfo info = (JumpPrintInfo)args.Parameter;
+                    printer.JumpPrint = args.Document.GetJumpPrintInfo(info.Position);
                 }
                 printer.PrintRange = System.Drawing.Printing.PrintRange.AllPages;
                 InnerPrint(args, printer, true);
@@ -322,9 +381,16 @@ namespace DCSoft.CSharpWriter.Commands
             bool refreshDocument )
         {
             System.Windows.Forms.Cursor cur = null;
+            JumpPrintInfo infoBack = null;
             int piBack = -1;
             if (args.EditorControl != null)
             {
+                infoBack = args.EditorControl._JumpPrint.Clone();
+                if (infoBack.Enabled && infoBack.Page != null)
+                {
+                    piBack = args.EditorControl.Pages.IndexOf(infoBack.Page);
+                }
+            
                 printer.WriterControl = args.EditorControl;
                 cur = args.EditorControl.Cursor;
                 args.EditorControl.Cursor = System.Windows.Forms.Cursors.WaitCursor;
@@ -347,6 +413,8 @@ namespace DCSoft.CSharpWriter.Commands
                         args.EditorControl.RefreshDocument();
                         if (piBack >= 0 )
                         {
+                            infoBack.Page = args.EditorControl.Pages[piBack];
+                            args.EditorControl._JumpPrint = infoBack;
                         }
                         args.EditorControl.ReleaseFreezeUI();
                     }
@@ -381,9 +449,14 @@ namespace DCSoft.CSharpWriter.Commands
                 DocumentPrinter printer = new DocumentPrinter(args.Document);
                 if (args.EditorControl != null)
                 {
-                     printer.CurrentPage = args.EditorControl.CurrentPage;
+                    printer.JumpPrint = args.EditorControl._JumpPrint;
+                    printer.CurrentPage = args.EditorControl.CurrentPage;
                 }
-                 
+                if (args.Parameter is JumpPrintInfo)
+                {
+                    JumpPrintInfo info = (JumpPrintInfo)args.Parameter;
+                    printer.JumpPrint = args.Document.GetJumpPrintInfo(info.Position);
+                }
                 printer.PrintRange = System.Drawing.Printing.PrintRange.CurrentPage ;
 
                 InnerPrint(args, printer, false );

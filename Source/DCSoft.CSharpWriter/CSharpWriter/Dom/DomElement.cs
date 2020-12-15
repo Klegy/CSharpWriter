@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Xml.Serialization ;
@@ -11,7 +12,7 @@ using System.ComponentModel ;
 using DCSoft.Drawing ;
 using DCSoft.Common;
 using System.Drawing;
- 
+using DCSoft.CSharpWriter.Html;
 using DCSoft.CSharpWriter.Script;
 
 namespace DCSoft.CSharpWriter.Dom
@@ -162,7 +163,6 @@ namespace DCSoft.CSharpWriter.Dom
             }
         }
          
-
 		/// <summary>
 		/// 元素在视图结构中编号
 		/// </summary>
@@ -1142,7 +1142,14 @@ namespace DCSoft.CSharpWriter.Dom
         {
             return this.GetType().Name + "(" + this.ID + ")";
         }
-         
+
+        /// <summary>
+        /// 输出HTML代码
+        /// </summary>
+        /// <param name="writer">XML书写器</param>
+        public virtual void WriteHTML(WriterHtmlDocumentWriter writer)
+        {
+        }
 
         /// <summary>
         /// 输出RTF文档

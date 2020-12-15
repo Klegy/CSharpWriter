@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 namespace DCSoft.CSharpWriter.WinFormDemo
 {
@@ -151,6 +152,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDemoFiles = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
@@ -185,7 +187,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.lblPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblAbout = new System.Windows.Forms.ToolStripStatusLabel();
             this.myImageList = new System.Windows.Forms.ImageList(this.components);
-            this.myCommandControler = new DCSoft.CSharpWriter.Commands.WriterCommandControler(this.components);
+            this.myCommandControler = new DCSoft.CSharpWriter.Commands.CSWriterCommandControler(this.components);
             this.cmRedo = new System.Windows.Forms.ToolStripMenuItem();
             this.cmUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.cmCut = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,7 +206,6 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnDemoFiles = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -225,7 +226,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.menuHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(880, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(811, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -254,7 +255,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuNewFile, "FileNew");
             this.menuNewFile.Image = ((System.Drawing.Image)(resources.GetObject("menuNewFile.Image")));
             this.menuNewFile.Name = "menuNewFile";
-            this.menuNewFile.Size = new System.Drawing.Size(179, 22);
+            this.menuNewFile.Size = new System.Drawing.Size(180, 22);
             this.menuNewFile.Text = "&New...";
             // 
             // menuOpen
@@ -262,14 +263,14 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuOpen, "FileOpen");
             this.menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuOpen.Image")));
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(179, 22);
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
             this.menuOpen.Text = "&Open...";
             // 
             // mOpenUrl
             // 
             this.myCommandControler.SetCommandName(this.mOpenUrl, "FileOpenUrl");
             this.mOpenUrl.Name = "mOpenUrl";
-            this.mOpenUrl.Size = new System.Drawing.Size(179, 22);
+            this.mOpenUrl.Size = new System.Drawing.Size(180, 22);
             this.mOpenUrl.Text = "Open url...";
             // 
             // menuSave
@@ -277,7 +278,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuSave, "FileSave");
             this.menuSave.Image = ((System.Drawing.Image)(resources.GetObject("menuSave.Image")));
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(179, 22);
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
             this.menuSave.Text = "&Save...";
             // 
             // menuSaveAs
@@ -285,19 +286,19 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuSaveAs, "FileSaveAs");
             this.menuSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("menuSaveAs.Image")));
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(179, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuSaveAs.Text = "&Save as...";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mDocumentDefaultFont
             // 
             this.myCommandControler.SetCommandName(this.mDocumentDefaultFont, "DocumentDefaultFont");
             this.mDocumentDefaultFont.Name = "mDocumentDefaultFont";
-            this.mDocumentDefaultFont.Size = new System.Drawing.Size(179, 22);
+            this.mDocumentDefaultFont.Size = new System.Drawing.Size(180, 22);
             this.mDocumentDefaultFont.Text = "Default font ...";
             // 
             // menuPageSettings
@@ -305,7 +306,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuPageSettings, "FilePageSettings");
             this.menuPageSettings.Image = ((System.Drawing.Image)(resources.GetObject("menuPageSettings.Image")));
             this.menuPageSettings.Name = "menuPageSettings";
-            this.menuPageSettings.Size = new System.Drawing.Size(179, 22);
+            this.menuPageSettings.Size = new System.Drawing.Size(180, 22);
             this.menuPageSettings.Text = "Page settings...";
             // 
             // menuPrint
@@ -313,7 +314,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.menuPrint, "FilePrint");
             this.menuPrint.Image = ((System.Drawing.Image)(resources.GetObject("menuPrint.Image")));
             this.menuPrint.Name = "menuPrint";
-            this.menuPrint.Size = new System.Drawing.Size(179, 22);
+            this.menuPrint.Size = new System.Drawing.Size(180, 22);
             this.menuPrint.Text = "&Print...";
             // 
             // toolStripMenuItem7
@@ -321,25 +322,25 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myCommandControler.SetCommandName(this.toolStripMenuItem7, "FileCleanPrint");
             this.toolStripMenuItem7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem7.Image")));
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(179, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem7.Text = "Clean print...";
             // 
             // toolStripMenuItem10
             // 
             this.myCommandControler.SetCommandName(this.toolStripMenuItem10, "ViewXMLSource");
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(179, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem10.Text = "View xml source...";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuClose
             // 
             this.menuClose.Name = "menuClose";
-            this.menuClose.Size = new System.Drawing.Size(179, 22);
+            this.menuClose.Size = new System.Drawing.Size(180, 22);
             this.menuClose.Text = "&Exit";
             this.menuClose.Click += new System.EventHandler(this.menuClose_Click);
             // 
@@ -1158,9 +1159,18 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.toolStripButton16});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(880, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(811, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDemoFiles
+            // 
+            this.btnDemoFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDemoFiles.Image = ((System.Drawing.Image)(resources.GetObject("btnDemoFiles.Image")));
+            this.btnDemoFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDemoFiles.Name = "btnDemoFiles";
+            this.btnDemoFiles.Size = new System.Drawing.Size(83, 22);
+            this.btnDemoFiles.Text = "Demo files";
             // 
             // toolStripSeparator24
             // 
@@ -1424,7 +1434,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.lblAbout});
             this.statusStrip1.Location = new System.Drawing.Point(0, 387);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(880, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(811, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1435,7 +1445,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(436, 21);
+            this.lblStatus.Size = new System.Drawing.Size(367, 21);
             this.lblStatus.Spring = true;
             this.lblStatus.Text = "Status";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1604,7 +1614,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.myEditControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myEditControl.Location = new System.Drawing.Point(0, 50);
             this.myEditControl.Name = "myEditControl";
-            this.myEditControl.Size = new System.Drawing.Size(880, 337);
+            this.myEditControl.Size = new System.Drawing.Size(811, 337);
             this.myEditControl.TabIndex = 4;
             this.myEditControl.DocumentLoad += new System.EventHandler(this.myEditControl_DocumentLoad);
             this.myEditControl.HoverElementChanged += new System.EventHandler(this.myEditControl_HoverElementChanged);
@@ -1654,21 +1664,11 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(193, 6);
             // 
-            // btnDemoFiles
-            // 
-            this.btnDemoFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDemoFiles.Image = ((System.Drawing.Image)(resources.GetObject("btnDemoFiles.Image")));
-            this.btnDemoFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDemoFiles.Name = "btnDemoFiles";
-            this.btnDemoFiles.Size = new System.Drawing.Size(68, 22);
-            this.btnDemoFiles.Text = "Demo file";
-            this.btnDemoFiles.Click += new System.EventHandler(this.btnDemoFiles_Click);
-            // 
             // frmTextUseCommand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 413);
+            this.ClientSize = new System.Drawing.Size(811, 413);
             this.Controls.Add(this.myEditControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -1731,7 +1731,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
         private System.Windows.Forms.ToolStripStatusLabel lblPosition;
         private System.Windows.Forms.ToolStripStatusLabel lblAbout;
         private System.Windows.Forms.ImageList myImageList;
-        private DCSoft.CSharpWriter.Commands.WriterCommandControler myCommandControler;
+        private DCSoft.CSharpWriter.Commands.CSWriterCommandControler myCommandControler;
         private System.Windows.Forms.ToolStripMenuItem mFont;
         private System.Windows.Forms.ToolStripMenuItem mTextColor;
         private System.Windows.Forms.ToolStripMenuItem mBackColor;
@@ -1861,7 +1861,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem mConvertFieldToContent;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
+        private System.Windows.Forms.ToolStripDropDownButton btnDemoFiles;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator24;
-        private System.Windows.Forms.ToolStripButton btnDemoFiles;
     }
 }

@@ -1,0 +1,1146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>&amp;Name:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="txtValueName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 6</value>
+  </data>
+  <data name="txtValueName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 21</value>
+  </data>
+  <data name="txtValueName.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;txtValueName.Name" xml:space="preserve">
+    <value>txtValueName</value>
+  </data>
+  <data name="&gt;&gt;txtValueName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtValueName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtValueName.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="chkRequire.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkRequire.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 60</value>
+  </data>
+  <data name="chkRequire.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="chkRequire.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="chkRequire.Text" xml:space="preserve">
+    <value>&amp;Requited</value>
+  </data>
+  <data name="&gt;&gt;chkRequire.Name" xml:space="preserve">
+    <value>chkRequire</value>
+  </data>
+  <data name="&gt;&gt;chkRequire.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkRequire.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkRequire.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="txtMinLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 46</value>
+  </data>
+  <data name="txtMinLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 21</value>
+  </data>
+  <data name="txtMinLength.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="&gt;&gt;txtMinLength.Name" xml:space="preserve">
+    <value>txtMinLength</value>
+  </data>
+  <data name="&gt;&gt;txtMinLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMinLength.Parent" xml:space="preserve">
+    <value>grbTextStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMinLength.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtMaxLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 20</value>
+  </data>
+  <data name="txtMaxLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 21</value>
+  </data>
+  <data name="txtMaxLength.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="&gt;&gt;txtMaxLength.Name" xml:space="preserve">
+    <value>txtMaxLength</value>
+  </data>
+  <data name="&gt;&gt;txtMaxLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMaxLength.Parent" xml:space="preserve">
+    <value>grbTextStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMaxLength.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chkMaxLength.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="chkMaxLength.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkMaxLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 25</value>
+  </data>
+  <data name="chkMaxLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 16</value>
+  </data>
+  <data name="chkMaxLength.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="chkMaxLength.Text" xml:space="preserve">
+    <value>最多可输入字符数:</value>
+  </data>
+  <data name="&gt;&gt;chkMaxLength.Name" xml:space="preserve">
+    <value>chkMaxLength</value>
+  </data>
+  <data name="&gt;&gt;chkMaxLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxLength.Parent" xml:space="preserve">
+    <value>grbTextStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxLength.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkMinLength.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMinLength.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkMinLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 47</value>
+  </data>
+  <data name="chkMinLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 16</value>
+  </data>
+  <data name="chkMinLength.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="chkMinLength.Text" xml:space="preserve">
+    <value>至少要输入字符数:</value>
+  </data>
+  <data name="&gt;&gt;chkMinLength.Name" xml:space="preserve">
+    <value>chkMinLength</value>
+  </data>
+  <data name="&gt;&gt;chkMinLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinLength.Parent" xml:space="preserve">
+    <value>grbTextStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinLength.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grbTextStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 82</value>
+  </data>
+  <data name="grbTextStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 74</value>
+  </data>
+  <data name="grbTextStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;grbTextStyle.Name" xml:space="preserve">
+    <value>grbTextStyle</value>
+  </data>
+  <data name="&gt;&gt;grbTextStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grbTextStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grbTextStyle.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="rdoText.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdoText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 82</value>
+  </data>
+  <data name="rdoText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="rdoText.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="rdoText.Text" xml:space="preserve">
+    <value>&amp;Text</value>
+  </data>
+  <data name="&gt;&gt;rdoText.Name" xml:space="preserve">
+    <value>rdoText</value>
+  </data>
+  <data name="&gt;&gt;rdoText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdoText.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rdoText.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Name" xml:space="preserve">
+    <value>txtMaxValue</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Name" xml:space="preserve">
+    <value>txtMinValue</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Name" xml:space="preserve">
+    <value>chkInteger</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Name" xml:space="preserve">
+    <value>chkMinValue</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Name" xml:space="preserve">
+    <value>chkMaxValue</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="grbNumericStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 161</value>
+  </data>
+  <data name="grbNumericStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 71</value>
+  </data>
+  <data name="grbNumericStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>110</value>
+  </data>
+  <data name="&gt;&gt;grbNumericStyle.Name" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;grbNumericStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grbNumericStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grbNumericStyle.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtMaxValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 43</value>
+  </data>
+  <data name="txtMaxValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 21</value>
+  </data>
+  <data name="txtMaxValue.TabIndex" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Name" xml:space="preserve">
+    <value>txtMaxValue</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMaxValue.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtMinValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 43</value>
+  </data>
+  <data name="txtMinValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="txtMinValue.TabIndex" type="System.Int32, mscorlib">
+    <value>140</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Name" xml:space="preserve">
+    <value>txtMinValue</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;txtMinValue.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chkInteger.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkInteger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="chkInteger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 16</value>
+  </data>
+  <data name="chkInteger.TabIndex" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="chkInteger.Text" xml:space="preserve">
+    <value>Require integer</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Name" xml:space="preserve">
+    <value>chkInteger</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkInteger.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkMinValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMinValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 45</value>
+  </data>
+  <data name="chkMinValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="chkMinValue.TabIndex" type="System.Int32, mscorlib">
+    <value>130</value>
+  </data>
+  <data name="chkMinValue.Text" xml:space="preserve">
+    <value>Maximum:</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Name" xml:space="preserve">
+    <value>chkMinValue</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinValue.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkMaxValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMaxValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 45</value>
+  </data>
+  <data name="chkMaxValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="chkMaxValue.TabIndex" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="chkMaxValue.Text" xml:space="preserve">
+    <value>Minimum:</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Name" xml:space="preserve">
+    <value>chkMaxValue</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.Parent" xml:space="preserve">
+    <value>grbNumericStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxValue.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="rdoNumeric.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdoNumeric.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 160</value>
+  </data>
+  <data name="rdoNumeric.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="rdoNumeric.TabIndex" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="rdoNumeric.Text" xml:space="preserve">
+    <value>&amp;Numeric</value>
+  </data>
+  <data name="&gt;&gt;rdoNumeric.Name" xml:space="preserve">
+    <value>rdoNumeric</value>
+  </data>
+  <data name="&gt;&gt;rdoNumeric.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdoNumeric.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rdoNumeric.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Name" xml:space="preserve">
+    <value>chkMaxDateTime</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Name" xml:space="preserve">
+    <value>chkMinDateTime</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Name" xml:space="preserve">
+    <value>dtpMaxTime</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Name" xml:space="preserve">
+    <value>dtpMinTime</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Name" xml:space="preserve">
+    <value>dtpMaxDate</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Name" xml:space="preserve">
+    <value>dtpMinDate</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpDateTimeStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 237</value>
+  </data>
+  <data name="grpDateTimeStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 75</value>
+  </data>
+  <data name="grpDateTimeStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="&gt;&gt;grpDateTimeStyle.Name" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;grpDateTimeStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDateTimeStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpDateTimeStyle.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="chkMaxDateTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMaxDateTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 47</value>
+  </data>
+  <data name="chkMaxDateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="chkMaxDateTime.TabIndex" type="System.Int32, mscorlib">
+    <value>220</value>
+  </data>
+  <data name="chkMaxDateTime.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Name" xml:space="preserve">
+    <value>chkMaxDateTime</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxDateTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkMinDateTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMinDateTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 25</value>
+  </data>
+  <data name="chkMinDateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="chkMinDateTime.TabIndex" type="System.Int32, mscorlib">
+    <value>190</value>
+  </data>
+  <data name="chkMinDateTime.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Name" xml:space="preserve">
+    <value>chkMinDateTime</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinDateTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="dtpMaxTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 47</value>
+  </data>
+  <data name="dtpMaxTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
+  </data>
+  <data name="dtpMaxTime.TabIndex" type="System.Int32, mscorlib">
+    <value>240</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Name" xml:space="preserve">
+    <value>dtpMaxTime</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="dtpMinTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 20</value>
+  </data>
+  <data name="dtpMinTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
+  </data>
+  <data name="dtpMinTime.TabIndex" type="System.Int32, mscorlib">
+    <value>210</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Name" xml:space="preserve">
+    <value>dtpMinTime</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="dtpMaxDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 47</value>
+  </data>
+  <data name="dtpMaxDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="dtpMaxDate.TabIndex" type="System.Int32, mscorlib">
+    <value>230</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Name" xml:space="preserve">
+    <value>dtpMaxDate</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxDate.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="dtpMinDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="dtpMinDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="dtpMinDate.TabIndex" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Name" xml:space="preserve">
+    <value>dtpMinDate</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.Parent" xml:space="preserve">
+    <value>grpDateTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinDate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="rdoDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdoDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 237</value>
+  </data>
+  <data name="rdoDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 16</value>
+  </data>
+  <data name="rdoDate.TabIndex" type="System.Int32, mscorlib">
+    <value>170</value>
+  </data>
+  <data name="rdoDate.Text" xml:space="preserve">
+    <value>&amp;Datetime</value>
+  </data>
+  <data name="&gt;&gt;rdoDate.Name" xml:space="preserve">
+    <value>rdoDate</value>
+  </data>
+  <data name="&gt;&gt;rdoDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdoDate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rdoDate.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Name" xml:space="preserve">
+    <value>chkMaxTime</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Name" xml:space="preserve">
+    <value>chkMinTime</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Name" xml:space="preserve">
+    <value>dtpMaxTime2</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Name" xml:space="preserve">
+    <value>dtpMinTime2</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpTimeStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 317</value>
+  </data>
+  <data name="grpTimeStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 75</value>
+  </data>
+  <data name="grpTimeStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
+  </data>
+  <data name="&gt;&gt;grpTimeStyle.Name" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;grpTimeStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpTimeStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpTimeStyle.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="chkMaxTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMaxTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 47</value>
+  </data>
+  <data name="chkMaxTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="chkMaxTime.TabIndex" type="System.Int32, mscorlib">
+    <value>290</value>
+  </data>
+  <data name="chkMaxTime.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Name" xml:space="preserve">
+    <value>chkMaxTime</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMaxTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkMinTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkMinTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 25</value>
+  </data>
+  <data name="chkMinTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="chkMinTime.TabIndex" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="chkMinTime.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Name" xml:space="preserve">
+    <value>chkMinTime</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;chkMinTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="dtpMaxTime2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 47</value>
+  </data>
+  <data name="dtpMaxTime2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="dtpMaxTime2.TabIndex" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Name" xml:space="preserve">
+    <value>dtpMaxTime2</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMaxTime2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="dtpMinTime2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="dtpMinTime2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="dtpMinTime2.TabIndex" type="System.Int32, mscorlib">
+    <value>280</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Name" xml:space="preserve">
+    <value>dtpMinTime2</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.Parent" xml:space="preserve">
+    <value>grpTimeStyle</value>
+  </data>
+  <data name="&gt;&gt;dtpMinTime2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="rdoTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdoTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 318</value>
+  </data>
+  <data name="rdoTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="rdoTime.TabIndex" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <data name="rdoTime.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="&gt;&gt;rdoTime.Name" xml:space="preserve">
+    <value>rdoTime</value>
+  </data>
+  <data name="&gt;&gt;rdoTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdoTime.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rdoTime.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 36</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Error message:</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtCustomMessage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 33</value>
+  </data>
+  <data name="txtCustomMessage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 21</value>
+  </data>
+  <data name="txtCustomMessage.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;txtCustomMessage.Name" xml:space="preserve">
+    <value>txtCustomMessage</value>
+  </data>
+  <data name="&gt;&gt;txtCustomMessage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCustomMessage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtCustomMessage.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="cmdOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 407</value>
+  </data>
+  <data name="cmdOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cmdOK.TabIndex" type="System.Int32, mscorlib">
+    <value>310</value>
+  </data>
+  <data name="cmdOK.Text" xml:space="preserve">
+    <value>&amp;Ok</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Name" xml:space="preserve">
+    <value>cmdOK</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cmdCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 407</value>
+  </data>
+  <data name="cmdCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cmdCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>320</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Name" xml:space="preserve">
+    <value>cmdCancel</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 438</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Validate rules</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>dlgValueValidateStyleEditor</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

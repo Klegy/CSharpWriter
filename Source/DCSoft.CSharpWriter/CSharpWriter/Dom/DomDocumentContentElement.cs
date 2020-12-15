@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -123,7 +124,8 @@ namespace DCSoft.CSharpWriter.Dom
         {
             foreach (DomElement element in rootElement.Elements)
             {
-                 if (element is DomContentElement)
+                 
+                if (element is DomContentElement)
                 {
                     result.Add(element);
                 }
@@ -335,9 +337,9 @@ namespace DCSoft.CSharpWriter.Dom
         /// <param name="StartIndex">区域开始位置</param>
         /// <param name="EndIndex">区域结束位置</param>
         /// <returns>区域对象</returns>
-        public virtual ContentRange GetRange(int StartIndex, int EndIndex)
+        public virtual DomRange GetRange(int StartIndex, int EndIndex)
         {
-            return new ContentRange(this, StartIndex, EndIndex);
+            return new DomRange(this, StartIndex, EndIndex);
         }
 
         /// <summary>
@@ -492,6 +494,7 @@ namespace DCSoft.CSharpWriter.Dom
                     throw new InvalidOperationException("line count = 0 ");
                 }
                  
+                else
                 {
                     lines.Add(line);
                 }
@@ -555,7 +558,8 @@ namespace DCSoft.CSharpWriter.Dom
         {
             throw new NotSupportedException("EditorDelete");
         }
-         
+
+        
         [System.ComponentModel.Browsable(false)]
         [System.Obsolete()]
         new private DomElement PreviousElement { get { return null; } }

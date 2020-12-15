@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.CSharpWriter.Dom.Undo ;
@@ -199,25 +200,10 @@ namespace DCSoft.CSharpWriter.Dom
         /// <returns>是否包含在区域中</returns>
         public bool Contains(DomElement element)
         {
-            
-            //else if (element is XTextTableElement)
-            //{
-            //    //XTextTableElement tbl = (XTextTableElement)element;
-            //    //if (_Cells != null && _Cells.Count > 0 )
-            //    //{
-            //    //    foreach (XTextTableCellElement cell in _Cells)
-            //    //    {
-            //    //        if (cell.OwnerTable == tbl)
-            //    //        {
-            //    //            return true;
-            //    //        }
-            //    //    }
-            //    //}
-            //    //return false;
-            //}
              
+            {
                 return _ContentElements.Contains(element);
-            
+            }
         }
         private int _SelectionVersion = 0;
         /// <summary>
@@ -298,7 +284,7 @@ namespace DCSoft.CSharpWriter.Dom
             DomElementList contentElementsBack = _ContentElements.Clone();
             _ContentElements = new DomElementList();
 
-             
+            
             _ContentVersion = this.DocumentContent.OwnerDocument.ContentVersion;
 
             if (startIndex == 0 && length == 0)
@@ -310,7 +296,7 @@ namespace DCSoft.CSharpWriter.Dom
                 _LineEndFlag = this.Content.LineEndFlag;
                 this._Mode = ContentRangeMode.Content;
                 _ContentElements = new DomElementList();
-              
+               
                 //return true;
             }
             else
@@ -324,7 +310,7 @@ namespace DCSoft.CSharpWriter.Dom
                 _Mode = ContentRangeMode.Content;
                 // 选择区域经过的单元格列表
                 DomElementList spanElements = new DomElementList();
-          
+               
                 // 所经过的单元格个数
                 int cellCount = 0;
                 //XTextElementList spanCells = new XTextElementList();
@@ -357,25 +343,20 @@ namespace DCSoft.CSharpWriter.Dom
                     }
                     else
                     {
-                         
-                        {
+                        
                             spanElements.Add(element);
                             hasContentElement = true;
-                        }
+                        
                     }
                 }//for
 
                 // 首先判断内容模式
                 _Mode = ContentRangeMode.Content;
-                 
-
-                if (_Mode == ContentRangeMode.Content)
-                {
+                  
                     // 选择纯文档内容
                     _ContentElements = content.GetRange(absStartIndex, absLength);
                     _StartIndex = startIndex;
                     _Length = length;
-                }
                  
                 if (length == 0 || _ContentElements.Count == 0)
                 {
@@ -395,12 +376,15 @@ namespace DCSoft.CSharpWriter.Dom
                         _StartIndex = _ContentElements.LastElement.ViewIndex + 1;
                         _Length = 0 - _ContentElements.Count;
                          
+                        {
+                            System.Console.Write("");
+                        }
                     }
                     _LineEndFlag = content.LineEndFlag;
                 }
             }//if
              
-            if (this.Mode == ContentRangeMode.Content  )
+            if (this.Mode == ContentRangeMode.Content || this.Mode == ContentRangeMode.Mixed)
             {
                 // 让选择状态发生改变的文档内容元素用户界面无效，需要重新绘制
                 if (contentElementsBack != null && contentElementsBack.Count > 0)
@@ -437,13 +421,14 @@ namespace DCSoft.CSharpWriter.Dom
             foreach (DomElement element in content)
             {
                  
+                {
                     if (list.Contains(element))
                     {
                         // 已经添加过内容了，立即退出函数
                         return;
                     }
                     list.Add(element);
-                 
+                }
             }
         }
 
@@ -793,17 +778,7 @@ namespace DCSoft.CSharpWriter.Dom
                     // 元素被逻辑删除了，无法复制
                     continue;
                 }
-                if (this.ContentElements.Contains(element)  )
-                {
-                    if( descContainer == null )
-                    {
-                        descContainer = ( DomContainerElement ) sourceContainer.Clone( false );
-                        descContainer.OwnerLine = null;
-                        result++;
-                    }
-                    result++;
-                    descContainer.AppendChildElement(element.Clone(true));
-                }
+                 
                 else if (element is DomContainerElement)
                 {
                     DomContainerElement c = ( DomContainerElement ) element;
@@ -862,6 +837,13 @@ namespace DCSoft.CSharpWriter.Dom
         /// 文档内容
         /// </summary>
         Content,
-         
+        /// <summary>
+        /// 纯表格单元格
+        /// </summary>
+        Cell,
+        /// <summary>
+        /// 混合模式，包括文档内容和表格单元格
+        /// </summary>
+        Mixed
     }
 }

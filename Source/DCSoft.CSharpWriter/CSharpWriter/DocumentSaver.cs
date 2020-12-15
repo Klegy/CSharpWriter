@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.IO;
 using System.Xml.Serialization;
 using DCSoft.CSharpWriter.RTF;
 using DCSoft.CSharpWriter.Dom;
-
+using DCSoft.CSharpWriter.Html;
 using DCSoft.CSharpWriter.Xml;
 
 namespace DCSoft.CSharpWriter
@@ -184,7 +185,43 @@ namespace DCSoft.CSharpWriter
         }
 
         #endregion
+
+        #region 输出HTML文档 *************************************************
          
+
+        public static void SaveHtmlFile(string fileName, bool saveAttachFile, DomDocument document)
+        {
+            if (fileName == null)
+            {
+                throw new ArgumentNullException("fileName");
+            }
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            WriterHtmlDocumentWriter htmlWriter = new WriterHtmlDocumentWriter();
+            htmlWriter.Documents.Add(document);
+            htmlWriter.IncludeSelectionOndly = false  ;
+            htmlWriter.ViewStyle = WriterHtmlViewStyle.Normal;
+            htmlWriter.Options.Indent = true;
+            htmlWriter.Options.UseClassAttribute = false ;
+            htmlWriter.Refresh();
+            string attachFilePath = null;
+            if (htmlWriter.AttachFiles != null && htmlWriter.AttachFiles.Count > 0)
+            {
+                // 存在附属文件,则创建附属文件目录
+                attachFilePath = Path.GetDirectoryName(fileName);
+                string name = Path.GetFileNameWithoutExtension(fileName) + ".files";
+                attachFilePath = Path.Combine(attachFilePath, name);
+                if (Directory.Exists(attachFilePath) == false)
+                {
+                    Directory.CreateDirectory(attachFilePath);
+                }
+            }//if
+            htmlWriter.Save(fileName, attachFilePath);
+        }
+
+#endregion
 
         #region 输出纯文本文档 *************************************************
 

@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace DCSoft.CSharpWriter.Dom
                     return false;
                 }
 
-                if (ContentRange.Compare(info1.Range, info2.Range) == false
+                if (DomRange.Compare(info1.Range, info2.Range) == false
                     || info1._ActiveStyle != info2._ActiveStyle
                     || info1._BackColor != info2._BackColor
                     || info1._Color != info2._Color)
@@ -65,7 +66,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// 初始化对象
         /// </summary>
         /// <param name="range">区域</param>
-        public HighlightInfo(ContentRange range)
+        public HighlightInfo(DomRange range)
         {
             if (range == null)
             {
@@ -80,7 +81,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// <param name="range">区域</param>
         /// <param name="backColor">背景色</param>
         /// <param name="color">前景色</param>
-        public HighlightInfo(ContentRange range, Color backColor, Color color)
+        public HighlightInfo(DomRange range, Color backColor, Color color)
         {
             if (range == null)
             {
@@ -107,11 +108,11 @@ namespace DCSoft.CSharpWriter.Dom
             }
         }
 
-        private ContentRange _Range = null;
+        private DomRange _Range = null;
         /// <summary>
         /// 高亮度区域
         /// </summary>
-        public ContentRange Range
+        public DomRange Range
         {
             get
             {

@@ -147,10 +147,10 @@
     <value>9</value>
   </data>
   <data name="txtSearchString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 6</value>
+    <value>98, 6</value>
   </data>
   <data name="txtSearchString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 21</value>
+    <value>346, 21</value>
   </data>
   <data name="txtSearchString.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -195,10 +195,10 @@
     <value>6</value>
   </data>
   <data name="txtReplaceString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 39</value>
+    <value>98, 39</value>
   </data>
   <data name="txtReplaceString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 21</value>
+    <value>346, 21</value>
   </data>
   <data name="txtReplaceString.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

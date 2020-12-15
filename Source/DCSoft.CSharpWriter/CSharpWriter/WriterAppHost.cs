@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -64,9 +65,9 @@ namespace DCSoft.CSharpWriter
             this.CommandContainer.Modules.Add(new WriterCommandModuleFormat());
             this.CommandContainer.Modules.Add(new WriterCommandModuleInsert());
             this.CommandContainer.Modules.Add(new WriterCommandModuleSecurity());
-         
+            
             this.CommandContainer.Modules.Add(new WriterCommandModuleTools());
-         
+             
             // 设置默认的调试输出对象
             this.Services.Debugger = new WriterDebugger();
             // 设置自己
@@ -100,19 +101,19 @@ namespace DCSoft.CSharpWriter
             }
         }
        
-        private WriterCommandContainer _CommandContainer = new WriterCommandContainer();
+        private CSWriterCommandContainer _CommandContainer = new CSWriterCommandContainer();
         /// <summary>
         /// 命令容器对象
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public WriterCommandContainer CommandContainer
+        public CSWriterCommandContainer CommandContainer
         {
             get
             {
                 if (_CommandContainer == null)
                 {
-                    _CommandContainer = new WriterCommandContainer();
+                    _CommandContainer = new CSWriterCommandContainer();
                 }
                 return _CommandContainer;
             }
@@ -122,6 +123,7 @@ namespace DCSoft.CSharpWriter
             }
         }
          
+
         /// <summary>
         /// 创建文档元素属性对象
         /// </summary>
@@ -129,7 +131,7 @@ namespace DCSoft.CSharpWriter
         /// <returns>创建的文档元素属性对象</returns>
         public virtual XTextElementProperties CreateProperties(Type elementType)
         {
-            ElementDescriptorAttribute attr = ElementDescriptorAttribute.GetDescriptor(elementType);
+            DomElementDescriptorAttribute attr = DomElementDescriptorAttribute.GetDescriptor(elementType);
             if (attr != null)
             {
                 if (attr.PropertiesType != null)

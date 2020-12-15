@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 //using DCSoft.Dom ;
@@ -111,6 +112,25 @@ namespace DCSoft.Printing
                 //else
                 //    return null;
             }
+        }
+
+        private JumpPrintInfo myJumpPrint = new JumpPrintInfo();
+        /// <summary>
+        /// 续打信息
+        /// </summary>
+        [System.ComponentModel.Browsable( false )]
+        public JumpPrintInfo JumpPrint
+        {
+            get
+            {
+                if (myJumpPrint == null)
+                    myJumpPrint = new JumpPrintInfo();
+                return myJumpPrint; 
+            }
+            set
+			{
+				myJumpPrint = value; 
+			}
         }
          
         private string strPrinterName = null;
@@ -290,7 +310,11 @@ namespace DCSoft.Printing
                 
 
                 int startIndex = 0;
-                 
+                if (this.JumpPrint.Enabled 
+                    && this.JumpPrint.Page != null)
+                {
+                    startIndex = myPages.IndexOf(this.JumpPrint.Page);
+                }
                 System.Collections.ArrayList pages = new System.Collections.ArrayList();
                 switch (this.PrinterSettings.PrintRange)
                 {
@@ -462,9 +486,26 @@ namespace DCSoft.Printing
                     myPage.Top,
                     myPage.Width,
                     myPage.Height);
-                
+                bool bolJumpPrint = false;
+                if (this.JumpPrint.Enabled 
+                    && this.JumpPrint.Page == myPage )
+                {
+                    //if( this.JumpPrint.Position > myPage.Top && this.JumpPrint.Position < myPage.Bottom )
+                    {
+                        int dy = this.JumpPrint.Position;// -myPage.Top;
+                        ClipRect.Offset(0, dy);
+                        ClipRect.Height = ClipRect.Height - dy;
+                        bolJumpPrint = true;
+                    }
+                }
+                if (bolJumpPrint)
+                {
+                    OnPaintPage(myPage, e.Graphics, ClipRect, false, false , e );
+                }
+                else
+                {
                     OnPaintPage(myPage, e.Graphics, ClipRect, true, true , e );
-                
+                }
 
                 e.HasMorePages = myPageEnumerator.MoveNext();
                 intPrintedPageCount++;
@@ -609,5 +650,110 @@ namespace DCSoft.Printing
             return myPages != null && myPages.Count > 0;
         }
 	}//public class DesignPrintDocument : System.Drawing.Printing.PrintDocument
-     
+
+    /// <summary>
+    /// 续打信息
+    /// </summary>
+    public class JumpPrintInfo
+    {
+        /// <summary>
+        /// 初始化对象
+        /// </summary>
+        public JumpPrintInfo()
+        {
+        }
+
+        private bool bolEnabled = false;
+        /// <summary>
+        /// 是否允许续打
+        /// </summary>
+        public bool Enabled
+        {
+            get
+            {
+                return bolEnabled;
+            }
+            set
+            {
+                bolEnabled = value;
+            }
+        }
+
+        private PrintPage myPage = null;
+        /// <summary>
+        /// 发生续打的页面
+        /// </summary>
+        public PrintPage Page
+        {
+            get
+            {
+                return myPage;
+            }
+            set
+            {
+                myPage = value;
+            }
+        }
+        private int intNativePosition = 0;
+        /// <summary>
+        /// 原始续打位置
+        /// </summary>
+        public int NativePosition
+        {
+            get
+            {
+                return intNativePosition;
+            }
+            set
+            {
+                intNativePosition = value;
+                intPosition = value;
+            }
+        }
+        private int intPosition = 0;
+        /// <summary>
+        /// 实际使用的续打位置离续打页面顶端的距离
+        /// </summary>
+        public int Position
+        {
+            get
+            {
+                return intPosition;
+            }
+            set
+            {
+                intPosition = value;
+            }
+        }
+
+        /// <summary>
+        /// 复制对象
+        /// </summary>
+        /// <returns>复制品</returns>
+        public JumpPrintInfo Clone()
+        {
+            return (JumpPrintInfo)this.MemberwiseClone();
+        }
+
+        /// <summary>
+        /// 比较两个对象的数据
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public bool EqualsValue(JumpPrintInfo info)
+        {
+            if (info == null)
+            {
+                return false;
+            }
+            if (info == this)
+            {
+                return true;
+            }
+            return info.bolEnabled == this.bolEnabled
+                && info.intNativePosition == this.intNativePosition
+                && info.intPosition == this.intPosition
+                && info.myPage == this.myPage;
+        }
+    }//public class JumpPrintInfo
 }

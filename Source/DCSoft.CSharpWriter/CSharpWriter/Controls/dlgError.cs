@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Drawing;
@@ -27,7 +28,6 @@ namespace DCSoft.CSharpWriter.Controls
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 		private System.Windows.Forms.PictureBox picImg;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblMsg;
 
         private ErrorReportInfo _ReportInfo = null;
@@ -78,7 +78,6 @@ namespace DCSoft.CSharpWriter.Controls
             this.picImg = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblMsg = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImg)).BeginInit();
@@ -113,7 +112,7 @@ namespace DCSoft.CSharpWriter.Controls
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(336, 40);
             this.label1.TabIndex = 1;
-            this.label1.Text = "    Error ,please send message to system administrator or software provider.";
+            this.label1.Text = "Error!Please send message to 28348092@qq.com(or yyf9989@hotmail.com).";
             // 
             // cmdClose
             // 
@@ -124,14 +123,6 @@ namespace DCSoft.CSharpWriter.Controls
             this.cmdClose.Text = "关闭(&C)";
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(8, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(392, 40);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "    System has create a error report , you can send it to me .";
-            // 
             // lblMsg
             // 
             this.lblMsg.BackColor = System.Drawing.Color.Transparent;
@@ -140,7 +131,7 @@ namespace DCSoft.CSharpWriter.Controls
             this.lblMsg.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblMsg.Location = new System.Drawing.Point(16, 72);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(384, 33);
+            this.lblMsg.Size = new System.Drawing.Size(384, 105);
             this.lblMsg.TabIndex = 13;
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -149,7 +140,6 @@ namespace DCSoft.CSharpWriter.Controls
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
             this.ClientSize = new System.Drawing.Size(418, 215);
             this.Controls.Add(this.lblMsg);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -172,14 +162,26 @@ namespace DCSoft.CSharpWriter.Controls
             {
                 lblMsg.Text = this.ReportInfo.UserMessage;
             }
-           
+          
 		}
  
 		private void cmdClose_Click(object sender, System.EventArgs e)
 		{
 			this.Close();
 		}
-         
+
+		private void lnkViewXML_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+            if (this.ReportInfo != null)
+            {
+                using (dlgErrorViewSource dlg = new dlgErrorViewSource())
+                {
+                    dlg.ReportSource = this.ReportInfo.ToXMLString();
+                    dlg.ShowDialog(this);
+                }
+            }
+		}
+
          
 	}//class dlgError
      

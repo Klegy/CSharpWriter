@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,11 @@ namespace DCSoft.CSharpWriter
             {
                 return FileFormat.RTF ;
             }
-            
+            else if (string.Compare(ext, ".htm", true) == 0
+                || string.Compare(ext, ".html", true) == 0)
+            {
+                return FileFormat.Html ;
+            }
             else if (string.Compare(ext, ".txt", true) == 0)
             {
                 return FileFormat.Text ;
@@ -503,29 +508,30 @@ namespace DCSoft.CSharpWriter
             {
                 return ElementType.Text;
             }
-            
+             
             if (elementType.Equals(typeof(DomDocument))
                 || elementType.IsSubclassOf(typeof(DomDocument)))
             {
                 return ElementType.Document;
             }
-              
+            
+            if( elementType.Equals( typeof( DomImageElement ))
+                || elementType.IsSubclassOf( typeof( DomImageElement )))
+            {
+                return ElementType.Image ;
+            }
             if( elementType.Equals( typeof( DomLineBreakElement ))
                 || elementType.IsSubclassOf( typeof( DomLineBreakElement )))
             {
                 return ElementType.LineBreak ;
             }
-            if( elementType.Equals( typeof( DomPageBreakElement ))
-                || elementType.IsSubclassOf( typeof( DomPageBreakElement )))
-            {
-                return ElementType.PageBreak ;
-            }
+             
             if( elementType.Equals( typeof( DomParagraphFlagElement ))
                 || elementType.IsSubclassOf( typeof( DomParagraphFlagElement )))
             {
                 return ElementType.ParagraphFlag ;
             }
-            
+             
             return ElementType.None;
         }
 

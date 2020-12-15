@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.Printing ;
@@ -701,6 +702,7 @@ namespace DCSoft.CSharpWriter.Dom
                 return this.CurrentContentElement.CurrentElement ;
             }
         }
+         
 
         /// <summary>
         /// 获得指定类型的当前文档元素
@@ -723,7 +725,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// 获得当前元素具有相同样式的区域
         /// </summary>
         /// <returns>获得的区域</returns>
-        public ContentRange GetCurrentRangeWithSameStyle()
+        public DomRange GetCurrentRangeWithSameStyle()
         {
             return CreateRange(this.CurrentElement, delegate(object obj1, object obj2)
                 {
@@ -747,7 +749,7 @@ namespace DCSoft.CSharpWriter.Dom
         /// <param name="element">指定的元素</param>
         /// <param name="callBack">比较对象的委托</param>
         /// <returns></returns>
-        public ContentRange CreateRange(DomElement element , CompareHandler callBack )
+        public DomRange CreateRange(DomElement element , CompareHandler callBack )
         {
             DomDocumentContentElement ce = element.DocumentContentElement;
             DomContent content = ce.Content;
@@ -778,7 +780,7 @@ namespace DCSoft.CSharpWriter.Dom
                     break;
                 }
             }//for
-            return new ContentRange( 
+            return new DomRange( 
                 this.CurrentContentElement ,
                 startIndex  ,
                 endIndex - startIndex + 1 );
@@ -800,7 +802,40 @@ namespace DCSoft.CSharpWriter.Dom
         }
  
 		#endregion
-         
+
+        /// <summary>
+        /// 根据视图区域来获得续打信息对象
+        /// </summary>
+        /// <param name="pos">指定的文档位置</param>
+        /// <returns>获得的续打信息对象</returns>
+        public JumpPrintInfo GetJumpPrintInfo(int pos )
+        {
+            PageLineInfo info = new PageLineInfo();
+            info._CurrentPoistion = pos;
+            info.LastPosition = 0;
+            info.ForJumpPrint = true;
+
+            this.Body.FixPageLine( info );
+            if ( info.CurrentPoistion > 0)
+            {
+                JumpPrintInfo newInfo = new JumpPrintInfo();
+                newInfo.NativePosition = pos;
+                foreach (PrintPage page in this.Pages)
+                {
+                    if (info.CurrentPoistion >= page.Top
+                        && info.CurrentPoistion < page.Bottom)
+                    {
+                        newInfo.Page = page;
+                        newInfo.Position = info.CurrentPoistion - page.Top;
+                    }
+                }
+                return newInfo;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         //[NonSerialized()]
         //internal XTextElementList myContentForSerialize = null;
@@ -1121,6 +1156,12 @@ namespace DCSoft.CSharpWriter.Dom
             writer.WriteEndDocument();
         }
 
+        public override void WriteHTML(DCSoft.CSharpWriter.Html.WriterHtmlDocumentWriter writer)
+		{
+            writer.DefaultFont = this.DefaultStyle.Font.Value;
+			base.WriteHTML (writer);
+		}
+
         /// <summary>
         /// 正在进行反序列化操作的标记
         /// </summary>
@@ -1153,10 +1194,11 @@ namespace DCSoft.CSharpWriter.Dom
                 {
                     this.Attributes = sourceDocument.Attributes.Clone();
                 }
-                 
+                  
                 this._UndoList = null;
                 this._CurrentContentElement = null;
-                 this._HighlightManager = null;
+                
+                this._HighlightManager = null;
                 this._HoverElement = null;
                 this._DocumentControler = null;
                 //this._EditorControl = null;
@@ -1223,7 +1265,11 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 DocumentLoader.LoadXmlFile(fileName, this);
             }
-            
+           
+            else if (format == FileFormat.Html)
+            {
+                DocumentLoader.LoadHtmlFile(fileName, this );
+            }
             this.FileName = fileName;
             this.BaseUrl = WriterUtils.GetBaseURL(fileName);
             this.Modified = false;
@@ -1271,7 +1317,17 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 DocumentLoader.LoadXmlFile(reader, this);
             }
-            
+            //else if (format == FileFormat.OldXML)
+            //{
+            //    // 不支持
+            //    DocumentLoader.LoadOldXmlFile(reader, this);
+
+            //    //throw new NotSupportedException("OldXML");
+            //}
+            else if (format == FileFormat.Html)
+            {
+                DocumentLoader.LoadHtmlFile(reader, this , null );
+            }
             this.Modified = false;
             if (this.UndoList != null)
             {
@@ -1316,7 +1372,14 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 DocumentLoader.LoadXmlFile(stream, this);
             }
-            
+            //else if (format == FileFormat.OldXML)
+            //{
+            //    DocumentLoader.LoadOldXmlFile(stream, this);
+            //}
+            else if (format == FileFormat.Html)
+            {
+                DocumentLoader.LoadHtmlFile(stream, this , this.BaseUrl );
+            }
             this.Modified = false;
             if (this.UndoList != null)
             {
@@ -1375,7 +1438,10 @@ namespace DCSoft.CSharpWriter.Dom
                     this._SpecialTag = back;
                 }
             }
-          
+            else if (format == FileFormat.Html)
+            {
+                DocumentSaver.SaveHtmlFile(fileName, true, this);
+            }
             this.FileName = fileName;
             this.Modified = false;
             this.OnSelectionChanged();
@@ -1861,7 +1927,7 @@ namespace DCSoft.CSharpWriter.Dom
             InsertElements(list, true);
 			//InsertElementsBefore( this.CurrentElement , list , true );
 		}
-         
+ 
 
         /// <summary>
         /// 插入多个元素到文档中
@@ -1874,6 +1940,7 @@ namespace DCSoft.CSharpWriter.Dom
             
             DomElement element = this.CurrentElement;
              
+            
             DomDocumentContentElement dce = element.DocumentContentElement;
             DomContainerElement container = null;
             int index = 0;
@@ -2229,10 +2296,7 @@ namespace DCSoft.CSharpWriter.Dom
             if (args.UpdateContent)
             {
                 DomElement currentElementBack = this.CurrentElement;
-                if (args.NewElements != null && args.NewElements.Count > 0)
-                {
-                    
-                }
+                 
                 args.Container.ContentElement.UpdateContentElements(true);
                 ce.RefreshPrivateContent(
                         privateStartContentIndex,
@@ -2357,7 +2421,35 @@ namespace DCSoft.CSharpWriter.Dom
                 _EditorControl = value;
             }
 		}
+
+        //private int _EditorControlHandle = 0;
+        ///// <summary>
+        ///// 编辑器控件句柄值,本属性内部使用。
+        ///// </summary>
+        //[XmlElement]
+        //[Browsable( false )]
+        //[DefaultValue( 0 )]
+        //[DesignerSerializationVisibility(
+        //    DesignerSerializationVisibility.Hidden)]
+        //public int EditorControlHandle
+        //{
+        //    get { return _EditorControlHandle; }
+        //    set { _EditorControlHandle = value; }
+        //}
          
+        /// <summary>
+        /// 获得文档中包含的图片对象列表
+        /// </summary>
+        [Browsable(false)]
+        [XmlIgnore()]
+        public DomElementList Images
+        {
+            get
+            {
+                return GetSpecifyElements(typeof(DomImageElement));
+            }
+        }
+        
         /// <summary>
         /// 获得文档中指定编号的元素对象,查找时ID值区分大小写的。
         /// </summary>
@@ -2389,7 +2481,6 @@ namespace DCSoft.CSharpWriter.Dom
                         idElement = args.Element;
                         args.Cancel = true;
                     }
-                    
                 },
             false);
             if (idElement != null)
@@ -2617,7 +2708,7 @@ namespace DCSoft.CSharpWriter.Dom
             }
         }
 
-        public virtual void InvalidateView(ContentRange range)
+        public virtual void InvalidateView(DomRange range)
         {
             if (range == null)
             {
@@ -2669,7 +2760,15 @@ namespace DCSoft.CSharpWriter.Dom
         //    mark.Parent = this ;
         //    return mark ;
         //}
- 
+
+		/// <summary>
+		/// 创建一个图片元素对象
+		/// </summary>
+		/// <returns>创建的图片元素</returns>
+		public DomImageElement CreateImage()
+		{
+            return (DomImageElement)CreateElement(typeof(DomImageElement));
+		}
  
 		/// <summary>
 		/// 根据一个字符串创建若干个字符文本元素
@@ -2985,9 +3084,13 @@ namespace DCSoft.CSharpWriter.Dom
                         DomElement preElement = ce.PrivateContent.GetPreElement(element);
                         DocumentContentStyle result = element.RuntimeStyle;
                         if (preElement != null
-                            && (preElement is DomParagraphFlagElement) == false)
+                            && (preElement is DomParagraphFlagElement) == false
+                             )
                         {
-                            result = preElement.RuntimeStyle;
+                             
+                            {
+                                result = preElement.RuntimeStyle;
+                            }
                         }
                         return result;
                     }
@@ -3573,7 +3676,7 @@ namespace DCSoft.CSharpWriter.Dom
          
         
         [NonSerialized]
-        private DocumentContentRender _Render = new DocumentContentRender();
+        private DomContentRender _Render = new DomContentRender();
 
         /// <summary>
         /// 绘制文档内容的视图对象
@@ -3581,13 +3684,13 @@ namespace DCSoft.CSharpWriter.Dom
         [Browsable( false )]
         [XmlIgnore()]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DocumentContentRender Render
+        public DomContentRender Render
         {
             get
             {
                 if (_Render == null)
                 {
-                    _Render = new DocumentContentRender();
+                    _Render = new DomContentRender();
                 }
                 _Render.Document = this;
                 return _Render;
@@ -3604,7 +3707,7 @@ namespace DCSoft.CSharpWriter.Dom
 			g.PageUnit = this.DocumentGraphicsUnit ;
 			g.TextRenderingHint =  System.Drawing.Text.TextRenderingHint.AntiAlias ;
             this.ContentStyles.UpdateState(g);
-            DocumentContentRender view = this.Render;
+            DomContentRender view = this.Render;
             DocumentPaintEventArgs args = new DocumentPaintEventArgs(g, Rectangle.Empty);
             args.Graphics.PageUnit = this.DocumentGraphicsUnit;
             args.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -3631,7 +3734,7 @@ namespace DCSoft.CSharpWriter.Dom
             }
             return height;
         }
-
+         
         [NonSerialized]
         private PageViewMode _PageViewMode = PageViewMode.Page;
         /// <summary>
@@ -3668,10 +3771,7 @@ namespace DCSoft.CSharpWriter.Dom
                 foreach (DomContentLine line in ce.Lines)
                 {
                     line._OwnerPage = null;
-                    if (line[0] is DomPageBreakElement)
-                    {
-                        ((DomPageBreakElement)line[0]).Handled = false;
-                    }
+                     
                 }
                 //ce.Height = topCount;
             }//foreach
@@ -3679,7 +3779,7 @@ namespace DCSoft.CSharpWriter.Dom
             DomDocumentContentElement body = this.Body;
             // 处理文档正文中的表格,删除由于标题行而添加的临时表格行
             List<DomContentElement> ceHasHeaderRow = new List<DomContentElement>();
-            
+  
             if (ceHasHeaderRow.Count > 0)
             {
                 if (ceHasHeaderRow.Contains(body) == false)
@@ -3817,7 +3917,7 @@ namespace DCSoft.CSharpWriter.Dom
             {
                 this.Info.NumOfPage = this.Pages.Count;
             }
-           
+             
 		}
 
 		/// <summary>
@@ -4174,7 +4274,7 @@ namespace DCSoft.CSharpWriter.Dom
         }
 
         #region 文档参数相关代码群 *********************************************
-
+         
         [NonSerialized]
         private object _ServerObject = null;
         /// <summary>
@@ -4194,8 +4294,7 @@ namespace DCSoft.CSharpWriter.Dom
                 _ServerObject = value; 
             }
         }
-
-
+        
         #endregion
          
 
@@ -4497,7 +4596,7 @@ namespace DCSoft.CSharpWriter.Dom
 
 
         #endregion
-
+        
         /// <summary>
         /// 复制对象
         /// </summary>

@@ -1,14 +1,15 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
- 
+using DCSoft.CSharpWriter.Html;
 using DCSoft.CSharpWriter.Script;
 using System.Text;
 using System.Drawing;
@@ -472,7 +473,30 @@ namespace DCSoft.CSharpWriter.Dom
 			}//foreach
             return result;
 		}
-         
+
+        public override void WriteHTML(WriterHtmlDocumentWriter writer)
+		{
+			WriteContentHTML( writer );
+		}
+
+		protected virtual void WriteContentHTML( WriterHtmlDocumentWriter writer )
+		{
+			DomElementList list = WriterUtils.MergeElements( 
+                this.Elements ,
+                true );
+			if( list != null && list.Count > 0 )
+			{
+				foreach( DomElement element in list )
+				{
+					if( writer.IncludeSelectionOndly == false
+                        || element.HasSelection )
+					{
+						element.WriteHTML( writer );
+					}
+				}
+			}
+		}
+
         /// <summary>
         /// 输出RTF文档
         /// </summary>
@@ -788,7 +812,7 @@ namespace DCSoft.CSharpWriter.Dom
                         {
                             if (element == this)
                             {
-                                 
+                                
                                 return true;
                             }
                         }
@@ -1254,7 +1278,7 @@ namespace DCSoft.CSharpWriter.Dom
         public void EditorInvalidateContent()
         {
             DomContentElement ce = this.ContentElement;
-            
+             
             DomElement currentElementBack = this.DocumentContentElement.CurrentElement;
             //XTextElementList contentElements = new XTextElementList();
             //this.AppendContent(contentElements , true );

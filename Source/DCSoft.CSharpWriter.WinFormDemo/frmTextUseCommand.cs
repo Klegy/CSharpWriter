@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ using DCSoft.CSharpWriter;
 using DCSoft.CSharpWriter.Controls;
 using DCSoft.CSharpWriter.Commands;
 using DCSoft.CSharpWriter.Dom;
- 
+using DCSoft.CSharpWriter.Html;
 using DCSoft.Drawing;
 using DCSoft.CSharpWriter.Data;
 using DCSoft.CSharpWriter.Security;
@@ -41,7 +42,7 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             //myEditControl.Document.Options.EditOptions.AutoEditElementValue = true;
             //myEditControl.IsAdministrator = true;
             //myEditControl.Readonly = true;
-            myEditControl.KeyPress += new KeyPressEventHandler(myEditControl_KeyPress);
+           
              //myEditControl.IsAdministrator = true;
             //myEditControl.DocumentControler.DataFilter = new MyDataFilter();
             //myEditControl.HeaderFooterReadonly = true;
@@ -58,9 +59,8 @@ namespace DCSoft.CSharpWriter.WinFormDemo
 
             // 设置编辑器界面双缓冲
             myEditControl.DoubleBuffering = true;// _StartOptions.DoubleBuffering;
-            // 初始化设置命令执行器
+            // init command controler
             myEditControl.CommandControler = myCommandControler;
-            //myEditControl.CommandControler.UpdateBindingControlStatus();
             myCommandControler.Start();
 
             myEditControl.DocumentOptions = new DocumentOptions();
@@ -75,11 +75,38 @@ namespace DCSoft.CSharpWriter.WinFormDemo
             
             myEditControl.AutoUserLogin = false;
 
-            btnDemoFiles_Click(null, null);
-             
-        }
-         
+            this.myEditControl_DocumentLoad(null, null);
 
+            var dir = Path.Combine(Application.StartupPath, "DemoFile");
+            if (Directory.Exists(dir))
+            {
+                var fns = Directory.GetFiles(dir, "*.xml");
+                if (fns != null && fns.Length > 0)
+                {
+                    btnDemoFiles.Visible = true;
+                    foreach (var fn in fns)
+                    {
+                        var menu = new System.Windows.Forms.ToolStripMenuItem(Path.GetFileName(fn));
+                        menu.Tag = fn;
+                        menu.Click += delegate (object sender2, EventArgs args2)
+                        {
+                            var menuItem = (System.Windows.Forms.ToolStripMenuItem)sender2;
+                            var fn2 = (string)menuItem.Tag;
+                            if (File.Exists(fn2))
+                            {
+                                this.Cursor = Cursors.WaitCursor;
+                                this.myEditControl.LoadDocument(fn2, FileFormat.XML);
+                                this.Cursor = Cursors.Default;
+                                //this.myEditControl.ExecuteCommand("FileOpen", true, fn2);
+                            }
+                        };
+                        btnDemoFiles.DropDownItems.Add(menu);
+                    }
+                }
+            }
+        }
+
+         
         /// <summary>
         /// Handle after load document
         /// </summary>
@@ -87,18 +114,9 @@ namespace DCSoft.CSharpWriter.WinFormDemo
         /// <param name="e"></param>
         private void myEditControl_DocumentLoad(object sender, EventArgs e)
         {
-            
+           
         } 
-
-        void myEditControl_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
-                 
-            }
-        }
          
-
         /// <summary>
         /// Demo of server object in document
         /// </summary>
@@ -528,6 +546,149 @@ namespace DCSoft.CSharpWriter.WinFormDemo
         }
          
 
+        private void mTestInsertImage_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Image img = Image.FromFile(System.IO.Path.Combine(Application.StartupPath, "About.jpg"));
+            myEditControl.ExecuteCommand("InsertImage", false, img); return;
+        }
+
+        private void mTestInsertString_Click(object sender, EventArgs e)
+        {
+            myEditControl.ExecuteCommand("InsertString", false, "abc");
+        }
+
+        private void mTestInsertRTF_Click(object sender, EventArgs e)
+        {
+            myEditControl.ExecuteCommand("InsertRTF", false, @"{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}}
+{\colortbl ;\red255\green0\blue0;}
+{\*\generator Msftedit 5.41.21.2510;}{\info{\horzdoc}{\*\lchars ([\'7b\'a1\'a4\'a1\'ae\'a1\'b0\'a1\'b4\'a1\'b6\'a1\'b8\'a1\'ba\'a1\'be\'a1\'b2\'a1\'bc\'a3\'a8\'a3\'ae\'a3\'db\'a3\'fb\'a1\'ea\'a3\'a4}{\*\fchars !),.:\'3b?]\'7d\'a1\'a7\'a1\'a4\'a1\'a6\'a1\'a5\'a8\'44\'a1\'ac\'a1\'af\'a1\'b1\'a1\'ad\'a1\'c3\'a1\'a2\'a1\'a3\'a1\'a8\'a1\'a9\'a1\'b5\'a1\'b7\'a1\'b9\'a1\'bb\'a1\'bf\'a1\'b3\'a1\'bd\'a3\'a1\'a3\'a2\'a3\'a7\'a3\'a9\'a3\'ac\'a3\'ae\'a3\'ba\'a3\'bb\'a3\'bf\'a3\'dd\'a3\'e0\'a3\'fc\'a3\'fd\'a1\'ab\'a1\'e9}}
+\viewkind4\uc1\pard\sa200\sl276\slmult1\lang2052\f0\fs22 1\cf1 2\cf0 3\par
+}");
+        }
+
+        private void mTestInsertXML_Click(object sender, EventArgs e)
+        {
+
+            myEditControl.XMLText = @"<?xml version='1.0'?>
+<XTextDocument xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <XElements>
+    <Element xsi:type='XTextBody'>
+      <XElements>
+        <Element xsi:type='XString'>
+          <Text>111</Text>
+        </Element>
+        <Element xsi:type='XString' StyleIndex='0'>
+          <Text>111</Text>
+        </Element>
+        <Element xsi:type='XString' StyleIndex='1'>
+          <Text>11</Text>
+        </Element>
+        <Element xsi:type='XString' StyleIndex='2'>
+          <Text>1</Text>
+        </Element>
+        <Element xsi:type='XString'>
+          <Text>11</Text>
+        </Element>
+        <Element xsi:type='XParagraphFlag' />
+      </XElements>
+    </Element>
+    <Element xsi:type='XTextHeader'>
+      <XElements>
+        <Element xsi:type='XParagraphFlag' />
+      </XElements>
+    </Element>
+    <Element xsi:type='XTextFooter'>
+      <XElements>
+        <Element xsi:type='XParagraphFlag' />
+      </XElements>
+    </Element>
+  </XElements>
+  <Info>
+    <CreationTime>2012-03-29T15:47:51.1032576+08:00</CreationTime>
+    <LastModifiedTime>2012-03-29T15:47:51.1042577+08:00</LastModifiedTime>
+    <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+    <Operator>DCSoft.CSharpWriter Version:1.0.1111.28434</Operator>
+  </Info>
+  <DefaultFont>
+    <Size>12</Size>
+  </DefaultFont>
+  <ContentStyles>
+    <Default>
+      <FontName>宋体</FontName>
+      <FontSize>12</FontSize>
+    </Default>
+    <Styles>
+      <Style Index='0'>
+        <Bold>true</Bold>
+      </Style>
+      <Style Index='1'>
+        <FontSize>24</FontSize>
+        <Bold>true</Bold>
+      </Style>
+      <Style Index='2'>
+        <FontSize>24</FontSize>
+      </Style>
+    </Styles>
+  </ContentStyles>
+  <DocumentGraphicsUnit>Document</DocumentGraphicsUnit>
+  <PageSettings>
+    <DesignerPaperWidth>0</DesignerPaperWidth>
+    <DesignerPaperHeight>0</DesignerPaperHeight>
+  </PageSettings>
+  <CustomerParameters />
+</XTextDocument>";
+        }
+
+        private void mTestUpdateData_Click(object sender, EventArgs e)
+        { 
+        }
+
+        private void mXML2RTF_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show( "Conver a xml to rtf file" );
+            string sourceFileName = null;
+            string descFileName = null;
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "*.xml|*.xml";
+                dlg.CheckFileExists = true;
+                dlg.ShowReadOnly = false;
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    sourceFileName = dlg.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.Filter = "RTF文件(*.rtf)|*.rtf";
+                dlg.CheckPathExists = true;
+                dlg.OverwritePrompt = true;
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    descFileName = dlg.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            DomDocument document = new DomDocument();
+            document.Load(sourceFileName, FileFormat.XML);
+            using (System.Drawing.Graphics g = document.CreateGraphics())
+            {
+                document.RefreshSize(g);
+                document.ExecuteLayout();
+                document.RefreshPages();
+                document.Save(descFileName, FileFormat.RTF);
+            }
+            MessageBox.Show( string.Format( "success convert xml file'{0}' to rtf file'{1}'" , sourceFileName , descFileName ));
+        }
+
         /// <summary>
         /// 文档内容发生改变事件
         /// </summary>
@@ -542,17 +703,38 @@ namespace DCSoft.CSharpWriter.WinFormDemo
 
         }
          
+        private void mTestInsertCheckBoxList_Click(object sender, EventArgs e)
+        {
+            myEditControl.ExecuteCommand("InsertCheckBoxList", true, null);
+
+            //myEditControl.Document.GetSpecifyElements(typeof(XTextCheckBoxElement));
+        }
          
         private void myEditControl_StatusTextChanged(object sender, EventArgs e)
         {
             lblStatus.Text = myEditControl.StatusText;
             this.statusStrip1.Refresh();
         }
-
-        private void btnDemoFiles_Click(object sender, EventArgs e)
+         
+        /// <summary>
+        /// 编辑器中执行命令时的错误处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void myEditControl_CommandError(object sender, CommandErrorEventArgs args)
         {
-            var ms = this.GetType().Assembly.GetManifestResourceStream("DCSoft.CSharpWriter.WinFormDemo.about.xml");
-            this.myEditControl.LoadDocument(ms, FileFormat.XML);
+            MessageBox.Show(
+                this,
+                args.CommandName + "\r\n" + args.Exception.ToString(), 
+                this.Text,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+
+        }
+
+        private void mLocalFileSystem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

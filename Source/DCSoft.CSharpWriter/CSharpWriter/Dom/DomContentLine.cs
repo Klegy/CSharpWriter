@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using DCSoft.Printing ;
@@ -613,6 +614,7 @@ namespace DCSoft.CSharpWriter.Dom
             }
         }
          
+
 		/// <summary>
 		/// 刷新状态
 		/// </summary>
@@ -716,6 +718,7 @@ namespace DCSoft.CSharpWriter.Dom
 				for( int iCount = 0 ; iCount < this.Count ; iCount ++ )
 				{
 					 
+			
 					DomCharElement c = this[ iCount ] as DomCharElement ;
 					if( c != null )
 					{
@@ -825,7 +828,7 @@ namespace DCSoft.CSharpWriter.Dom
                         }
                     }
 				}
-				 
+			 
 //				// 出现拒绝修正情况,重新计算平均修正空隙
 //				if( CanFix && FixFlag == false )
 //				{
@@ -884,6 +887,38 @@ namespace DCSoft.CSharpWriter.Dom
 				//intLeftCount = 0 ;
 				this.List.Add( element );
                  
+                {
+                    DomParagraphFlagElement p = element.OwnerParagraphEOF;
+                    if (p != null)
+                    {
+                        DocumentContentStyle rs = p.RuntimeStyle;
+                        if (element == p.ParagraphFirstContentElement )
+                        {
+                            if (rs.NumberedList || rs.BulletedList)
+                            {
+                                this.PaddingLeft = rs.LeftIndent;
+                                if (rs.NumberedList)
+                                {
+                                    this.ParagraphListStyle = ParagraphListStyle.NumberedList;
+                                }
+                                else if (rs.BulletedList)
+                                {
+                                    this.ParagraphListStyle = ParagraphListStyle.BulletedList;
+                                }
+                                this.ParagraphStyleIndex = p.ListIndex;
+                            }
+                            this.PaddingLeft = rs.LeftIndent + rs.FirstLineIndent;
+                        }
+                        else
+                        {
+                            this.PaddingLeft = rs.LeftIndent;
+                        }
+                    }
+                    else
+                    {
+                        this.PaddingLeft = 0;
+                    }
+                }
 				element.Left = this.PaddingLeft ;
                 if (this.ParagraphListStyle == Dom.ParagraphListStyle.BulletedList
                     || this.ParagraphListStyle == Dom.ParagraphListStyle.NumberedList)

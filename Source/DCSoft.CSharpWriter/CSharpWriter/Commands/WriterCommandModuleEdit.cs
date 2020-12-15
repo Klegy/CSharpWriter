@@ -1,9 +1,10 @@
 ﻿/*****************************
-CSharpWriter is a RTF style Text writer control written by C#2.0,Currently,
-it use <LGPL> license(maybe change later).More than RichTextBox, 
+CSharpWriter is a RTF style Text writer control written by C#,Currently,
+it use <LGPL> license.More than RichTextBox, 
 It is provide a DOM to access every thing in document and save in XML format.
 It can use in WinForm.NET ,WPF,Console application.Any idea about CSharpWriter 
-can send to 28348092@qq.com(or yyf9989@hotmail.com).
+can write to 28348092@qq.com(or yyf9989@hotmail.com). 
+Project web site is [https://github.com/dcsoft-yyf/CSharpWriter].
 *****************************///@DCHC@
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace DCSoft.CSharpWriter.Commands
     /// </summary>
     /// <remarks>编制 袁永福</remarks>
     [WriterCommandDescription(StandardCommandNames.ModuleEdit)]
-    internal class WriterCommandModuleEdit : WriterCommandModule
+    internal class WriterCommandModuleEdit : CSWriterCommandModule
     {
         /// <summary>
         /// 初始化对象
@@ -148,6 +149,7 @@ namespace DCSoft.CSharpWriter.Commands
                 args.RefreshLevel = UIStateRefreshLevel.All;
             }
         }
+
          
         /// <summary>
         /// 设置修改、插入模式
@@ -297,8 +299,8 @@ namespace DCSoft.CSharpWriter.Commands
                 args.RefreshLevel = UIStateRefreshLevel.All;
             }
         }
-          
 
+          
         /// <summary>
         /// 编辑元素属性
         /// </summary>
@@ -489,8 +491,7 @@ namespace DCSoft.CSharpWriter.Commands
 
                 }
             }
-        }
-         
+        } 
 
         /// <summary>
         /// 设置文档默认样式
