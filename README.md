@@ -1,10 +1,10 @@
 <img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/snapshort.png"/>
 	<b>Background</b>
-<b/ > Many people use standard RichTextBox control to handle RTF style text . but RichTextBox control
+<br/ > Many people use standard RichTextBox control to handle RTF style text . but RichTextBox control
         has lots limited. for example ,It can not use in NO-GUI application,RTF file format is hard to parse,
         hard to change party of document content by programming.
 <b>What is CSharpWriter</b>
-<b/ >CSharpWriter(short name CSWriter) is a new RTF style document process engine without RichTextBox control. it is more powerfull than RichTextBox.We holpe it can replace OpenOffice in .NET World.It support :
+<br/ >CSharpWriter(short name CSWriter) is a new RTF style document process engine without RichTextBox control. it is more powerfull than RichTextBox.We holpe it can replace OpenOffice in .NET World.It support :
     <br />1.RTF style document content. like text color,back color,font.
     <br />2.DOM,you can create document in memory without create GUI control. so CSWriter can used in console /asp.net application.
     <br />3.Independent. CSWriter is independent to other components. it draw all content and gui using system.drawing.graphics. handle mouse and keyboard events by itself. you can use it without technology limited.
