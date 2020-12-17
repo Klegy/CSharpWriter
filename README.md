@@ -88,19 +88,20 @@ protected void InsertString(object sender, WriterCommandEventArgs args)
  In thess code, the "QueryState" party is detect wheather the command is Enable currenttly.System will call this party to set Button/MenuItem.Enable =true or false. the "Invoke"party is define the body of command.
     
 ## File format
-
-    Currenttly, CSWriter save load or save XML file format.In the futury , it will support RTF , HTML(MHT),PDF,BMP , ODF(Open doucument format) file format.and you can add your owner file format.
+Currenttly, CSWriter save load or save XML file format.In the futury , it will support RTF , HTML(MHT),PDF,BMP , ODF(Open doucument format) file format.and you can add your owner file format.
 
 ## Deploy
-
-    CSWriter is a lite GUI Control component.All part include in single file"DCSoft.CSharpWriter.dll".independent any third part component.It run on MS.NET framework 2.0 SP2 or later. Notice , Must add SP2.becase CSWriterControl use property "CanEnableIme" which define in SP2(no defind in .NET2.0 without SP2).
+CSWriter is a lite GUI Control component.All part include in single file"DCSoft.CSharpWriter.dll".independent any third part component.It run on MS.NET framework 2.0 SP2 or later. Notice , Must add SP2.becase CSWriterControl use property "CanEnableIme" which define in SP2(no defind in .NET2.0 without SP2).
     <br /> When you need update CSWriter, overwrite dll file , and re-compile your source code and finished.
+    
 ## Support
-    CSWriter provide technology support.If you have some question or idea, you can write email  [28348092@qq.com] or [yyf9989@hotmail.com] , or visit site[https://github.com/dcsoft-yyf/CSharpWriter].
-    <h3>Compatibility Warring</h3>
-    In this version, the with of whitespace is too small,In the futrue , the wdith of whitespace maby increase,this will change doucment layout.
+CSWriter provide technology support.If you have some question or idea, you can write email  [28348092@qq.com] or [yyf9989@hotmail.com] , or visit site[https://github.com/dcsoft-yyf/CSharpWriter].
+
+## Compatibility Warring
+In this version, the with of whitespace is too small,In the futrue , the wdith of whitespace maby increase,this will change doucment layout.
+
 ## Route map
-    This is the route map:
+This is the route map:
     <br /><img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/about.files/dcimg_39230.jpg" />
 
     <br />>>For programmer, curenttly CSWriter is support WinForm.NET,Console,Windows Service. CSWriter provider a type CSWriterControl base System.Windows.Forms.UserControl,Paint document content by itselft, handle mouse and keyboard event by itself.Without any third part component.
@@ -109,7 +110,7 @@ protected void InsertString(object sender, WriterCommandEventArgs args)
     <br /> >>For GUI Operator, CSWriter just like a MS Word style.You can type any char, support English,Arabic,Tibetan.You can change text font, color,backcolor,paragraph format.In the futrue, it will support table.
     <br />>>Performance.We are working hard to performance optimization.In the future, You can load document with 1000 pages completed no more then 10 seconds.handle table with 1000 rows smooth.
 ## Inside CSharpWriter
-    <br />>>DOM,the core of CSWriter. Dom description any details of document. every part of document has map to a class instance. programmer can new or delete Dom elements ,modify element''s property ,those can update document view ,just like JavaScript update HTML view by modify HTML DOM. DOM also is expendable,in the future ,it will add new type element class ,support new behavior. create an unlimited cswriter.
+>>DOM,the core of CSWriter. Dom description any details of document. every part of document has map to a class instance. programmer can new or delete Dom elements ,modify element''s property ,those can update document view ,just like JavaScript update HTML view by modify HTML DOM. DOM also is expendable,in the future ,it will add new type element class ,support new behavior. create an unlimited cswriter.
     <br />This is element implement tree in DOM:
     <br /><img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/about.files/dcimg_39231.jpg" />
     <br /> DOM define a set of classes,just like HTML DOM,each type of class map to a type content in document.for example, DomDocument class map to the total document, It is the primary enterpoint for programming; DomImageElement map to a image in document,DomCharElement map to a character in document.
