@@ -6,13 +6,13 @@
  
 ## What is CSharpWriter
  CSharpWriter(short name CSWriter) is a new RTF style document process engine without RichTextBox control. it is more powerfull than RichTextBox.We holpe it can replace OpenOffice in .NET World.It support :
-<br />1.RTF style document content. like text color,back color,font.
-<br />2.DOM,you can create document in memory without create GUI control. so CSWriter can used in console /asp.net application.
-<br />3.Independent. CSWriter is independent to other components. it draw all content and gui using system.drawing.graphics. handle mouse and keyboard events by itself. you can use it without technology limited.
-<br />4.Easy to use. you can place a control on your winform. it provide thousands OOP APIs.
-<br />5.Lite weight control. CSWriter is implemented from System.Windows.Forms.UserControl. it run in application UI thread, use less memory , You can catch any unhandled exception.
-<br />6.Support XML format. the result file is more easy to parse then RTF format. use DOM,you can create you owner file format.
-<br />7.CSWriter is developing.If you have any idea about CSWriter ,you can write to [28348092@qq.com] or [yyf9989@hotmail.com] , or visit site[https://github.com/dcsoft-yyf/CSharpWriter].
+1. RTF style document content. like text color,back color,font.
+2. DOM,you can create document in memory without create GUI control. so CSWriter can used in console /asp.net application.
+3. Independent. CSWriter is independent to other components. it draw all content and gui using system.drawing.graphics. handle mouse and keyboard events by itself. you can use it without technology limited.
+4. Easy to use. you can place a control on your winform. it provide thousands OOP APIs.
+5. Lite weight control. CSWriter is implemented from System.Windows.Forms.UserControl. it run in application UI thread, use less memory , You can catch any unhandled exception.
+6. Support XML format. the result file is more easy to parse then RTF format. use DOM,you can create you owner file format.
+7. CSWriter is developing.If you have any idea about CSWriter ,you can write to [28348092@qq.com] or [yyf9989@hotmail.com] , or visit site[https://github.com/dcsoft-yyf/CSharpWriter].
 
 ## How to use CSharpWriter in WinForm.NET
  Just like others winform control.you can use CSWriter easy. in VS.NET IDE,open winform designer,at toolbox left side,choose "choose items..." . and select file DCSoft.CSharpWriter.dll ,than you can see CSWriterControl on toolbox,just like the following:
@@ -103,13 +103,14 @@ In this version, the with of whitespace is too small,In the futrue , the wdith o
 ## Route map
 This is the route map:
 <br /><img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/about.files/dcimg_39230.jpg" />
-<br />- For programmer, curenttly CSWriter is support WinForm.NET,Console,Windows Service. CSWriter provider a type CSWriterControl base System.Windows.Forms.UserControl,Paint document content by itselft, handle mouse and keyboard event by itself.Without any third part component.
-<br />- COM-Interop,CSWriter will support COM-Interop using System.Runtime.InteropServices,it will supoort COM-base developing,such as VB6,VC6,PowerBuidler,Delphi7(XE) or host in IE as ActiveControl.
-<br />- For Web programmer,In the future,CSWriter will support WEB developing,such as ASP.NET WebForm/MVC and ASP.NET Core. and alse can work with JAVA/PHP/Node.js application.It will support web browser compatibility,etc IE/Edge/Chrome/Safari/Firefox.One document in different web browsers,have same view, same content layout and same print result.
-<br />- For GUI Operator, CSWriter just like a MS Word style.You can type any char, support English,Arabic,Tibetan.You can change text font, color,backcolor,paragraph format.In the futrue, it will support table.
-<br />- Performance.We are working hard to performance optimization.In the future, You can load document with 1000 pages completed no more then 10 seconds.handle table with 1000 rows smooth.
+- For programmer, curenttly CSWriter is support WinForm.NET,Console,Windows Service. CSWriter provider a type CSWriterControl base System.Windows.Forms.UserControl,Paint document content by itselft, handle mouse and keyboard event by itself.Without any third part component.
+- COM-Interop,CSWriter will support COM-Interop using System.Runtime.InteropServices,it will supoort COM-base developing,such as VB6,VC6,PowerBuidler,Delphi7(XE) or host in IE as ActiveControl.
+- For Web programmer,In the future,CSWriter will support WEB developing,such as ASP.NET WebForm/MVC and ASP.NET Core. and alse can work with JAVA/PHP/Node.js application.It will support web browser compatibility,etc IE/Edge/Chrome/Safari/Firefox.One document in different web browsers,have same view, same content layout and same print result.
+- For GUI Operator, CSWriter just like a MS Word style.You can type any char, support English,Arabic,Tibetan.You can change text font, color,backcolor,paragraph format.In the futrue, it will support table.
+- Performance.We are working hard to performance optimization.In the future, You can load document with 1000 pages completed no more then 10 seconds.handle table with 1000 rows smooth.
 ## Inside CSharpWriter
->>DOM,the core of CSWriter. Dom description any details of document. every part of document has map to a class instance. programmer can new or delete Dom elements ,modify element''s property ,those can update document view ,just like JavaScript update HTML view by modify HTML DOM. DOM also is expendable,in the future ,it will add new type element class ,support new behavior. create an unlimited cswriter.
+### DOM
+   The core of CSWriter. Dom description any details of document. every part of document has map to a class instance. programmer can new or delete Dom elements ,modify element''s property ,those can update document view ,just like JavaScript update HTML view by modify HTML DOM. DOM also is expendable,in the future ,it will add new type element class ,support new behavior. create an unlimited cswriter.
 <br />This is element implement tree in DOM:
 <br /><img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/about.files/dcimg_39231.jpg" />
 <br /> DOM define a set of classes,just like HTML DOM,each type of class map to a type content in document.for example, DomDocument class map to the total document, It is the primary enterpoint for programming; DomImageElement map to a image in document,DomCharElement map to a character in document.
