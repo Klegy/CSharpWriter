@@ -117,3 +117,5 @@ This is the route map:
 <br />This is DOM element reference tree:
 <br /><img src="https://raw.githubusercontent.com/dcsoft-yyf/CSharpWriter/main/about.files/dcimg_39232.jpg" />
 <br />CSWriter build a DOM tree in memory,every document element instance placed in the tree.[Document] is the single enterpoint to access DOM tree.You can insert/delete element in the tree,and the system can update view quickly.just like javascript access HTMLDom.
+## License
+CSWriter use LGPL-2.1 License.If you want to change License type and use it in business unlimited,you can cantact me private.
